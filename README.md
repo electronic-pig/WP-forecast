@@ -1,4 +1,4 @@
-# my-app
+# WP-predict
 
 ## Project setup
 ```

@@ -2,12 +2,17 @@
   <div class="home">
     <h1 class="title">Welcome to the Website</h1>
     <p class="description">Thank you for visiting our website. We hope you have a great experience!</p>
+    <p>{{ name }}</p>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HomePage',
+  // 像这样动态定义数据并渲染：
+  data(){
+    return {name:"123"}
+  }
 }
 </script>
 

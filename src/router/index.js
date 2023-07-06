@@ -1,65 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 const MainFrame = () => import('@/views/MainFrame.vue')
-// const DetectChanges = () => import('@/views/mainfun/DetectChanges.vue')
-// const DetectObjects = () => import('@/views/mainfun/DetectObjects.vue')
-// const Segmentation = () => import('@/views/mainfun/Segmentation.vue')
-// const Classification = ()=> import('@/views/mainfun/Classification')
-// const RestoreImgs = ()=> import('@/views/mainfun/RestoreImgs')
-// const OnlineMap = () => import('@/views/mainfun/OnlineMap.vue')
-// const History = () => import('@/views/history/History.vue')
-// const NotFound = () => import('@/views/NotFound.vue')
+const PowerPredict = () => import('@/views/mainFunc/PowerPredict.vue')
+
 const routes = [
   {
     path: '/',
-    redirect: '/MainFrame'
+    redirect: '/PowerPredict'
   },
   {
     path: '/MainFrame',
     name: 'MainFrame',
     component: MainFrame,
-    // children: [
-    //   {
-    //     path: '/detectchanges',
-    //     name: 'Detectchanges',
-    //     component: DetectChanges,
-
-    //   }, {
-    //     path: '/detectobjects',
-    //     name: 'Detectobjects',
-    //     component: DetectObjects
-    //   },  {
-    //     path: '/segmentation',
-    //     name: 'Segmentation',
-    //     component: Segmentation
-    //   },
-    //   {
-    //     path: '/classification',
-    //     name:'Classification',
-    //     component:Classification
-    //   },
-    //   {
-    //     path:'/restoreimgs',
-    //     name:'Restoreimgs',
-    //     component:RestoreImgs
-    //   },
-    //   {
-    //     path: '/history',
-    //     name: 'history',
-    //     component: History,
-    //   }
-    //   , {
-    //     path:'/onlinemap',
-    //     name:'onlinemap',
-    //     component:OnlineMap
-    //   }
-    // ]
-  },
-  // {
-  //   path: "/:pathMatch(.*)*",
-  //   name: 'notfound',
-  //   component: NotFound
-  // }
+    children: [
+      {
+        path: '/PowerPredict',
+        name: 'PowerPredict',
+        component: PowerPredict,
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

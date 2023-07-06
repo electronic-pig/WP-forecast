@@ -10,10 +10,10 @@
     <el-divider content-position="center">
       <span v-show="!isCollapse" class="divider-title">功能区</span>
     </el-divider>
-    <el-menu-item index="/detectchanges" @click="goDetectChanges">
+    <el-menu-item index="/PowerPredict" @click="GoPowerPredict">
       <i v-show="isCollapse" class="iconfont icon-bianhuajiance" />
       <h3 v-show="!isCollapse">
-        <i class="iconfont icon-bianhuajiance" />功能一
+        <i class="iconfont icon-bianhuajiance" />功率预测
       </h3>
     </el-menu-item>
 
@@ -71,13 +71,7 @@
 
 <script>
 import {
-  goDetectChanges,
-  goDetectObjects,
-  goSegmentation,
-  goClassification,
-  goRestoreImgs,
-  goHistory,
-  goOnlineMap
+  GoPowerPredict
 } from "@/utils/gosomewhere.js";
 export default {
   props: {
@@ -91,13 +85,7 @@ export default {
     }
   },
   methods: {
-    goDetectChanges,
-    goDetectObjects,
-    goSegmentation,
-    goClassification,
-    goRestoreImgs,
-    goHistory,
-    goOnlineMap,
+    GoPowerPredict,
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

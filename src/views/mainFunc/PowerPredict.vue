@@ -15,9 +15,9 @@
 
     <!-- 函数图像区域 -->
     <div class="contentArea" style="margin-top: 6px;height: 600px;">
-      这里是函数图像……
+      <!-- 这里是函数图像…… -->
       <!-- 函数图像demo -->
-      <div class="functiondemo"></div>
+      <LineChart></LineChart>
     </div>
 
     <!-- 数据说明表格 -->
@@ -50,13 +50,16 @@
 
 <script>
 import Tabinfor from "@/components/TabInfor";
+import LineChart from "@/components/LineChart";
 export default {
   name: "PowerPredict",
   components: {
     Tabinfor,
+    LineChart
   },
   data() {
     return {
+      lineData:{},
       // 选中的行的index，-1代表没有行被选中
       selectedIndex: -1,
       // 表格的数据demo
@@ -92,7 +95,7 @@ export default {
     // this method sets the selectedIndex to the clicked row index
     selectRow(index) {
       this.selectedIndex = index;
-    }, 
+    },
   }
 }
 
@@ -118,6 +121,7 @@ export default {
   border: 2px solid var(--theme--color);
   padding: 10px;
 }
+
 table {
   border-collapse: collapse;
   width: 100%;

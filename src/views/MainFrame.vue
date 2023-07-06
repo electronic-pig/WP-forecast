@@ -29,7 +29,7 @@
         </div>
 
         <!-- 函数图像区域 -->
-        <div class="contentArea" style="margin-top: 6px;">
+        <div class="contentArea" style="margin-top: 6px;height: 600px;">
           这里是函数图像……
           <!-- 函数图像demo -->
           <div class="functiondemo"></div>
@@ -37,7 +37,7 @@
 
         <!-- 数据说明表格 -->
         <div class="contentArea" style="margin-top: 6px;">
-          <div style="width: 600px; height: 300px; overflow: auto;">
+          <div style=" height: 120px; overflow: auto;" class="functionDataChart">
             <table border="1">
               <tr>
                 <th>日期</th>
@@ -115,7 +115,7 @@ export default {
           relativeMSE: 0.05,
           meanError: -0.03,
           absoluteMeanError: 0.06,
-        },
+        }
       ],
     };
   },
@@ -214,6 +214,7 @@ export default {
 
 table {
   border-collapse: collapse;
+  width: 100%; /* make the table width equal to the div width */
 }
 
 tr {
@@ -226,6 +227,10 @@ tr:hover {
 
 tr.selected {
   background-color: gray;
+}
+
+th, td {
+  width: calc(100% / 6);
 }
 
 </style>

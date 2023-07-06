@@ -1,16 +1,40 @@
 <template>
   <div>
-    <Tabinfor>
-      <template #left>
-        <div id="sub-title">
-          功率预测<i class="iconfont icon-dianji" />
-        </div>
-      </template>
-    </Tabinfor>
-
+    <!-- 标题区域，左端是标题，右端是按钮功能区 -->
+    <div class="title-area">
+      <Tabinfor>
+        <template #left>
+            <div id="sub-title">
+              功率预测
+              <i class="iconfont icon-dianji" />
+            </div>
+        </template>
+      </Tabinfor>
+      <div class="buttons">
+        <button @click="query">查询</button>
+        <button @click="print">打印</button>
+        <button @click="saveImage">保存图片</button>
+        <button @click="exportPowerData">导出功率数据</button>
+        <button @click="exportAnalysisData">导出分析数据</button>
+      </div>
+    </div>
+ 
     <!-- 函数图像上部功能区 -->
-    <div class="contentArea">
-      各种选项……
+    <div class="contentArea" style="margin-top: 10px;">
+      <!-- 选择时间范围 -->
+      <div>
+        <div>
+          <label for="start">开始时间:</label>
+          <input type="date" id="start" v-model="startTime.date">
+          <input type="time" v-model="startTime.time">
+        </div>
+        <div>
+          <label for="end">结束时间:</label>
+          <input type="date" id="end" v-model="endTime.date">
+          <input type="time" v-model="endTime.time">
+        </div>
+        <button @click="submit">提交</button>
+      </div>
     </div>
 
     <!-- 函数图像区域 -->
@@ -89,6 +113,16 @@ export default {
           absoluteMeanError: 0.06,
         }
       ],
+      // 选择的开始时间
+      startTime: {
+        date: '',
+        time: ''
+      },
+      // 选择的结束时间
+      endTime: {
+        date: '',
+        time: ''
+      },
     }
   },
   methods: {
@@ -96,6 +130,33 @@ export default {
     selectRow(index) {
       this.selectedIndex = index;
     },
+
+    submit() {
+      // 处理提交逻辑，可以在这里使用 startTime 和 endTime 的值
+      console.log('开始时间:', this.startTime.date, this.startTime.time);
+      console.log('结束时间:', this.endTime.date, this.endTime.time);
+    },
+
+    query() {
+      // 查询逻辑
+      console.log('查询');
+    },
+    print() {
+      // 打印逻辑
+      console.log('打印');
+    },
+    saveImage() {
+      // 保存图片逻辑
+      console.log('保存图片');
+    },
+    exportPowerData() {
+      // 导出功率数据逻辑
+      console.log('导出功率数据');
+    },
+    exportAnalysisData() {
+      // 导出分析数据逻辑
+      console.log('导出分析数据');
+    }
   }
 }
 
@@ -125,7 +186,7 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
-  /* make the table width equal to the div width */
+  /* 让表格的宽度=页面div的宽度 */
 }
 
 tr {
@@ -144,5 +205,37 @@ th,
 td {
   width: calc(100% / 6);
 }
+
+.title-area {
+  // display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-right: auto;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.buttons button {
+  margin-left: 10px;
+  background-color: var(--theme--color);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.buttons button:hover {
+  background-color: #0056b3;
+}
+
 </style>
   

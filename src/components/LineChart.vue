@@ -1,10 +1,10 @@
 <template>
-  <div class="LineChart" ref="chart"></div>
+  <div id="LineChart" style="width: 100%; height: 600px;"></div>
 </template>
 
 <script>
 import * as echarts from 'echarts';
-
+import convertToTimestamp from '@/utils/convertToTimestamp.js'
 export default {
   name: 'LineChart',
   props: {
@@ -13,92 +13,83 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      convertedData: [] // 存储转换后的数据
+    };
+  },
   mounted() {
+    this.convertDataToTimestamp();
     this.renderChart();
   },
+  watch: {
+    data: {
+      immediate: false,
+      handler() {
+        this.convertDataToTimestamp();
+        this.renderChart();
+      }
+    }
+  },
   methods: {
+    convertDataToTimestamp() {
+      this.convertedData = this.data.map(item => {
+        const dateString = item[0];
+        const timestamp = convertToTimestamp(dateString); // 使用提供的函数进行转换
+        return [timestamp, item[1]]; // 返回转换后的数据
+      });
+    },
     renderChart() {
-      const chartElement = this.$refs.chart;
-      const chart = echarts.init(chartElement);
+      const LineChart = document.getElementById('LineChart');
+      const chart = echarts.init(LineChart);
       const option = {
-        title: {
-          text: '风机功率',
-        },
         tooltip: {
           trigger: 'axis',
-          formatter: function (params) {
-            params = params[0];
-            var date = new Date(params.name);
-            var hour = date.getHours();
-            var minutes = date.getMinutes();
-            if (hour < 10) {
-              hour = '0' + hour;
-            }
-            if (minutes < 10) {
-              minutes = '0' + minutes;
-            }
-            var dateStr = hour + ':' + minutes;
-            return dateStr + ' ' + params.value[1];
+          position: function (pt) {
+            return [pt[0], '10%'];
+          }
+        },
+        title: {
+          left: 'center',
+          text: '功率数据',
+          textStyle: {
+            fontSize: 25,
+            color: "#3A5FCD"
           },
-          axisPointer: {
-            animation: false
+        },
+        toolbox: {
+          feature: {
+            dataZoom: {
+              yAxisIndex: 'none'
+            },
+            restore: {},
+            saveAsImage: {}
           }
         },
         xAxis: {
           type: 'time',
-          splitLine: {
-            show: false
-          },
-          splitNumber: 8,
-          axisLine: {
-            lineStyle: {
-              color: '#1B2232'
-            }
-          },
-          axisLabel: {
-            formatter: function (value) {
-              var date = new Date(value);
-              var hour = date.getHours();
-              var minutes = date.getMinutes();
-              if (hour < 10) {
-                hour = '0' + hour;
-              }
-              if (minutes < 10) {
-                minutes = '0' + minutes;
-              }
-              return hour + ':' + minutes;
-            },
-            color: '#1B2232'
-          }
+          boundaryGap: false
         },
         yAxis: {
-          name: '数据',
-          nameTextStyle: {
-            color: '#1B2232',
-            fontSize: 15
-          },
           type: 'value',
-          boundaryGap: [0, '100%'],
-          splitLine: {
-            show: false
-          },
-          axisLine: {
-            lineStyle: {
-              color: '#1B2232'
-            }
-          },
-          axisLabel: {
-            color: '#1B2232'
-          }
+          boundaryGap: false
         },
-        series: [{
-          name: '',
-          type: 'line',
-          hoverAnimation: false,
-          smooth: true,
-          symbolSize: 4,
-          data: this.data
-        }]
+        dataZoom: [
+          {
+            type: 'slider',
+            start: 0,
+            end: 1
+          },
+        ],
+        series: [
+          {
+            name: '功率',
+            type: 'line',
+            smooth: true,
+            symbol: 'none',
+            data: this.convertedData // 使用转换后的数据
+          }
+        ]
       };
       chart.setOption(option);
     }

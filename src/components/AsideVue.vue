@@ -17,35 +17,35 @@
       </h3>
     </el-menu-item>
 
-    <el-menu-item index="/detectobjects" @click="goDetectObjects">
+    <el-menu-item index="/detectobjects">
       <i v-show="isCollapse" class="iconfont icon-mubiaojiance" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-mubiaojiance" />功能二
       </h3>
     </el-menu-item>
 
-    <el-menu-item index="/segmentation" @click="goSegmentation">
+    <el-menu-item index="/segmentation">
       <i v-show="isCollapse" class="iconfont icon-erfenleibianhuajiance16px" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-erfenleibianhuajiance16px" />功能三
       </h3>
     </el-menu-item>
 
-    <el-menu-item index="/classification" @click="goClassification">
+    <el-menu-item index="/classification">
       <i v-show="isCollapse" class="iconfont icon-changjingguanli" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-changjingguanli" />功能四
       </h3>
     </el-menu-item>
 
-    <el-menu-item index="/restoreimgs" @click="goRestoreImgs">
+    <el-menu-item index="/restoreimgs">
       <i v-show="isCollapse" class="iconfont icon-jishu" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-jishu" />功能五
       </h3>
     </el-menu-item>
 
-    <el-menu-item index="/onlinemap" @click="goOnlineMap">
+    <el-menu-item index="/onlinemap">
       <i v-show="isCollapse" class="iconfont icon-zaixianditu" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-zaixianditu" />功能六
@@ -56,7 +56,7 @@
       <span v-show="!isCollapse" class="divider-title">分割线</span>
     </el-divider>
 
-    <el-menu-item index="/history" @click="goHistory">
+    <el-menu-item index="/history">
       <i v-show="isCollapse" class="iconfont icon-history" />
       <h3 v-show="!isCollapse">
         <i class="iconfont icon-history" />内容

@@ -8,9 +8,7 @@
         <el-header class="platform-header">
           <el-row align="middle">
             <i class="iconfont icon-caidan" @click="goCollapse" />
-            <div style="position: fixed;right: 10px;display: flex;">
               <TabLogin />
-            </div>
           </el-row>
         </el-header>
         <router-view v-slot="{ Component }">
@@ -19,7 +17,6 @@
           </transition>
         </router-view>
         <el-backtop target=".main-ctx" :bottom="40" :visibility-height="50" :right="27" />
-
       </el-main>
     </el-container>
   </el-container>
@@ -86,5 +83,4 @@ export default {
   left: -20px;
   width: 105%;
 }
-
 </style>

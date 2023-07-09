@@ -1,9 +1,9 @@
 <template>
-  <span class="date hidden-sm-and-down"><i class="iconfont icon-shijian" />
-  <span class="hms">{{ currenthour }}:{{currentminute }}:{{currentsecond}}</span>
-  <span class="ymd">[{{ currentyear }}-{{ currentmonth }}-{{currentday}}]</span>
+  <span class="date hidden-sm-and-down">
+    <i class="iconfont icon-shijian" />
+    <span class="hms">{{ currenthour }}:{{ currentminute }}:{{ currentsecond }}</span>
+    <span class="ymd">[{{ currentyear }}-{{ currentmonth }}-{{ currentday }}]</span>
   </span>
-
   <div style="margin-left:15px">
     <i class="iconfont icon-github" @click="goGithub" />
   </div>

@@ -4,21 +4,22 @@
     <div class="title-area">
       <Tabinfor>
         <template #left>
-            <div id="sub-title">
-              功率预测
-              <i class="iconfont icon-dianji" />
-            </div>
+          <div id="sub-title">
+            功率预测
+            <i class="iconfont icon-dianji" />
+          </div>
         </template>
       </Tabinfor>
-      <div class="buttons">
-        <button @click="query">查询</button>
-        <button @click="print">打印</button>
-        <button @click="saveImage">保存图片</button>
-        <button @click="exportPowerData">导出功率数据</button>
-        <button @click="exportAnalysisData">导出分析数据</button>
-      </div>
+      <el-row class="buttons">
+        <el-button @click="handleFileUpload" type="primary">选择CSV文件</el-button>
+        <el-button @click="query">查询</el-button>
+        <el-button @click="print">打印</el-button>
+        <el-button @click="saveImage">保存图片</el-button>
+        <el-button @click="exportPowerData">导出功率数据</el-button>
+        <el-button @click="exportAnalysisData">导出分析数据</el-button>
+      </el-row>
     </div>
- 
+
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
       <!-- 选择时间范围 -->
@@ -39,9 +40,8 @@
 
     <!-- 函数图像区域 -->
     <div class="contentArea" style="margin-top: 6px;height: 600px;">
-      <!-- 这里是函数图像…… -->
       <!-- 函数图像demo -->
-      <LineChart></LineChart>
+      <LineChart :data="chartData"></LineChart>
     </div>
 
     <!-- 数据说明表格 -->
@@ -75,6 +75,7 @@
 <script>
 import Tabinfor from "@/components/TabInfor";
 import LineChart from "@/components/LineChart";
+import readCSV from '@/utils/readCSV'; // 确保路径和文件名正确
 export default {
   name: "PowerPredict",
   components: {
@@ -83,7 +84,7 @@ export default {
   },
   data() {
     return {
-      lineData:{},
+      chartData: [],
       // 选中的行的index，-1代表没有行被选中
       selectedIndex: -1,
       // 表格的数据demo
@@ -126,6 +127,18 @@ export default {
     }
   },
   methods: {
+    handleFileUpload() {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.csv';
+      fileInput.addEventListener('change', this.readFile);
+      fileInput.click();
+    },
+    async readFile(event) {
+      const file = event.target.files[0];
+      const result = await readCSV(file);
+      this.chartData = result;
+    },
     // this method sets the selectedIndex to the clicked row index
     selectRow(index) {
       this.selectedIndex = index;
@@ -156,7 +169,7 @@ export default {
     exportAnalysisData() {
       // 导出分析数据逻辑
       console.log('导出分析数据');
-    }
+    },
   }
 }
 
@@ -236,6 +249,5 @@ td {
 .buttons button:hover {
   background-color: #0056b3;
 }
-
 </style>
   

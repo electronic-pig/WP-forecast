@@ -8,7 +8,7 @@
         <el-header class="platform-header">
           <el-row align="middle">
             <i class="iconfont icon-caidan" @click="goCollapse" />
-              <TabLogin />
+            <TabLogin />
           </el-row>
         </el-header>
         <router-view v-slot="{ Component }">
@@ -52,7 +52,7 @@ export default {
   methods: {
     goCollapse() {
       this.isCollapse = !this.isCollapse;
-    }
+    },
   }
 };
 </script>

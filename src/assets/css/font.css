@@ -37,10 +37,6 @@
 .icon-history{
     font-size: 22px;
 }
-.icon-dianji1{
-    font-size: 28px;
-    margin-left: 17px;
-}
 .icon-xiazai {
     margin-left: 5px;
     font-size: 24px;
@@ -78,8 +74,8 @@
 }
 .icon-dianji{
     font-size: 23px;
-    color: blue;
-    margin-left: 17px;
+    color: var(--theme--color);
+    margin-left: 10px;
 }
 .icon-zhuyi{
     color: var(--theme--color);

@@ -1,6 +1,5 @@
 <template>
-  <span class="date hidden-sm-and-down">
-    <i class="iconfont icon-shijian" />
+  <span class="date hidden-sm-and-down"><i class="iconfont icon-shijian" />
     <span class="hms">{{ currenthour }}:{{ currentminute }}:{{ currentsecond }}</span>
     <span class="ymd">[{{ currentyear }}-{{ currentmonth }}-{{ currentday }}]</span>
   </span>
@@ -37,7 +36,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 * {
   font-family: Microsoft JhengHei UI, sans-serif;

@@ -1,7 +1,6 @@
 :root {
-  --theme--color: #3A5FCD;
+  --theme--color: #2073e0;
 }
-
 .el-header {
   box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
   margin-left: 0px;

@@ -1,5 +1,5 @@
 <template>
-  <div id="LineChart" style="width: 100%; height: 600px;"></div>
+  <div id="LineChart" style="width: 100%; height: 750px;"></div>
 </template>
 
 <script>
@@ -43,19 +43,20 @@ export default {
       const LineChart = document.getElementById('LineChart');
       const chart = echarts.init(LineChart);
       const option = {
-        tooltip: {
-          trigger: 'axis',
-          position: function (pt) {
-            return [pt[0], '10%'];
-          }
-        },
         title: {
-          left: 'center',
+          left: 'left',
           text: '功率数据',
           textStyle: {
             fontSize: 25,
             color: "#3A5FCD"
           },
+        },
+        legend:{},
+        tooltip: {
+          trigger: 'axis',
+          position: function (pt) {
+            return [pt[0], '10%'];
+          }
         },
         toolbox: {
           feature: {
@@ -65,6 +66,10 @@ export default {
             restore: {},
             saveAsImage: {}
           }
+        },
+        grid: {
+          left: '3%',
+          right: '1%',
         },
         xAxis: {
           type: 'time',
@@ -97,9 +102,4 @@ export default {
 };
 </script>
 
-<style>
-.LineChart {
-  width: 100%;
-  height: 600px;
-}
-</style>
+<style></style>

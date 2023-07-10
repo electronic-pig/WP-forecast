@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- 标题区域，左端是标题，右端是按钮功能区 -->
     <div class="title-area">
       <Tabinfor>
         <template #left>
@@ -10,37 +9,20 @@
           </div>
         </template>
       </Tabinfor>
-      <el-row class="buttons">
-        <el-button @click="handleFileUpload" type="primary">选择CSV文件</el-button>
-        <el-button @click="query">查询</el-button>
-        <el-button @click="print">打印</el-button>
-        <el-button @click="saveImage">保存图片</el-button>
-        <el-button @click="exportPowerData">导出功率数据</el-button>
-        <el-button @click="exportAnalysisData">导出分析数据</el-button>
-      </el-row>
     </div>
-
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-      <!-- 选择时间范围 -->
-      <div>
-        <div>
-          <label for="start">开始时间:</label>
-          <input type="date" id="start" v-model="startTime.date">
-          <input type="time" v-model="startTime.time">
-        </div>
-        <div>
-          <label for="end">结束时间:</label>
-          <input type="date" id="end" v-model="endTime.date">
-          <input type="time" v-model="endTime.time">
-        </div>
-        <button @click="submit">提交</button>
-      </div>
+      <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
+      <span class="block" style="margin-left: 100px;">
+        <span class="demonstration">选择时段：</span>
+        <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
+          end-placeholder="结束时间" />
+      </span>
+
     </div>
 
     <!-- 函数图像区域 -->
-    <div class="contentArea" style="margin-top: 6px;height: 600px;">
-      <!-- 函数图像demo -->
+    <div class=" contentArea" style="margin-top: 6px;height: 760px;">
       <LineChart :data="chartData"></LineChart>
     </div>
 
@@ -80,7 +62,7 @@ export default {
   components: {
     Tabinfor,
     LineChart
-},
+  },
   data() {
     return {
       chartData: [],
@@ -195,6 +177,7 @@ export default {
 .contentArea {
   border: 2px solid var(--theme--color);
   padding: 10px;
+  border-radius: 8px;
 }
 
 table {

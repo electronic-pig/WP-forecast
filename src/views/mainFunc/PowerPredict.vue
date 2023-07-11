@@ -1,14 +1,11 @@
 <template>
   <div>
     <div class="title-area">
-      <Tabinfor>
-        <template #left>
+        <el-row>
           <div id="sub-title">
             功率预测
-            <i class="iconfont icon-dianji" />
           </div>
-        </template>
-      </Tabinfor>
+        </el-row>
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
@@ -54,13 +51,11 @@
 </template>
 
 <script>
-import Tabinfor from "@/components/TabInfor";
 import LineChart from "@/components/LineChart";
 import readCSV from '@/utils/readCSV';
 export default {
   name: "PowerPredict",
   components: {
-    Tabinfor,
     LineChart
   },
   data() {
@@ -172,7 +167,6 @@ export default {
   width: 220px;
 }
 
-
 /* 函数图像上部功能区样式 */
 .contentArea {
   border: 2px solid var(--theme--color);
@@ -213,25 +207,6 @@ td {
   margin-right: auto;
 }
 
-.buttons {
-  display: flex;
-  justify-content: flex-end;
 
-}
-
-.buttons button {
-  margin-left: 10px;
-  background-color: var(--theme--color);
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin-left: 10px;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.buttons button:hover {
-  background-color: #0056b3;
-}
 </style>
   

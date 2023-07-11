@@ -19,9 +19,9 @@
 
     <el-menu-item index="2">
       <el-icon>
-        <DataLine />
+        <Histogram />
       </el-icon>
-      <template #title>功率预测</template>
+      <template #title>气象数据</template>
     </el-menu-item>
 
     <el-menu-item index="3">

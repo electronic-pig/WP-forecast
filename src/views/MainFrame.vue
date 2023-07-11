@@ -7,8 +7,13 @@
       <el-main class="main-ctx">
         <el-header class="platform-header">
           <el-row align="middle">
-            <i class="iconfont icon-caidan" @click="goCollapse" />
-            <TabLogin />
+            <el-icon v-if="!isCollapse" :size="35">
+              <Fold @click="goCollapse" />
+            </el-icon>
+            <el-icon v-if="isCollapse" :size="35">
+              <Expand @click="goCollapse"/>
+            </el-icon>
+            <TabTime />
           </el-row>
         </el-header>
         <router-view v-slot="{ Component }">
@@ -25,13 +30,13 @@
 <script>
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
-import TabLogin from "@/components/TabLogin";
+import TabTime from "@/components/TabTime";
 
 export default {
   name: "MainFrame",
   components: {
     AsideVue,
-    TabLogin,
+    TabTime,
   },
   data() {
     return {
@@ -82,5 +87,12 @@ export default {
 .platform-header {
   left: -20px;
   width: 105%;
+}
+.el-icon{
+  margin-right:30px;
+}
+.el-icon:hover{
+  color: var(--theme--color);
+  cursor: pointer;
 }
 </style>

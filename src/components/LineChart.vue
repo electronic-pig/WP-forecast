@@ -68,7 +68,7 @@ export default {
           }
         },
         grid: {
-          left: '3%',
+          left: '4%',
           right: '1%',
         },
         xAxis: {

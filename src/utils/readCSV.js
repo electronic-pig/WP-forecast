@@ -9,10 +9,7 @@ export default function readCSV(file) {
       // 忽略第一行标题内容
       for (let i = 1; i < rows.length; i++) {
         const columns = rows[i].split(',');
-        if (columns.length >= 2) {
-          const rowData = [columns[0], columns[9]];
-          data.push(rowData);
-        }
+        data.push(columns);
       }
 
       resolve(data);

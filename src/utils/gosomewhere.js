@@ -4,5 +4,10 @@ function GoPowerPredict() {
         this.$message.success('您已经在该界面了哦')
     } else this.$router.push("PowerPredict");
 }
-
-export { GoPowerPredict }
+function GoWeatherData() {
+    this.isNavigator = false
+    if (this.$route.path === "/WeatherData") {
+        this.$message.success('您已经在该界面了哦')
+    } else this.$router.push("WeatherData");
+}
+export { GoPowerPredict, GoWeatherData }

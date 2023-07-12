@@ -1,98 +1,94 @@
 <template>
-    <el-container>
-      <el-aside width="auto">
-        <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
-      </el-aside>
-      <el-container>
-        <el-main class="main-ctx">
-          <el-header class="platform-header">
-            <el-row align="middle">
-              <el-icon v-if="!isCollapse" :size="35">
-                <Fold @click="goCollapse" />
-              </el-icon>
-              <el-icon v-if="isCollapse" :size="35">
-                <Expand @click="goCollapse"/>
-              </el-icon>
-              <TabTime />
-            </el-row>
-          </el-header>
-          <router-view v-slot="{ Component }">
-            <transition name="fade" mode="out-in">
-              <component :is="Component" />
-            </transition>
-          </router-view>
-          <el-backtop target=".main-ctx" :bottom="40" :visibility-height="50" :right="27" />
-        </el-main>
-      </el-container>
-    </el-container>
-  </template>
-  
-  <script>
-  import "@/assets/css/app.css";
-  import AsideVue from "@/components/AsideVue";
-  import TabTime from "@/components/TabTime";
-  
-  export default {
-    name: "MainFrame",
-    components: {
-      AsideVue,
-      TabTime,
-    },
-    data() {
-      return {
-        isCollapse: false,
-        scrollTop: "",
-        activeIndex: this.$route.path,
-      };
-    },
-    mounted() {
-      window.onresize = () => {
-        this.isCollapse = document.documentElement.clientWidth <= 1100;
-      };
-      document.body.style.overflow = "hidden";
-    },
-    updated() {
-      this.activeIndex = this.$route.path
-    },
-    methods: {
-      goCollapse() {
-        this.isCollapse = !this.isCollapse;
-      },
+  <div>
+    <div class="title-area">
+        <el-row>
+          <div id="sub-title">
+            气象数据
+          </div>
+        </el-row>
+    </div>
+    <!-- 函数图像上部功能区 -->
+    <div class="contentArea" style="margin-top: 10px;">
+      <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
+      <span class="block" style="margin-left: 100px;">
+        <span class="demonstration">选择时段：</span>
+        <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
+          end-placeholder="结束时间" />
+      </span>
+
+    </div>
+
+    <!-- 函数图像区域 -->
+    <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 760px;">
+      <LineAndBarChart :data="chartData"></LineAndBarChart>
+    </div>
+
+    
+  </div>
+</template>
+
+<script>
+import LineAndBarChart from "@/components/LineAndBarChart";
+import readCSV from '@/utils/readCSV';
+export default {
+  name: "PowerPredict",
+  components: {
+    LineAndBarChart
+  },
+  data() {
+    return {
+      chartData: [],
     }
-  };
-  </script>
+  },
+  methods: {
+    handleFileUpload() {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.csv';
+      fileInput.addEventListener('change', this.readFile);
+      fileInput.click();
+    },
+    async readFile(event) {
+      const file = event.target.files[0];
+      const result = await readCSV(file);
+      this.chartData = result;
+    },
+  },
+}
+
+
+</script>
+<style lang="less" scoped>
+* {
+  font-family: SimHei sans-serif;
+}
+
+#sub-title {
+  font-size: 25px;
+}
+
+#sub-title:hover:after {
+  left: 0%;
+  right: 0%;
+  width: 220px;
+}
+
+/* 函数图像上部功能区样式 */
+.contentArea {
+  border: 2px solid var(--theme--color);
+  padding: 10px;
+  border-radius: 8px;
+}
+.title-area {
+  // display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-right: auto;
+}
+
+
+</style>
   
-  <style scoped>
-  .el-main {
-    --el-main-padding: 0px 20px 0 20px;
-    height: auto;
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  .main-ctx {
-    height: 100vh;
-  }
-  
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: all 0.25s
-  }
-  
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
-  
-  .platform-header {
-    left: -20px;
-    width: 105%;
-  }
-  .el-icon{
-    margin-right:30px;
-  }
-  .el-icon:hover{
-    color: var(--theme--color);
-    cursor: pointer;
-  }
-  </style>

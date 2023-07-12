@@ -36,7 +36,7 @@ export default {
       this.convertedData = this.data.map(item => {
         const dateString = item[0];
         const timestamp = convertToTimestamp(dateString); // 使用提供的函数进行转换
-        return [timestamp, item[1]]; // 返回转换后的数据
+        return [timestamp, item[9]]; // 返回转换后的数据
       });
     },
     renderChart() {
@@ -55,7 +55,7 @@ export default {
         tooltip: {
           trigger: 'axis',
           position: function (pt) {
-            return [pt[0], '10%'];
+            return [pt[0], '30%'];
           }
         },
         toolbox: {

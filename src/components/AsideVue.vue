@@ -7,9 +7,11 @@
         <a class="platform-title" @click="goShow">风电功率预测</a>
       </div>
     </div>
+
     <el-divider content-position="center">
       <span v-show="!isCollapse" class="divider-title">功能区</span>
     </el-divider>
+
     <el-menu-item index="/PowerPredict" @click="GoPowerPredict">
       <el-icon>
         <DataLine />
@@ -17,7 +19,7 @@
       <template #title>功率预测</template>
     </el-menu-item>
 
-    <el-menu-item index="2">
+    <el-menu-item index="/WeatherData" @click="GoWeatherData">
       <el-icon>
         <Histogram />
       </el-icon>
@@ -54,7 +56,8 @@
 
 <script>
 import {
-  GoPowerPredict
+  GoPowerPredict,
+  GoWeatherData
 } from "@/utils/gosomewhere.js";
 export default {
   props: {
@@ -69,6 +72,7 @@ export default {
   },
   methods: {
     GoPowerPredict,
+    GoWeatherData,
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

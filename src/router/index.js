@@ -3,7 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 const MainFrame = () => import('@/views/MainFrame.vue')
 const PowerPredict = () => import('@/views/mainFunc/PowerPredict.vue')
 const WeatherData = () => import('@/views/mainFunc/WeatherData.vue')
-
+const WindData = () => import('@/views/mainFunc/WindData.vue')
 const routes = [
   {
     path: '/',
@@ -23,6 +23,11 @@ const routes = [
         path: '/WeatherData',
         name: 'WeatherData',
         component: WeatherData,
+      },
+      {
+        path: '/WindData',
+        name: 'WindData',
+        component: WindData,
       }
     ]
   }

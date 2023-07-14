@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="title-area">
-        <el-row>
-          <div id="sub-title">
-            气象数据
-          </div>
-        </el-row>
+      <el-row>
+        <div id="sub-title">
+          气象数据
+        </div>
+      </el-row>
+
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
@@ -15,15 +16,12 @@
         <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
           end-placeholder="结束时间" />
       </span>
-
     </div>
 
     <!-- 函数图像区域 -->
     <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 760px;">
       <LineAndBarChart :data="chartData"></LineAndBarChart>
     </div>
-
-    
   </div>
 </template>
 
@@ -79,6 +77,7 @@ export default {
   padding: 10px;
   border-radius: 8px;
 }
+
 .title-area {
   // display: flex;
   justify-content: space-between;
@@ -88,7 +87,5 @@ export default {
 .title {
   margin-right: auto;
 }
-
-
 </style>
   

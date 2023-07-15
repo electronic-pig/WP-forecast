@@ -1,11 +1,11 @@
 <template>
   <div>
     <div class="title-area">
-        <el-row>
-          <div id="sub-title">
-            功率预测
-          </div>
-        </el-row>
+      <el-row>
+        <div id="sub-title">
+          功率预测
+        </div>
+      </el-row>
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
@@ -27,7 +27,7 @@
 
     <!-- 函数图像区域 -->
     <div class=" contentArea" style="margin-top: 6px;height: 760px;">
-      <LineChart :data="chartData"></LineChart>
+      <LineChart :data="chartData" :pridictData="predictData"></LineChart>
     </div>
 
     <!-- 数据说明表格 -->
@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       chartData: [],
+      predictData: [],
       // 选中的行的index，-1代表没有行被选中
       selectedIndex: -1,
       // 表格的数据demo
@@ -117,13 +118,13 @@ export default {
       csvfile: null,//选择的文件
     }
   },
-  mounted(){
+  mounted() {
     // 初始化下拉选择框的选项
     for (let i = 1; i <= 20; i++) {
       this.numbers.push({ value: i, text: i });
     }
   },
-  computed:{
+  computed: {
     isValidPredictionLength() {
       // 验证预测长度为正整数
       const length = parseInt(this.predictionLength);
@@ -143,7 +144,7 @@ export default {
       this.csvfile = event.target.files[0];
       const result = await readCSV(file);
       this.chartData = result;
-      console.log("chartdata",this.chartData);
+      console.log("chartdata", this.chartData);
     },
     // this method sets the selectedIndex to the clicked row index
     selectRow(index) {
@@ -201,81 +202,44 @@ export default {
       console.log(this.selectedNumber);
       this.predictionFunction();
 
-
     },
-
-    predictionFunction(){
+    // 将对象形式的数据转成数组形式的数据
+    objectToArray(data) {
+      let dataArray = Object.values(data).map((item) => item);
+      let arr = dataArray.map(obj => Object.values(obj));
+      return (arr)
+    },
+    predictionFunction() {
       let fd = new FormData() //上传数据所需的结构
       // fd.append(key,value)
 
       // TODO1:通过前端获取以下参数,注意参数名称不能改
-      fd.append('username','yyk') //用户名
+      fd.append('username', 'yyk') //用户名
       // 如果风机id为1-10自动加10
-      if(this.selectedNumber>=1 && this.selectedNumber<=10){
-        fd.append('turbid',this.selectedNumber+10) //风机ID 
+      if (this.selectedNumber >= 1 && this.selectedNumber <= 10) {
+        fd.append('turbid', this.selectedNumber + 10) //风机ID 
       }
-      else{
-        fd.append('turbid',this.selectedNumber) //风机ID 
+      else {
+        fd.append('turbid', this.selectedNumber) //风机ID 
       }
 
-      fd.append('outputLen',this.predictionLength) //输出长度
-      
+      fd.append('outputLen', this.predictionLength) //输出长度
+
       // 绑定文件
       // TODO2:只需要上传最后672个数据，前端需要截取最后672个数据,为了便捷可以截取最后700个数据
-      fd.append('file',this.csvfile)
-      
+      fd.append('file', this.csvfile)
+
       // console.log(this.csvfile)
       axios({
-          method:'POST',
-          url:'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
-          data:fd,
-          contentType: false,
-          processData: false,
-
+        method: 'POST',
+        url: 'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
+        data: fd,
+        contentType: false,
+        processData: false,
       }).then(response => {
-          console.log(response.data)
-          // 将response.data的值附在表格数据的后面
-          let responsedata = this.objectToArray(response.data);
-          let data = this.mergedata(this.chartData,responsedata);
-          // console.log(this.chartData);
-          // console.log(data);
-          // 将data赋值给chartData
-          this.chartData = data;
+        let responsedata = this.objectToArray(response.data);
+        this.predictData = responsedata;
       })
-    },
-
-    // 将对象形式的数据转成数组形式的数据
-    objectToArray(data){
-      let dataArray = Object.values(data).map((item) => item);
-      return(dataArray)
-    },
-
-    mergedata(data, result){
-
-      // result 数组进行预处理
-      const processedResult = result.map((item) => {
-        const dateTime = item.DATATIME.replace("T", " "); // 将 "T" 替换为空格
-        const lastColumn = `${item.YD15}\r`; // 在最后一列数据后添加 "\r"
-
-        return {
-          DATATIME: dateTime,
-          YD15: lastColumn
-        };
-      });
-
-      // 将 processedResult 数据作为新的行添加到 data 数组
-      processedResult.forEach((item) => {
-        const newRow = [
-          item.DATATIME.toString(),
-          ...Array(8).fill("0"),
-          item.YD15.toString()
-        ];
-
-        data.push(newRow);
-      });
-
-      return data;
-
     }
   },
 }
@@ -337,7 +301,5 @@ td {
 .title {
   margin-right: auto;
 }
-
-
 </style>
   

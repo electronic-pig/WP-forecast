@@ -17,3 +17,4 @@ function GoHistoryList() {
     } else this.$router.push("HistoryList");
 }
 export { GoPowerPredict, GoWeatherData, GoHistoryList }
+

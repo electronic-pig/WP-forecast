@@ -14,7 +14,7 @@
 
     <el-menu-item index="/PowerPredict" @click="GoPowerPredict">
       <el-icon>
-        <DataLine />
+        <DataAnalysis />
       </el-icon>
       <template #title>功率预测</template>
     </el-menu-item>
@@ -27,30 +27,14 @@
     </el-menu-item>
 
     <el-menu-item index="/HistoryList" @click="GoHistoryList">
-      <el-icon>
-        <DataLine />
-      </el-icon>
-      <template #title>历史数据</template>
-    </el-menu-item>
 
-    <el-menu-item index="4">
       <el-icon>
-        <DataLine />
+        <Clock />
       </el-icon>
-      <template #title>功率预测</template>
+
+      <template #title>历史数据</template>
+
     </el-menu-item>
-    <el-divider content-position="center">
-      <span v-show="!isCollapse" class="divider-title">分割线</span>
-    </el-divider>
-    <el-menu-item index="5">
-      <el-icon>
-        <DataLine />
-      </el-icon>
-      <template #title>功率预测</template>
-    </el-menu-item>
-    <el-divider content-position="center">
-      <span v-show="!isCollapse" class="divider-title" />
-    </el-divider>
   </el-menu>
 </template>
 
@@ -75,6 +59,7 @@ export default {
     GoPowerPredict,
     GoWeatherData,
     GoHistoryList,
+
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

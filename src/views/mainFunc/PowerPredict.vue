@@ -1,21 +1,21 @@
-<template>
+<template data-="">
   <div>
     <div class="title-area">
-        <el-row>
-          <div id="sub-title">
-            功率预测
-          </div>
-        </el-row>
+      <el-row>
+        <div id="sub-title">
+          功率预测{{ data }}
+        </div>
+      </el-row>
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-        <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
-        <el-button @click="dropdown">选择风机号</el-button>
-        <select v-model="selectedNumber" v-if="showDropdown" name="fanid">
-          <option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</option>
-        </select>
-        <input type="text" v-model="predictionLength" placeholder="输入预测长度" />
-        <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
+
+      <span>预测：</span>
+      <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
+        <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
+      </el-select>
+      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度"  style="width: 120px;"/>
+      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
 
       <span class="block" style="margin-left: 100px;">
         <span class="demonstration">选择时段：</span>
@@ -24,93 +24,31 @@
       </span>
 
     </div>
-
     <!-- 函数图像区域 -->
-    <div class=" contentArea" style="margin-top: 6px;height: 760px;">
-      <LineChart :data="chartData"></LineChart>
-    </div>
-
-    <!-- 数据说明表格 -->
-    <div class="contentArea" style="margin-top: 6px;">
-      <div style=" height: 120px; overflow: auto;" class="functionDataChart">
-        <table border="1">
-          <tr>
-            <th>日期</th>
-            <th>相关系数</th>
-            <th>百分比误差</th>
-            <th>相对均方差误差</th>
-            <th>平均误差</th>
-            <th>绝对平均误差</th>
-          </tr>
-          <tr v-for="(row, index) in data" :key="index" :class="{ selected: index === selectedIndex }"
-            @click="selectRow(index)">
-            <td>{{ row.date }}</td>
-            <td>{{ row.correlation }}</td>
-            <td>{{ row.percentageError }}</td>
-            <td>{{ row.relativeMSE }}</td>
-            <td>{{ row.meanError }}</td>
-            <td>{{ row.absoluteMeanError }}</td>
-          </tr>
-        </table>
-      </div>
+    <div class=" contentArea" style="margin-top:6px;margin-bottom: 20px;">
+      <LineChart :data="fileData" :pridictData="predictData"></LineChart>
     </div>
   </div>
 </template>
 
 <script>
 import LineChart from "@/components/LineChart";
-import readCSV from '@/utils/readCSV';
 import axios from 'axios';
 
 export default {
   name: "PowerPredict",
+  props: {
+    fileData: {
+      type: Array,
+      required: true
+    },
+  },
   components: {
     LineChart
   },
   data() {
     return {
-      chartData: [],
-      // 选中的行的index，-1代表没有行被选中
-      selectedIndex: -1,
-      // 表格的数据demo
-      data: [
-        {
-          date: "2021-01-01",
-          correlation: 0.95,
-          percentageError: "5%",
-          relativeMSE: 0.02,
-          meanError: -0.01,
-          absoluteMeanError: 0.03,
-        },
-        {
-          date: "2021-01-02",
-          correlation: 0.92,
-          percentageError: "8%",
-          relativeMSE: 0.03,
-          meanError: 0.02,
-          absoluteMeanError: 0.04,
-        },
-        {
-          date: "2021-01-03",
-          correlation: 0.89,
-          percentageError: "11%",
-          relativeMSE: 0.05,
-          meanError: -0.03,
-          absoluteMeanError: 0.06,
-        }
-      ],
-      // 选择的开始时间
-      startTime: {
-        date: '',
-        time: ''
-      },
-      // 选择的结束时间
-      endTime: {
-        date: '',
-        time: ''
-      },
-
-      showDropdown: false, // 控制下拉选择框的显示与隐藏
+      predictData: [],
       selectedNumber: '', // 选中的风机号
       numbers: [], // 下拉选择框的选项
       predictionLength: '', // 预测长度输入框的值
@@ -118,13 +56,13 @@ export default {
       user:JSON.parse(localStorage.getItem("user")) 
     }
   },
-  mounted(){
+  mounted() {
     // 初始化下拉选择框的选项
     for (let i = 1; i <= 20; i++) {
       this.numbers.push({ value: i, text: i });
     }
   },
-  computed:{
+  computed: {
     isValidPredictionLength() {
       // 验证预测长度为正整数
       const length = parseInt(this.predictionLength);
@@ -183,30 +121,34 @@ export default {
       this.showDropdown = true;
     },
 
+
     predict() {
       if (!this.selectedNumber) {
         // 用户未选择风机号，处理错误逻辑
         alert("用户未选择风机号")
         return;
       }
-
       const length = parseInt(this.predictionLength);
       if (isNaN(length) || length <= 0) {
         // 用户输入的预测长度不是正整数，处理错误逻辑
         alert("用户输入的预测长度不是正整数")
         return;
       }
-      // 在这里将用户的选择存入数据库
-      axios.get
 
       // 在这里调用相关函数进行预测
       // 将选中的风机号赋值给全局变量
       // 将预测长度传递给预测函数
       console.log(this.selectedNumber);
       this.predictionFunction();
-
-
     },
+    
+    // 将对象形式的数据转成数组形式的数据
+    objectToArray(data) {
+      let dataArray = Object.values(data).map((item) => item);
+      let arr = dataArray.map(obj => Object.values(obj));
+      return (arr)
+    },
+    
 
     uploadFileToservlet(){
       let fd = new FormData();
@@ -231,83 +173,32 @@ export default {
     predictionFunction(){
       // 先将数据提交到后端数据库
       this.uploadFileToservlet();
+
       let fd = new FormData() //上传数据所需的结构
-      // fd.append(key,value)
-
       // TODO1:通过前端获取以下参数,注意参数名称不能改
-      fd.append('username','yyk') //用户名
+      fd.append('username', 'yyk') //用户名
       // 如果风机id为1-10自动加10
-      if(this.selectedNumber>=1 && this.selectedNumber<=10){
-        fd.append('turbid',this.selectedNumber+10) //风机ID 
+      if (this.selectedNumber >= 1 && this.selectedNumber <= 10) {
+        fd.append('turbid', this.selectedNumber + 10) //风机ID 
       }
-      else{
-        fd.append('turbid',this.selectedNumber) //风机ID 
+      else {
+        fd.append('turbid', this.selectedNumber) //风机ID 
       }
-
-      fd.append('outputLen',this.predictionLength) //输出长度
-      
+      fd.append('outputLen', this.predictionLength) //输出长度
       // 绑定文件
       // TODO2:只需要上传最后672个数据，前端需要截取最后672个数据,为了便捷可以截取最后700个数据
-      fd.append('file',this.csvfile)
-      
-      // console.log(this.csvfile)
+      fd.append('file', this.csvfile)
       axios({
-          method:'POST',
-          url:'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
-          data:fd,
-          contentType: false,
-          processData: false,
-
+        method: 'POST',
+        url: 'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
+        data: fd,
+        contentType: false,
+        processData: false,
       }).then(response => {
-          console.log(response.data)
-          // 将response.data的值附在表格数据的后面
-          let responsedata = this.objectToArray(response.data);
-          console.log(responsedata);
-          let data = this.mergedata(this.chartData,responsedata);
-          // console.log(this.chartData);
-          // console.log(data);
-          // 将data赋值给chartData
-          this.chartData = data;
-          console.log(this.chartData);
+
+        let responsedata = this.objectToArray(response.data);
+        this.predictData = responsedata;
       })
-    },
-
-    // 将对象形式的数据转成数组形式的数据
-    objectToArray(data){
-      let dataArray = Object.values(data).map((item) => item);
-      return(dataArray)
-    },
-
-    mergedata(data, result){
-
-      // result 数组进行预处理
-      const processedResult = result.map((item) => {
-        const dateTime = item.DATATIME.replace("T", " "); // 将 "T" 替换为空格
-        const lastColumn = `${item.YD15}\r`; // 在最后一列数据后添加 "\r"
-
-        return {
-          DATATIME: dateTime,
-          YD15: lastColumn
-        };
-      });
-
-
-      var dataArray=[]; 
-
-      // 将 processedResult 数据作为新的行添加到 data 数组
-      processedResult.forEach((item) => {
-        const newRow = [
-          item.DATATIME.toString(),
-          // ...Array(8).fill("0"),
-          item.YD15.toString()
-        ];
-        dataArray.push(newRow);
-        // data.push(newRow);
-      });
-      console.log("dataArray",dataArray);
-
-      return data;
-
     }
   },
 }
@@ -337,39 +228,11 @@ export default {
   border-radius: 8px;
 }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-  /* 让表格的宽度=页面div的宽度 */
-}
-
-tr {
-  background-color: white;
-}
-
-tr:hover {
-  background-color: lightgray;
-}
-
-tr.selected {
-  background-color: gray;
-}
-
-th,
-td {
-  width: calc(100% / 6);
-}
-
 .title-area {
   // display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.title {
-  margin-right: auto;
-}
-
 
 </style>
   

@@ -6,7 +6,7 @@
     <el-container>
       <el-main class="main-ctx">
         <el-header class="platform-header">
-          <el-row align="middle">
+          <el-row align="middle" style="margin-top: 5px;">
             <el-icon v-if="!isCollapse" :size="35">
               <Fold @click="goCollapse" />
             </el-icon>
@@ -14,11 +14,12 @@
               <Expand @click="goCollapse"/>
             </el-icon>
             <TabTime />
+            <el-button @click="handleFileUpload" type="primary" style="margin-left:980px;margin-top:5px">上传CSV文件</el-button>
           </el-row>
         </el-header>
-        <router-view v-slot="{ Component }">
+        <router-view v-slot="{ Component }" :fileData="fileData">
           <transition name="fade" mode="out-in">
-            <component :is="Component" />
+            <component :is="Component" :fileData="fileData"/>
           </transition>
         </router-view>
         <el-backtop target=".main-ctx" :bottom="40" :visibility-height="50" :right="27" />
@@ -31,6 +32,7 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
+import readCSV from '@/utils/readCSV';
 
 export default {
   name: "MainFrame",
@@ -43,6 +45,7 @@ export default {
       isCollapse: false,
       scrollTop: "",
       activeIndex: this.$route.path,
+      fileData: [],
     };
   },
   mounted() {
@@ -55,6 +58,19 @@ export default {
     this.activeIndex = this.$route.path
   },
   methods: {
+    handleFileUpload() {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.csv';
+      fileInput.addEventListener('change', this.readFile);
+      fileInput.click();
+    },
+    async readFile(event) {
+      const file = event.target.files[0];
+      this.csvfile = event.target.files[0];
+      const result = await readCSV(file);
+      this.fileData = result;
+    },
     goCollapse() {
       this.isCollapse = !this.isCollapse;
     },

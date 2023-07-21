@@ -9,6 +9,7 @@
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
+
       <span>预测：</span>
       <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
         <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
@@ -52,6 +53,7 @@ export default {
       numbers: [], // 下拉选择框的选项
       predictionLength: '', // 预测长度输入框的值
       csvfile: null,//选择的文件
+      user:JSON.parse(localStorage.getItem("user")) 
     }
   },
   mounted() {
@@ -68,6 +70,58 @@ export default {
     },
   },
   methods: {
+    handleFileUpload() {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.accept = '.csv';
+      fileInput.name = "csvfile";
+      fileInput.addEventListener('change', this.readFile);
+      fileInput.click();
+    },
+    async readFile(event) {
+      const file = event.target.files[0];
+      this.csvfile = event.target.files[0];
+      const result = await readCSV(file);
+      this.chartData = result;
+      console.log("chartdata",this.chartData);
+    },
+    // this method sets the selectedIndex to the clicked row index
+    selectRow(index) {
+      this.selectedIndex = index;
+    },
+
+    submit() {
+      // 处理提交逻辑，可以在这里使用 startTime 和 endTime 的值
+      console.log('开始时间:', this.startTime.date, this.startTime.time);
+      console.log('结束时间:', this.endTime.date, this.endTime.time);
+    },
+
+    query() {
+      // 查询逻辑
+      console.log('查询');
+    },
+    print() {
+      // 打印逻辑
+      console.log('打印');
+    },
+    saveImage() {
+      // 保存图片逻辑
+      console.log('保存图片');
+    },
+    exportPowerData() {
+      // 导出功率数据逻辑
+      console.log('导出功率数据');
+    },
+    exportAnalysisData() {
+      // 导出分析数据逻辑
+      console.log('导出分析数据');
+    },
+
+    dropdown() {
+      this.showDropdown = true;
+    },
+
+
     predict() {
       if (!this.selectedNumber) {
         // 用户未选择风机号，处理错误逻辑
@@ -80,19 +134,46 @@ export default {
         alert("用户输入的预测长度不是正整数")
         return;
       }
+
       // 在这里调用相关函数进行预测
       // 将选中的风机号赋值给全局变量
       // 将预测长度传递给预测函数
       console.log(this.selectedNumber);
       this.predictionFunction();
     },
+    
     // 将对象形式的数据转成数组形式的数据
     objectToArray(data) {
       let dataArray = Object.values(data).map((item) => item);
       let arr = dataArray.map(obj => Object.values(obj));
       return (arr)
     },
-    predictionFunction() {
+    
+
+    uploadFileToservlet(){
+      let fd = new FormData();
+      fd.append("username",this.user.username);
+      fd.append("fanid",this.selectedNumber);
+      fd.append("predictlen",this.predictionLength);
+      fd.append("csvfile",this.csvfile);
+
+      axios.post('http://localhost:8081/upload',fd)
+        .then(response => {
+          if(response.data!=null){
+            console.log(response.data)
+            // this.items = response.data
+          }
+        })
+        .catch(error => {
+          // 处理错误
+          console.error(error);
+        });
+    },
+
+    predictionFunction(){
+      // 先将数据提交到后端数据库
+      this.uploadFileToservlet();
+
       let fd = new FormData() //上传数据所需的结构
       // TODO1:通过前端获取以下参数,注意参数名称不能改
       fd.append('username', 'yyk') //用户名
@@ -114,6 +195,7 @@ export default {
         contentType: false,
         processData: false,
       }).then(response => {
+
         let responsedata = this.objectToArray(response.data);
         this.predictData = responsedata;
       })

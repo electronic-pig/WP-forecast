@@ -10,10 +10,11 @@ function GoWeatherData() {
         this.$message.success('您已经在该界面了哦')
     } else this.$router.push("WeatherData");
 }
-function GoHistory() {
+function GoHistoryList() {
     this.isNavigator = false
-    if (this.$route.path === "/History") {
+    if (this.$route.path === "/HistoryList") {
         this.$message.success('您已经在该界面了哦')
-    } else this.$router.push("History");
+    } else this.$router.push("HistoryList");
 }
-export { GoPowerPredict, GoWeatherData, GoHistory }
+export { GoPowerPredict, GoWeatherData, GoHistoryList }
+

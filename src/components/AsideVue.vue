@@ -26,11 +26,11 @@
       <template #title>气象数据</template>
     </el-menu-item>
 
-    <el-menu-item index="3">
+    <el-menu-item index="/HistoryList" @click="GoHistoryList">
       <el-icon>
         <DataLine />
       </el-icon>
-      <template #title>功率预测</template>
+      <template #title>历史数据</template>
     </el-menu-item>
 
     <el-menu-item index="4">
@@ -57,7 +57,8 @@
 <script>
 import {
   GoPowerPredict,
-  GoWeatherData
+  GoWeatherData,
+  GoHistoryList
 } from "@/utils/gosomewhere.js";
 export default {
   props: {
@@ -73,6 +74,7 @@ export default {
   methods: {
     GoPowerPredict,
     GoWeatherData,
+    GoHistoryList,
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

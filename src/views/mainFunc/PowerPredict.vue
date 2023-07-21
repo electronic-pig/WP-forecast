@@ -9,13 +9,13 @@
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-      <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
-      <el-button @click="dropdown">选择风机号</el-button>
-      <select v-model="selectedNumber" v-if="showDropdown">
-        <option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</option>
-      </select>
-      <input type="text" v-model="predictionLength" placeholder="输入预测长度" />
-      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
+        <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
+        <el-button @click="dropdown">选择风机号</el-button>
+        <select v-model="selectedNumber" v-if="showDropdown" name="fanid">
+          <option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</option>
+        </select>
+        <input type="text" v-model="predictionLength" placeholder="输入预测长度" />
+        <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
 
       <span class="block" style="margin-left: 100px;">
         <span class="demonstration">选择时段：</span>
@@ -115,6 +115,7 @@ export default {
       numbers: [], // 下拉选择框的选项
       predictionLength: '', // 预测长度输入框的值
       csvfile: null,//选择的文件
+      user:JSON.parse(localStorage.getItem("user")) 
     }
   },
   mounted(){
@@ -135,6 +136,7 @@ export default {
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.accept = '.csv';
+      fileInput.name = "csvfile";
       fileInput.addEventListener('change', this.readFile);
       fileInput.click();
     },
@@ -194,6 +196,8 @@ export default {
         alert("用户输入的预测长度不是正整数")
         return;
       }
+      // 在这里将用户的选择存入数据库
+      axios.get
 
       // 在这里调用相关函数进行预测
       // 将选中的风机号赋值给全局变量
@@ -204,7 +208,29 @@ export default {
 
     },
 
+    uploadFileToservlet(){
+      let fd = new FormData();
+      fd.append("username",this.user.username);
+      fd.append("fanid",this.selectedNumber);
+      fd.append("predictlen",this.predictionLength);
+      fd.append("csvfile",this.csvfile);
+
+      axios.post('http://localhost:8081/upload',fd)
+        .then(response => {
+          if(response.data!=null){
+            console.log(response.data)
+            // this.items = response.data
+          }
+        })
+        .catch(error => {
+          // 处理错误
+          console.error(error);
+        });
+    },
+
     predictionFunction(){
+      // 先将数据提交到后端数据库
+      this.uploadFileToservlet();
       let fd = new FormData() //上传数据所需的结构
       // fd.append(key,value)
 
@@ -236,11 +262,13 @@ export default {
           console.log(response.data)
           // 将response.data的值附在表格数据的后面
           let responsedata = this.objectToArray(response.data);
+          console.log(responsedata);
           let data = this.mergedata(this.chartData,responsedata);
           // console.log(this.chartData);
           // console.log(data);
           // 将data赋值给chartData
           this.chartData = data;
+          console.log(this.chartData);
       })
     },
 
@@ -263,16 +291,20 @@ export default {
         };
       });
 
+
+      var dataArray=[]; 
+
       // 将 processedResult 数据作为新的行添加到 data 数组
       processedResult.forEach((item) => {
         const newRow = [
           item.DATATIME.toString(),
-          ...Array(8).fill("0"),
+          // ...Array(8).fill("0"),
           item.YD15.toString()
         ];
-
-        data.push(newRow);
+        dataArray.push(newRow);
+        // data.push(newRow);
       });
+      console.log("dataArray",dataArray);
 
       return data;
 

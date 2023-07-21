@@ -2,7 +2,6 @@ export default function convertToTimestamp(dateString) {
     const regex1 = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;//匹配预测数据
     const regex2 = /^(\d{1,2})\/(\d{1,2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})$/;
     const regex3 = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/;
-    console.log(dateString);
     if (regex1.test(dateString)) {
         return Date.parse(dateString);
     }

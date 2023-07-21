@@ -14,7 +14,7 @@
 
     <el-menu-item index="/PowerPredict" @click="GoPowerPredict">
       <el-icon>
-        <DataLine />
+        <DataAnalysis />
       </el-icon>
       <template #title>功率预测</template>
     </el-menu-item>
@@ -26,31 +26,12 @@
       <template #title>气象数据</template>
     </el-menu-item>
 
-    <el-menu-item index="/WindData" @click="GoWindData">
+    <el-menu-item index="/History" @click="GoHistory">
       <el-icon>
-        <DataLine />
+        <Clock />
       </el-icon>
-      <template #title>风速风向</template>
+      <template #title>历史选择</template>
     </el-menu-item>
-
-    <el-menu-item index="4">
-      <el-icon>
-        <DataLine />
-      </el-icon>
-      <template #title>功率预测</template>
-    </el-menu-item>
-    <el-divider content-position="center">
-      <span v-show="!isCollapse" class="divider-title">分割线</span>
-    </el-divider>
-    <el-menu-item index="5">
-      <el-icon>
-        <DataLine />
-      </el-icon>
-      <template #title>功率预测</template>
-    </el-menu-item>
-    <el-divider content-position="center">
-      <span v-show="!isCollapse" class="divider-title" />
-    </el-divider>
   </el-menu>
 </template>
 
@@ -58,7 +39,7 @@
 import {
   GoPowerPredict,
   GoWeatherData,
-  GoWindData
+  GoHistory
 } from "@/utils/gosomewhere.js";
 export default {
   props: {
@@ -74,7 +55,7 @@ export default {
   methods: {
     GoPowerPredict,
     GoWeatherData,
-    GoWindData,
+    GoHistory,
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

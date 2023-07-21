@@ -10,7 +10,6 @@
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-      <el-button @click="handleFileUpload" type="primary">上传CSV文件</el-button>
       <span class="block" style="margin-left: 100px;">
         <span class="demonstration">选择时段：</span>
         <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
@@ -20,16 +19,21 @@
 
     <!-- 函数图像区域 -->
     <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 760px;">
-      <LineAndBarChart :data="chartData"></LineAndBarChart>
+      <LineAndBarChart :data="fileData"></LineAndBarChart>
     </div>
   </div>
 </template>
 
 <script>
 import LineAndBarChart from "@/components/LineAndBarChart";
-import readCSV from '@/utils/readCSV';
 export default {
   name: "PowerPredict",
+  props: {
+    fileData: {
+      type: Array,
+      required: true
+    },
+  },
   components: {
     LineAndBarChart
   },
@@ -37,20 +41,6 @@ export default {
     return {
       chartData: [],
     }
-  },
-  methods: {
-    handleFileUpload() {
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = '.csv';
-      fileInput.addEventListener('change', this.readFile);
-      fileInput.click();
-    },
-    async readFile(event) {
-      const file = event.target.files[0];
-      const result = await readCSV(file);
-      this.chartData = result;
-    },
   },
 }
 

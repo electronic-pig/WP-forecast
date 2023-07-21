@@ -99,8 +99,8 @@ export default {
         dataZoom: [
           {
             type: 'slider',
-            start: 0,
-            end: 1
+            start: 99,
+            end: 100
           },
         ],
         series: [

@@ -9,18 +9,27 @@
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-      <span>预测：</span>
+      <span>风机号：</span>
       <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
         <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
       </el-select>
-      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度" style="width: 120px;" />
-      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength"
-        style="margin-left: 20px">预测</el-button>
-
-      <span class="block" style="margin-left: 100px;">
-        <span class="demonstration">选择时段：</span>
-        <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
-          end-placeholder="结束时间" />
+      <span class="block">
+        <span class="demonstration">选择预测时长：</span>
+        <el-select v-model="monthNum" placeholder="选择月数 " style="width: 100px;">
+          <el-option v-for="number in monthNumRange" :value="number.value" :key="number.value">{{ number.text
+          }}</el-option>
+        </el-select>
+        <span style="margin-left: 3px;">月</span>
+        <el-select v-model="dayNum" placeholder="选择天数 " style="width: 100px;">
+          <el-option v-for="number in dayNumRange" :value="number.value" :key="number.value">{{ number.text }}</el-option>
+        </el-select>
+        <span style="margin-left: 3px;">天</span>
+        <el-select v-model="hourNum" placeholder="选择时数 " style="width: 100px;">
+          <el-option v-for="number in hourNumRange" :value="number.value" :key="number.value">{{ number.text
+          }}</el-option>
+        </el-select>
+        <span style="margin-left: 3px;">小时</span>
+        <el-button @click="predictRange" type="primary" style="margin-left: 20px">预测</el-button>
       </span>
       <span class="downloadButtonContainer">
         <el-button @click='downloadCSV' type="primary">下载预测数据</el-button>
@@ -57,8 +66,15 @@ export default {
       predictData: [],
       selectedNumber: '', // 选中的风机号
       numbers: [], // 下拉选择框的选项
-      predictionLength: '', // 预测长度输入框的值
-      user: JSON.parse(localStorage.getItem("user"))
+      predictionLength: '', // 预测长度值
+      user: JSON.parse(localStorage.getItem("user")),
+      timeRange: null,
+      monthNumRange: [],
+      dayNumRange: [],
+      hourNumRange: [],
+      monthNum: '',
+      dayNum: '',
+      hourNum: ''
     }
   },
   mounted() {
@@ -66,41 +82,37 @@ export default {
     for (let i = 1; i <= 20; i++) {
       this.numbers.push({ value: i, text: i });
     }
-  },
-  computed: {
-    isValidPredictionLength() {
-      // 验证预测长度为正整数
-      const length = parseInt(this.predictionLength);
-      return !isNaN(length) && length > 0;
-    },
+    for (let i = 1; i <= 12; i++) {
+      this.monthNumRange.push({ value: i, text: i });
+    }
+    for (let i = 1; i <= 30; i++) {
+      this.dayNumRange.push({ value: i, text: i });
+    }
+    for (let i = 1; i <= 24; i++) {
+      this.hourNumRange.push({ value: i, text: i });
+    }
   },
   methods: {
-    predict() {
-      if (!this.selectedNumber) {
-        // 用户未选择风机号，处理错误逻辑
-        alert("用户未选择风机号")
-        return;
-      }
-      const length = parseInt(this.predictionLength);
-      if (isNaN(length) || length <= 0) {
-        // 用户输入的预测长度不是正整数，处理错误逻辑
-        alert("用户输入的预测长度不是正整数")
-        return;
-      }
-
-      // 在这里调用相关函数进行预测
-      // 将选中的风机号赋值给全局变量
-      // 将预测长度传递给预测函数
-      this.predictionFunction();
-    },
-
     // 将对象形式的数据转成数组形式的数据
     objectToArray(data) {
       let dataArray = Object.values(data).map((item) => item);
       let arr = dataArray.map(obj => Object.values(obj));
       return (arr)
     },
-
+    predictRange() {
+      if (!this.selectedNumber) {
+        // 用户未选择风机号，处理错误逻辑
+        alert("用户未选择风机号");
+        return;
+      }
+      if (!this.monthNum & !this.dayNum & !this.hourNum) {
+        alert("用户未选择预测时长");
+        return;
+      }
+      const length = this.monthNum * 30 * 24 * 4 + this.dayNum * 24 * 4 + this.hourNum * 4;
+      this.predictionLength = length;
+      this.predictionFunction();
+    },
     uploadFileToservlet() {
       let fd = new FormData();
       fd.append("username", "yyk");
@@ -201,9 +213,18 @@ export default {
 
 /* 函数图像上部功能区样式 */
 .contentArea {
+  position: relative;
   border: 2px solid var(--theme--color);
   padding: 10px;
   border-radius: 8px;
+}
+
+.block {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 这里可以设置其他样式 */
 }
 
 .title-area {

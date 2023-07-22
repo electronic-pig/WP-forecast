@@ -19,7 +19,7 @@
                     <td class="highlight">{{ item.filename }}</td>
                     <td>{{ item.fanid }}</td>
                     <td>{{ item.predictlen }}</td>
-                    <td><button class="btn">查看记录</button></td>
+                    <td><button class="btn" @click="seeRecord(item)">查看记录</button></td>
                 </tr>
             </table>
         </div>
@@ -53,6 +53,11 @@ export default{
           // 处理错误
           console.error(error);
         });
+    },
+    methods:{
+        seeRecord(item) {
+            this.$router.push({ path: '/PowerPredict', query: { item: JSON.stringify( item) } })
+        },
     }
 }
 

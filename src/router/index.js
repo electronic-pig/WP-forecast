@@ -8,6 +8,8 @@ const LoginView = () => import('@/views/LoginView.vue')
 const RegisterView = () => import('@/views/RegisterView.vue')
 const HistoryList = () => import('@/views/mainFunc/HistoryList.vue')
 const HistoryVue = () => import('@/views/mainFunc/WindData.vue')
+
+
 const routes = [
   {
     path: '/',

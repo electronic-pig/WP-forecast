@@ -13,8 +13,9 @@
       <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
         <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
       </el-select>
-      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度"  style="width: 120px;"/>
-      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
+      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度" style="width: 120px;" />
+      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength"
+        style="margin-left: 20px">预测</el-button>
 
       <span class="block" style="margin-left: 100px;">
         <span class="demonstration">选择时段：</span>
@@ -32,6 +33,7 @@
 
 <script>
 import LineChart from "@/components/LineChart";
+import readCSV from "@/utils/readCSV";
 import axios from 'axios';
 
 export default {
@@ -40,6 +42,10 @@ export default {
     fileData: {
       type: Array,
       required: true
+    },
+    csvfile: {
+      type: Object,
+      default: null,
     },
   },
   components: {
@@ -51,8 +57,7 @@ export default {
       selectedNumber: '', // 选中的风机号
       numbers: [], // 下拉选择框的选项
       predictionLength: '', // 预测长度输入框的值
-      csvfile: null,//选择的文件
-      user:JSON.parse(localStorage.getItem("user")) 
+      user: JSON.parse(localStorage.getItem("user"))
     }
   },
   mounted() {
@@ -60,6 +65,14 @@ export default {
     for (let i = 1; i <= 20; i++) {
       this.numbers.push({ value: i, text: i });
     }
+    if(this.$route.query.item!=null && this.$route.query.item!= undefined){
+      this.item = JSON.parse( this.$route.query.item)
+      console.log("item不为空")
+      this.predictionHistory(this.item)
+    }else{
+      console.log("item为空")
+    }
+    
   },
   computed: {
     isValidPredictionLength() {
@@ -88,6 +101,38 @@ export default {
       console.log(this.selectedNumber);
       this.predictionFunction();
     },
+
+    async predictionHistory(item){
+      try {
+        const response = await axios.get('http://localhost:8081/getCSVFile?url='+item.url);
+        const file = new File([response.data], 'data.csv', { type: 'text/csv' });
+
+        readCSV(file)
+
+        let fd = new FormData() //上传数据所需的结构
+        fd.append("username",item.username);
+        fd.append("turbid",item.fanid);
+        fd.append("outputLen",item.predictlen);
+        fd.append("file",this.csvfile);
+        
+        // console.log(this.csvfile)
+        axios({
+            method:'POST',
+            url:'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
+            data:fd,
+            contentType: false,
+            processData: false,
+
+        }).then(response => {
+          let responsedata = this.objectToArray(response.data);
+          this.predictData = responsedata;
+        })
+      } catch (error) {
+        console.error(error);
+      }
+
+      
+    },
     
     // 将对象形式的数据转成数组形式的数据
     objectToArray(data) {
@@ -98,52 +143,76 @@ export default {
     
     uploadFileToservlet(){
       let fd = new FormData();
+      console.log(this.user.username,this.selectedNumber,this.predictionLength,this.csvfile)
       fd.append("username",this.user.username);
       fd.append("fanid",this.selectedNumber);
       fd.append("predictlen",this.predictionLength);
       fd.append("csvfile",this.csvfile);
 
-      axios.post('http://localhost:8081/upload',fd)
-        .then(response => {
-          if(response.data!=null){
-            console.log(response.data)
-            // this.items = response.data
-          }
-        })
-        .catch(error => {
-          // 处理错误
-          console.error(error);
-        });
+      // axios({
+      //   method: 'POST',
+      //   url: 'http://localhost:8081/upload',
+      //   data: fd,
+      //   contentType: false,
+      //   processData: false,
+      // }).then(response => {
+      //   console.log(response.data)
+      // })
+
+      // 发送FormData对象到服务器
+      fetch('http://localhost:8081/upload', {
+        method: 'POST',
+        body: fd
+      })
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        // 处理错误
+        console.log(error)
+      });
+
+      // axios.post('http://localhost:8081/upload',fd)
+      //   .then(response => {
+      //     if(response.data!=null){
+      //       console.log(response.data)
+      //       // this.items = response.data
+      //     }
+      //   })
+      //   .catch(error => {
+      //     // 处理错误
+      //     console.error(error);
+      //   });
     },
 
     predictionFunction(){
       // 先将数据提交到后端数据库
       this.uploadFileToservlet();
 
-      let fd = new FormData() //上传数据所需的结构
-      // TODO1:通过前端获取以下参数,注意参数名称不能改
-      fd.append('username', 'yyk') //用户名
-      // 如果风机id为1-10自动加10
-      if (this.selectedNumber >= 1 && this.selectedNumber <= 10) {
-        fd.append('turbid', this.selectedNumber + 10) //风机ID 
-      }
-      else {
-        fd.append('turbid', this.selectedNumber) //风机ID 
-      }
-      fd.append('outputLen', this.predictionLength) //输出长度
-      // 绑定文件
-      // TODO2:只需要上传最后672个数据，前端需要截取最后672个数据,为了便捷可以截取最后700个数据
-      fd.append('file', this.csvfile)
-      axios({
-        method: 'POST',
-        url: 'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
-        data: fd,
-        contentType: false,
-        processData: false,
-      }).then(response => {
-        let responsedata = this.objectToArray(response.data);
-        this.predictData = responsedata;
-      })
+      // let fd = new FormData() //上传数据所需的结构
+      // // TODO1:通过前端获取以下参数,注意参数名称不能改
+      // fd.append('username', 'yyk') //用户名
+      // // 如果风机id为1-10自动加10
+      // if (this.selectedNumber >= 1 && this.selectedNumber <= 10) {
+      //   fd.append('turbid', this.selectedNumber + 10) //风机ID 
+      // }
+      // else {
+      //   fd.append('turbid', this.selectedNumber) //风机ID 
+      // }
+      // fd.append('outputLen', this.predictionLength) //输出长度
+      // // 绑定文件
+      // // TODO2:只需要上传最后672个数据，前端需要截取最后672个数据,为了便捷可以截取最后700个数据
+      // fd.append('file', this.csvfile)
+      // axios({
+      //   method: 'POST',
+      //   url: 'http://127.0.0.1:8001/compute/1',//此处的端口与django启动端口需要一致
+      //   data: fd,
+      //   contentType: false,
+      //   processData: false,
+      // }).then(response => {
+      //   let responsedata = this.objectToArray(response.data);
+      //   this.predictData = responsedata;
+      // })
     }
   },
 }

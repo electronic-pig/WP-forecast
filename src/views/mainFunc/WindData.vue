@@ -27,7 +27,7 @@
 import WindChart from "@/components/WindChart";
 import readCSV from '@/utils/readCSV';
 export default {
-	name: "History",
+	name: "HistoryList",
 	components: {
 		WindChart,
 	},

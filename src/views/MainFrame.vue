@@ -17,9 +17,9 @@
             <el-button @click="handleFileUpload" type="primary" style="margin-left:980px;margin-top:5px">上传CSV文件</el-button>
           </el-row>
         </el-header>
-        <router-view v-slot="{ Component }" :fileData="fileData">
+        <router-view v-slot="{ Component }" :fileData="fileData" :csvfile="csvfile">
           <transition name="fade" mode="out-in">
-            <component :is="Component" :fileData="fileData"/>
+            <component :is="Component" :fileData="fileData" :csvfile="csvfile"/>
           </transition>
         </router-view>
         <el-backtop target=".main-ctx" :bottom="40" :visibility-height="50" :right="27" />
@@ -46,6 +46,7 @@ export default {
       scrollTop: "",
       activeIndex: this.$route.path,
       fileData: [],
+      csvfile: null,//选择的文件
     };
   },
   mounted() {

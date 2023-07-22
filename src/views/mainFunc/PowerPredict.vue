@@ -13,8 +13,9 @@
       <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
         <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
       </el-select>
-      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度"  style="width: 120px;"/>
-      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength">预测</el-button>
+      <el-input type="text" v-model="predictionLength" placeholder="输入预测长度" style="width: 120px;" />
+      <el-button @click="predict" v-show="selectedNumber && isValidPredictionLength"
+        style="margin-left: 20px">预测</el-button>
 
       <span class="block" style="margin-left: 100px;">
         <span class="demonstration">选择时段：</span>
@@ -41,6 +42,10 @@ export default {
       type: Array,
       required: true
     },
+    csvfile: {
+      type: Object,
+      default: null,
+    },
   },
   components: {
     LineChart
@@ -51,8 +56,7 @@ export default {
       selectedNumber: '', // 选中的风机号
       numbers: [], // 下拉选择框的选项
       predictionLength: '', // 预测长度输入框的值
-      csvfile: null,//选择的文件
-      user:JSON.parse(localStorage.getItem("user")) 
+      user: JSON.parse(localStorage.getItem("user"))
     }
   },
   mounted() {
@@ -88,24 +92,24 @@ export default {
       console.log(this.selectedNumber);
       this.predictionFunction();
     },
-    
+
     // 将对象形式的数据转成数组形式的数据
     objectToArray(data) {
       let dataArray = Object.values(data).map((item) => item);
       let arr = dataArray.map(obj => Object.values(obj));
       return (arr)
     },
-    
-    uploadFileToservlet(){
-      let fd = new FormData();
-      fd.append("username",this.user.username);
-      fd.append("fanid",this.selectedNumber);
-      fd.append("predictlen",this.predictionLength);
-      fd.append("csvfile",this.csvfile);
 
-      axios.post('http://localhost:8081/upload',fd)
+    uploadFileToservlet() {
+      let fd = new FormData();
+      fd.append("username", this.user.username);
+      fd.append("fanid", this.selectedNumber);
+      fd.append("predictlen", this.predictionLength);
+      fd.append("csvfile", this.csvfile);
+
+      axios.post('http://localhost:8081/upload', fd)
         .then(response => {
-          if(response.data!=null){
+          if (response.data != null) {
             console.log(response.data)
             // this.items = response.data
           }
@@ -116,7 +120,7 @@ export default {
         });
     },
 
-    predictionFunction(){
+    predictionFunction() {
       // 先将数据提交到后端数据库
       this.uploadFileToservlet();
 
@@ -176,6 +180,5 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-
 </style>
   

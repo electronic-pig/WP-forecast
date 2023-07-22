@@ -28,7 +28,6 @@ const routes = [
         path: '/WeatherData',
         name: 'WeatherData',
         component: WeatherData,
-      },
         props: true,
       },
       {

@@ -1,15 +1,14 @@
-<template data-="">
+<template>
   <div>
     <div class="title-area">
       <el-row>
         <div id="sub-title">
-          功率预测{{ data }}
+          功率预测
         </div>
       </el-row>
     </div>
     <!-- 函数图像上部功能区 -->
     <div class="contentArea" style="margin-top: 10px;">
-
       <span>预测：</span>
       <el-select v-model="selectedNumber" placeholder="选择风机号 " style="width: 120px;">
         <el-option v-for="number in numbers" :value="number.value" :key="number.value">{{ number.text }}</el-option>
@@ -70,58 +69,6 @@ export default {
     },
   },
   methods: {
-    handleFileUpload() {
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = '.csv';
-      fileInput.name = "csvfile";
-      fileInput.addEventListener('change', this.readFile);
-      fileInput.click();
-    },
-    async readFile(event) {
-      const file = event.target.files[0];
-      this.csvfile = event.target.files[0];
-      const result = await readCSV(file);
-      this.chartData = result;
-      console.log("chartdata",this.chartData);
-    },
-    // this method sets the selectedIndex to the clicked row index
-    selectRow(index) {
-      this.selectedIndex = index;
-    },
-
-    submit() {
-      // 处理提交逻辑，可以在这里使用 startTime 和 endTime 的值
-      console.log('开始时间:', this.startTime.date, this.startTime.time);
-      console.log('结束时间:', this.endTime.date, this.endTime.time);
-    },
-
-    query() {
-      // 查询逻辑
-      console.log('查询');
-    },
-    print() {
-      // 打印逻辑
-      console.log('打印');
-    },
-    saveImage() {
-      // 保存图片逻辑
-      console.log('保存图片');
-    },
-    exportPowerData() {
-      // 导出功率数据逻辑
-      console.log('导出功率数据');
-    },
-    exportAnalysisData() {
-      // 导出分析数据逻辑
-      console.log('导出分析数据');
-    },
-
-    dropdown() {
-      this.showDropdown = true;
-    },
-
-
     predict() {
       if (!this.selectedNumber) {
         // 用户未选择风机号，处理错误逻辑
@@ -149,7 +96,6 @@ export default {
       return (arr)
     },
     
-
     uploadFileToservlet(){
       let fd = new FormData();
       fd.append("username",this.user.username);
@@ -195,15 +141,12 @@ export default {
         contentType: false,
         processData: false,
       }).then(response => {
-
         let responsedata = this.objectToArray(response.data);
         this.predictData = responsedata;
       })
     }
   },
 }
-
-
 
 </script>
 <style lang="less" scoped>

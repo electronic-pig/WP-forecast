@@ -35,7 +35,7 @@ export default {
     },
   },
   components: {
-    LineAndBarChart
+    LineAndBarChart,
   },
   data() {
     return {

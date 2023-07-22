@@ -22,7 +22,9 @@
         <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
           end-placeholder="结束时间" />
       </span>
-
+      <span class="downloadButtonContainer">
+        <el-button @click='downloadCSV' type="primary">下载预测数据</el-button>
+      </span>
     </div>
     <!-- 函数图像区域 -->
     <div class=" contentArea" style="margin-top:6px;margin-bottom: 20px;">
@@ -89,7 +91,6 @@ export default {
       // 在这里调用相关函数进行预测
       // 将选中的风机号赋值给全局变量
       // 将预测长度传递给预测函数
-      console.log(this.selectedNumber);
       this.predictionFunction();
     },
 
@@ -102,7 +103,7 @@ export default {
 
     uploadFileToservlet() {
       let fd = new FormData();
-      fd.append("username", this.user.username);
+      fd.append("username", "yyk");
       fd.append("fanid", this.selectedNumber);
       fd.append("predictlen", this.predictionLength);
       fd.append("csvfile", this.csvfile);
@@ -148,7 +149,33 @@ export default {
         let responsedata = this.objectToArray(response.data);
         this.predictData = responsedata;
       })
-    }
+    },
+    async downloadCSV() {
+      const response = await axios.post('http://127.0.0.1:8001/compute/2', {
+        responseType: 'blob', // 声明响应的数据类型为二进制
+      });
+
+      // 创建一个Blob对象
+      const blob = new Blob([response.data]);
+
+      // 创建一个a标签并设置下载链接
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(blob);
+
+      // 设置下载文件的名称
+      downloadLink.download = 'predict.csv';
+
+      // 将a标签隐藏，并将其添加到DOM中
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+
+      // 触发点击事件以开始下载
+      downloadLink.click();
+
+      // 下载完成后，移除a标签并释放URL对象
+      document.body.removeChild(downloadLink);
+      URL.revokeObjectURL(downloadLink.href);
+    },
   },
 }
 
@@ -166,6 +193,10 @@ export default {
   left: 0%;
   right: 0%;
   width: 220px;
+}
+
+.downloadButtonContainer {
+  float: right;
 }
 
 /* 函数图像上部功能区样式 */

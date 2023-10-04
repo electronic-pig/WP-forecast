@@ -1,12 +1,12 @@
 <template>
-	<div id="TemperatureChart" style="width: 100%; height: 700px;"></div>
+	<div id="LineChart" style="width: 100%; height: 750px;"></div>
 </template>
   
 <script>
 import * as echarts from 'echarts';
 import convertToTimestamp from '@/utils/convertToTimestamp.js'
 export default {
-	name: 'TemperatureChart',
+	name: 'LineAndBarChart',
 	props: {
 		data: {
 			type: Array,
@@ -40,8 +40,8 @@ export default {
 			});
 		},
 		renderChart() {
-			const TemperatureChart = document.getElementById('TemperatureChart');
-			const chart = echarts.init(TemperatureChart);
+			const LineChart = document.getElementById('LineChart');
+			const chart = echarts.init(LineChart);
 			const option = {
 				title: {
 					left: 'left',

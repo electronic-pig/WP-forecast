@@ -6,31 +6,36 @@
           气象数据
         </div>
       </el-row>
+
     </div>
+    <!-- 函数图像上部功能区 -->
+    <div class="contentArea" style="margin-top: 10px;">
+      <span class="block" style="margin-left: 100px;">
+        <span class="demonstration">选择时段：</span>
+        <el-date-picker v-model="value1" type="datetimerange" range-separator="——" start-placeholder="开始时间"
+          end-placeholder="结束时间" />
+      </span>
+    </div>
+
     <!-- 函数图像区域 -->
-    <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 705px;">
-      <TemperatureChart :data="fileData"></TemperatureChart>
-    </div>
-    <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 705px;">
-      <WindChart :data="fileData"></WindChart>
+    <div class=" contentArea" style="margin-top: 6px;margin-bottom: 12px;height: 760px;">
+      <LineAndBarChart :data="fileData"></LineAndBarChart>
     </div>
   </div>
 </template>
 
 <script>
-import TemperatureChart from "@/components/TemperatureChart";
-import WindChart from "@/components/WindChart";
+import LineAndBarChart from "@/components/LineAndBarChart";
 export default {
   name: "PowerPredict",
   props: {
     fileData: {
       type: Array,
       required: true
-    }
+    },
   },
   components: {
-    TemperatureChart,
-    WindChart
+    LineAndBarChart
   },
   data() {
     return {

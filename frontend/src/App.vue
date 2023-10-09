@@ -1,17 +1,11 @@
 <template>
-  <div id="app">
-    <router-view />
-    <el-backtop
-      :bottom="40"
-      :visibility-height="50"
-      :right="27"
-    />
-  </div>
+  <router-view/>
 </template>
 
-<script>
-export default {
-   name: 'App',
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-</script>
-
+</style>

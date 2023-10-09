@@ -1,4 +1,4 @@
-# WP-predict
+# frontend
 
 ## Project setup
 ```

@@ -2,7 +2,9 @@
   <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" text-color="black" background-color="rgb(247,246,242)"
     :default-active="activeIndex" active-text-color="#FFFFFF">
     <div class="platform">
-      <img class="platform-logo" :src="require('@/assets/image/logo/logo.png')" alt="logo" @click="GoPowerPredict">
+      <router-link to="/PowerPredict">
+        <img class="platform-logo" :src="require('@/assets/image/logo/logo.png')" alt="logo">
+      </router-link>
       <div v-if="!isCollapse" id="platform-title">
         <a class="platform-title" @click="goShow">风电功率预测</a>
       </div>
@@ -12,38 +14,36 @@
       <span v-show="!isCollapse" class="divider-title">功能区</span>
     </el-divider>
 
-    <el-menu-item index="/PowerPredict" @click="GoPowerPredict">
-      <el-icon>
-        <DataAnalysis />
-      </el-icon>
-      <template #title>功率预测</template>
-    </el-menu-item>
+    <router-link to="/PowerPredict" style="text-decoration: none;">
+      <el-menu-item index="/PowerPredict" >
+        <el-icon>
+          <DataAnalysis />
+        </el-icon>
+        <template #title>功率预测</template>
+      </el-menu-item>
+    </router-link>
 
-    <el-menu-item index="/WeatherData" @click="GoWeatherData">
-      <el-icon>
-        <Histogram />
-      </el-icon>
-      <template #title>气象数据</template>
-    </el-menu-item>
+    <router-link to="/DataAnalysis" style="text-decoration: none;">
+      <el-menu-item index="/DataAnalysis">
+        <el-icon>
+          <DataAnalysis />
+        </el-icon>
+        <template #title>数据分析</template>
+      </el-menu-item>
+    </router-link>
 
-    <el-menu-item index="/HistoryList" @click="GoHistoryList">
-
-      <el-icon>
-        <Clock />
-      </el-icon>
-
-      <template #title>历史数据</template>
-
-    </el-menu-item>
+    <router-link to="/IndustryTrending" style="text-decoration: none;">
+      <el-menu-item index="/IndustryTrending">
+        <el-icon>
+          <DataAnalysis />
+        </el-icon>
+        <template #title>行业动态</template>
+      </el-menu-item>
+    </router-link>
   </el-menu>
 </template>
 
 <script>
-import {
-  GoPowerPredict,
-  GoWeatherData,
-  GoHistoryList
-} from "@/utils/gosomewhere.js";
 export default {
   props: {
     isCollapse: {
@@ -56,10 +56,6 @@ export default {
     }
   },
   methods: {
-    GoPowerPredict,
-    GoWeatherData,
-    GoHistoryList,
-
     goShow() {
       this.$message.success('欢迎来到本平台')
     }

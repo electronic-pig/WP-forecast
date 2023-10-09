@@ -1,64 +1,35 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-const MainFrame = () => import('@/views/MainFrame.vue')
-const PowerPredict = () => import('@/views/mainFunc/PowerPredict.vue')
-const WeatherData = () => import('@/views/mainFunc/WeatherData.vue')
-
-const LoginView = () => import('@/views/LoginView.vue')
-const RegisterView = () => import('@/views/RegisterView.vue')
-const HistoryList = () => import('@/views/mainFunc/HistoryList.vue')
-const HistoryVue = () => import('@/views/mainFunc/WindData.vue')
-
+import HomeView from '../views/HomeView.vue'
+import PowerPredict from '../views/PowerPredict.vue'
+import DataAnalysis from '../views/DataAnalysis.vue'
+import IndustryTrending from '../views/IndustryTrending.vue'
 
 const routes = [
   {
     path: '/',
-    redirect: '/PowerPredict'
+    name: 'home',
+    component: HomeView
   },
   {
-    path: '/MainFrame',
-    name: 'MainFrame',
-    component: MainFrame,
-    children: [
-      {
-        path: '/PowerPredict',
-        name: 'PowerPredict',
-        component: PowerPredict,
-        props: true,
-      },
-      {
-        path: '/WeatherData',
-        name: 'WeatherData',
-        component: WeatherData,
-        props: true,
-      },
-      {
-        path: '/History',
-        name: 'History',
-        component: HistoryVue,
-        props: true,
-      }
-    ]
+    path: '/PowerPredict',
+    name: 'PowerPredict',
+    component: PowerPredict
   },
   {
-    path:'/LoginView',
-    name:'LoginView',
-    component: LoginView
+    path: '/DataAnalysis',
+    name: 'DataAnalysis',
+    component: DataAnalysis
   },
   {
-    path:'/RegisterView',
-    name:'RegisterView',
-    component: RegisterView
-  },
-  {
-    path:'/HistoryList',
-    name:'HistoryList',
-    component: HistoryList
+    path: '/IndustryTrending',
+    name: 'IndustryTrending',
+    component: IndustryTrending
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 })
+
 export default router

@@ -1,6 +1,6 @@
 <template>
-  <el-menu class="el-menu-vertical-demo" :collapse="isCollapse" text-color="black" background-color="rgb(247,246,242)"
-    :default-active="activeIndex" active-text-color="#FFFFFF">
+  <el-menu class="el-menu-vertical" :collapse="isCollapse" background-color="rgb(247,246,242)"
+    :default-active="activeIndex">
     <div class="platform">
       <router-link to="/PowerPredict">
         <img class="platform-logo" :src="require('@/assets/image/logo/logo.png')" alt="logo">
@@ -11,11 +11,11 @@
     </div>
 
     <el-divider content-position="center">
-      <span v-show="!isCollapse" class="divider-title">功能区</span>
+      <span class="divider-title" v-show="!isCollapse">功能区</span>
     </el-divider>
 
     <router-link to="/PowerPredict" style="text-decoration: none;">
-      <el-menu-item index="/PowerPredict" >
+      <el-menu-item class="el-menu-item" index="/PowerPredict">
         <el-icon>
           <DataAnalysis />
         </el-icon>
@@ -24,18 +24,18 @@
     </router-link>
 
     <router-link to="/DataAnalysis" style="text-decoration: none;">
-      <el-menu-item index="/DataAnalysis">
+      <el-menu-item class="el-menu-item" index="/DataAnalysis">
         <el-icon>
-          <DataAnalysis />
+          <Histogram />
         </el-icon>
         <template #title>数据分析</template>
       </el-menu-item>
     </router-link>
 
     <router-link to="/IndustryTrending" style="text-decoration: none;">
-      <el-menu-item index="/IndustryTrending">
+      <el-menu-item class="el-menu-item" index="/IndustryTrending">
         <el-icon>
-          <DataAnalysis />
+          <TrendCharts />
         </el-icon>
         <template #title>行业动态</template>
       </el-menu-item>
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style lang="less">
-.el-menu {
+.el-menu-vertical {
   position: relative;
   height: 100vh;
   top: 0;
@@ -103,9 +103,13 @@ export default {
   }
 }
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+.el-menu-vertical:not(.el-menu--collapse) {
   width: 140px;
   min-height: 400px;
+}
+
+.el-menu-vertical .el-divider__text {
+  background-color: rgb(247, 246, 242);
 }
 
 .is-active {
@@ -164,10 +168,6 @@ export default {
   left: 7%;
   right: 7%;
   width: 85%;
-}
-
-.el-menu .el-divider__text {
-  background-color: rgb(247, 246, 242);
 }
 </style>
  

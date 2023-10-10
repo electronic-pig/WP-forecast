@@ -6,7 +6,6 @@
 </template>
 
 <script>
-import { getCurrentTime } from "@/utils/gettime.js"
 export default {
   data() {
     return {
@@ -16,20 +15,33 @@ export default {
       currenthour: "",
       currentminute: "",
       currentsecond: "",
-      getDate: "",
     };
   },
   mounted() {
-    this.getCurrentTime();
+    this.updateTime();  // Call updateTime function initially
+    // Set up a timer to call updateTime every second
+    this.timer = setInterval(() => {
+      this.updateTime();
+    }, 1000);
   },
   unmounted() {
-    clearTimeout(this.getDate);
+    // Clear the timer when the component is unmounted to prevent memory leaks
+    clearInterval(this.timer);
   },
   methods: {
-    getCurrentTime,
-  },
+    updateTime() {
+      const now = new Date();
+      this.currentyear = now.getFullYear();
+      this.currentmonth = now.getMonth() + 1;
+      this.currentday = now.getDate();
+      this.currenthour = now.getHours();
+      this.currentminute = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes();
+      this.currentsecond = now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds();
+    }
+  }
 };
 </script>
+
 <style scoped>
 * {
   font-family: Microsoft JhengHei UI, sans-serif;
@@ -49,5 +61,4 @@ export default {
   color: var(--theme--color);
   font-size: 18px;
 }
-
 </style>

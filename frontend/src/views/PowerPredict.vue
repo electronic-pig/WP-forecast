@@ -23,6 +23,9 @@
           <div class="windmill-container">
             <BackgroundWindmill />
           </div>
+          <div class="wind-speed_container">
+            <WindSpeedChart />
+          </div>
         </div>
 
       </el-main>
@@ -34,8 +37,10 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-import BackgroundWindmill from "@/components/BackgroundWindmill";
-import TemperatureChart from "@/components/TemperatureChart"
+import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWindmill";
+import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart"
+import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
+
 
 export default {
   name: "PowerPredict",
@@ -43,7 +48,8 @@ export default {
     AsideVue,
     TabTime,
     BackgroundWindmill,
-    TemperatureChart
+    TemperatureChart,
+    WindSpeedChart
   },
   data() {
     return {
@@ -91,6 +97,9 @@ export default {
 }
 
 .container {
-  display: flex; /* Use flexbox */
+  display: flex;
+  justify-content: space-between;
 }
+
+
 </style>

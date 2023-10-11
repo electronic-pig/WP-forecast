@@ -20,8 +20,8 @@ export default {
 					center: ['50%', '60%'],
 					startAngle: 200,
 					endAngle: -20,
-					min: 0,
-					max: 60,
+					min: -30,
+					max: 30,
 					splitNumber: 12,
 					itemStyle: {
 						color: '#3498db'
@@ -74,45 +74,7 @@ export default {
 						fontSize: 30,
 						fontWeight: 'bolder',
 						formatter: '{value} °C',
-						color: 'inherit'
-					},
-					data: [
-						{
-							value: 20
-						}
-					]
-				},
-				{
-					type: 'gauge',
-					center: ['50%', '60%'],
-					startAngle: 200,
-					endAngle: -20,
-					min: 0,
-					max: 60,
-					itemStyle: {
 						color: '#3498db'
-					},
-					progress: {
-						show: true,
-						width: 8
-					},
-					pointer: {
-						show: false
-					},
-					axisLine: {
-						show: false
-					},
-					axisTick: {
-						show: false
-					},
-					splitLine: {
-						show: false
-					},
-					axisLabel: {
-						show: false
-					},
-					detail: {
-						show: false
 					},
 					data: [
 						{
@@ -121,19 +83,12 @@ export default {
 					]
 				}
 			]
-		};
+		}
 
 		setInterval(() => {
-			const random = +(Math.random() * 60).toFixed(2);
+			const random = +((Math.random() * 60 - 30).toFixed(1));
 			myChart.setOption({
 				series: [
-					{
-						data: [
-							{
-								value: random
-							}
-						]
-					},
 					{
 						data: [
 							{
@@ -152,13 +107,18 @@ export default {
   
 <style scoped>
 .chart-container {
-	width: 350px;
 	height: 280px;
 	display: block;
 	border: 2px solid var(--theme--color);
 	border-radius: 15px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-
+.chart-container:hover {
+  transform: scale(1.01);
+  /* 鼠标悬浮时放大1.01倍 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* 添加阴影效果 */
+}
 .temperature-label {
 	text-align: left;
 	font-size: 20px;
@@ -171,7 +131,7 @@ export default {
 
 #temperature-chart {
 	width: 350px;
-	height: 280px;
+	height: 300px;
 	display: flex;
 	justify-content: center;
 	align-items: center;

@@ -223,8 +223,15 @@
 	border-radius: 15px;
 	z-index: 5;
 	background: #fff;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.main-wrapper:hover {
+	transform: scale(1.01);
+	/* 鼠标悬浮时放大1.01倍 */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	/* 添加阴影效果 */
+}
 .sun {
 	position: absolute;
 	width: 20px;

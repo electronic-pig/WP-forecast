@@ -16,6 +16,7 @@
             <TabTime />
           </el-row>
         </el-header>
+        <realtimePower />
       </el-main>
     </el-container>
   </el-container>
@@ -25,12 +26,14 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
+import realtimePower from '@/components/realtimePower'; 
 
 export default {
   name: "PowerPredict",
   components: {
     AsideVue,
     TabTime,
+    realtimePower
   },
   data() {
     return {
@@ -64,7 +67,6 @@ export default {
   width: 100%;
   overflow-x: hidden;
 }
-
 
 .platform-header {
   left: -20px;

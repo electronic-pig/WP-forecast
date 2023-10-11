@@ -11,12 +11,20 @@
               <Fold @click="goCollapse" />
             </el-icon>
             <el-icon class="collapse" v-if="isCollapse" :size="35">
-              <Expand @click="goCollapse"/>
+              <Expand @click="goCollapse" />
             </el-icon>
             <TabTime />
           </el-row>
         </el-header>
-        <realtimePower />
+        <div class="container">
+          <div class="chart-container">
+            <TemperatureChart />
+          </div>
+          <div class="windmill-container">
+            <BackgroundWindmill />
+          </div>
+        </div>
+
       </el-main>
     </el-container>
   </el-container>
@@ -26,14 +34,16 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-import realtimePower from '@/components/realtimePower'; 
+import BackgroundWindmill from "@/components/BackgroundWindmill";
+import TemperatureChart from "@/components/TemperatureChart"
 
 export default {
   name: "PowerPredict",
   components: {
     AsideVue,
     TabTime,
-    realtimePower
+    BackgroundWindmill,
+    TemperatureChart
   },
   data() {
     return {
@@ -59,9 +69,7 @@ export default {
 </script>
 
 <style scoped>
-
 .main-ctx {
-  height: 100vh;
   --el-main-padding: 0px 20px 0px 20px;
   height: auto;
   width: 100%;
@@ -72,11 +80,17 @@ export default {
   left: -20px;
   width: 105%;
 }
-.collapse{
-  margin-right:30px;
+
+.collapse {
+  margin-right: 30px;
 }
-.collapse:hover{
+
+.collapse:hover {
   color: var(--theme--color);
   cursor: pointer;
+}
+
+.container {
+  display: flex; /* Use flexbox */
 }
 </style>

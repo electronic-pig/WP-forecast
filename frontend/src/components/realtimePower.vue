@@ -1,5 +1,7 @@
 <template>
-  <el-card class="custom-card" shadow="hover">
+  <div class="container">
+  <BackgroundWindmill />
+  <!-- <el-card class="custom-card" shadow="hover">
     <div class="centered-container">
       <div class="logo left-logo">
         <img src="@/assets/image/logo/logo.svg" alt="Left Logo" />
@@ -18,11 +20,17 @@
         <img src="@/assets/image/logo/logo.svg" alt="Right Logo" />
       </div>
     </div>
-  </el-card>
+  </el-card> -->
+  </div>
 </template>
 
 <script>
+import BackgroundWindmill from './BackgroundWindmill';
+
 export default {
+  components: {
+    BackgroundWindmill,
+},
   data() {
     return {
       windTurbines: ['风机01', '风机02', '风机03', '风机04', '风机05', '风机06', '风机07', '风机08', '风机09', '风机10'],
@@ -58,6 +66,10 @@ export default {
   margin: 0;
 }
 
+.left
+.container {
+  position: relative; /* Ensure the container's children are positioned relative to this container */
+}
 .custom-card {
   border: 2px solid var(--theme--color);
   border-radius: 15px;

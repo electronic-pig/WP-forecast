@@ -1,7 +1,7 @@
 <template>
   <div class="container">
   <BackgroundWindmill />
-  <!-- <el-card class="custom-card" shadow="hover">
+  <el-card class="custom-card" shadow="hover">
     <div class="centered-container">
       <div class="logo left-logo">
         <img src="@/assets/image/logo/logo.svg" alt="Left Logo" />
@@ -20,7 +20,7 @@
         <img src="@/assets/image/logo/logo.svg" alt="Right Logo" />
       </div>
     </div>
-  </el-card> -->
+  </el-card>
   </div>
 </template>
 
@@ -95,7 +95,6 @@ export default {
 .custom-dropdown {
   width: 320px;
   /* 调整下拉框的宽度为400像素，可以根据需要进行调整 */
-  text-align: center;
 }
 
 .power-data {

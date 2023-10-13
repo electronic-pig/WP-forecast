@@ -113,12 +113,14 @@ export default {
 	border-radius: 15px;
 	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
 .chart-container:hover {
-  transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
+	transform: scale(1.01);
+	/* 鼠标悬浮时放大1.01倍 */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	/* 添加阴影效果 */
 }
+
 .temperature-label {
 	text-align: left;
 	font-size: 20px;

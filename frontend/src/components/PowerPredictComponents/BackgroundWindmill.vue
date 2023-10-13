@@ -213,7 +213,7 @@
 <style scoped>
 .main-wrapper {
 	position: relative;
-	margin: 0 20px;
+	margin: 0 10px;
 	text-align: center;
 	width: 600px;
 	height: 280px;

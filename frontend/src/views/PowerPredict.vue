@@ -14,6 +14,9 @@
               <Expand @click="goCollapse" />
             </el-icon>
             <TabTime />
+            <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown">
+              <el-option v-for="turbine in windTurbines" :key="turbine" :label="turbine" :value="turbine"></el-option>
+            </el-select>
           </el-row>
         </el-header>
         <div class="container">
@@ -27,7 +30,10 @@
             <WindSpeedChart />
           </div>
         </div>
-
+        <div class="bottom-container">
+          <PowerChart class="bottom-left-container"/>
+          <PowerChart class="bottom-right-container"/>
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -40,7 +46,7 @@ import TabTime from "@/components/TabTime";
 import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWindmill";
 import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart"
 import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
-
+import PowerChart from "@/components/PowerPredictComponents/PowerChart";
 
 export default {
   name: "PowerPredict",
@@ -49,10 +55,13 @@ export default {
     TabTime,
     BackgroundWindmill,
     TemperatureChart,
-    WindSpeedChart
+    WindSpeedChart,
+    PowerChart
   },
   data() {
     return {
+      windTurbines: ['风机01', '风机02', '风机03', '风机04', '风机05', '风机06', '风机07', '风机08', '风机09', '风机10'],
+      selectedWindTurbine: '风机01',  // 默认选中风机01
       isCollapse: false,
       activeIndex: this.$route.path,
     };
@@ -97,9 +106,28 @@ export default {
 }
 
 .container {
+  margin: auto 5px;
   display: flex;
   justify-content: space-between;
 }
 
+.custom-dropdown {
+  margin-left: auto;
+  margin-right: 40px;
+}
 
+.bottom-container {
+  margin: 20px 0;
+  display: flex;
+  height: 360px;
+  justify-content: space-between;
+}
+
+.bottom-left-container {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+.bottom-right-container {
+  margin-left: 10px;
+}
 </style>

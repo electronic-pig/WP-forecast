@@ -72,7 +72,7 @@ export default {
           max: 10, // 设置最大值为10
           data: [
             {
-              value: parseFloat((Math.random() * 10).toFixed(1)) // 初始值保留一位小数
+              value: 4.2
             }
           ]
         }
@@ -80,7 +80,7 @@ export default {
     }
 
     setInterval(() => {
-      const random = +(Math.random() * 10).toFixed(1);
+      const random = ((4.2 + (Math.random() - 0.5) * 0.4).toFixed(1));
       myChart.setOption({
         series: [
           {

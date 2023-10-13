@@ -78,7 +78,7 @@ export default {
 					},
 					data: [
 						{
-							value: 20
+							value: -11
 						}
 					]
 				}
@@ -86,7 +86,7 @@ export default {
 		}
 
 		setInterval(() => {
-			const random = +((Math.random() * 60 - 30).toFixed(1));
+			const random = ((-11 + (Math.random() - 0.5) * 0.4).toFixed(1));
 			myChart.setOption({
 				series: [
 					{

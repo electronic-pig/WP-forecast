@@ -16,7 +16,7 @@ export default {
 			data: [],
 			option: {
 				title: {
-					text: '预测实时功率'
+					text: '预测风机负载'
 				},
 				tooltip: {
 					trigger: 'axis',
@@ -52,16 +52,16 @@ export default {
 					{
 						type: 'value',
 						scale: true,
-						name: 'W',
-						max: 50000,
+						name: '%',
+						max: 100,
 						min: 0,
 						boundaryGap: [0.2, 0.2]
 					}
 				],
 				series: [
 					{
-						name: '功率',
-						type: 'line',
+						name: '负载',
+						type: 'bar',
 						data: []
 					}
 				]
@@ -97,7 +97,7 @@ export default {
 			let res = [];
 			let len = 10;
 			while (len--) {
-				res.push(Math.round(Math.random() * 50000));
+				res.push(Math.round(Math.random() * 100));
 			}
 			return res;
 		},
@@ -105,7 +105,7 @@ export default {
 			setInterval(() => {
 				let axisData = new Date().toLocaleTimeString().replace(/^\D*/, '');
 				this.data.shift();
-				this.data.push(Math.round(Math.random() * 50000));
+				this.data.push(Math.round(Math.random() * 100));
 				this.categories.shift();
 				this.categories.push(axisData);
 				this.myChart.setOption({
@@ -138,4 +138,5 @@ export default {
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 	/* 添加阴影效果 */
 }
+
 </style>

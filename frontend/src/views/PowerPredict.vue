@@ -32,7 +32,7 @@
         </div>
         <div class="bottom-container">
           <PowerChart class="bottom-left-container"/>
-          <PowerChart class="bottom-right-container"/>
+          <ElectricChart class="bottom-right-container"/>
         </div>
       </el-main>
     </el-container>
@@ -47,6 +47,7 @@ import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWi
 import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart"
 import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
 import PowerChart from "@/components/PowerPredictComponents/PowerChart";
+import ElectricChart from "@/components/PowerPredictComponents/ElectricChart";
 
 export default {
   name: "PowerPredict",
@@ -56,7 +57,8 @@ export default {
     BackgroundWindmill,
     TemperatureChart,
     WindSpeedChart,
-    PowerChart
+    PowerChart,
+    ElectricChart
   },
   data() {
     return {

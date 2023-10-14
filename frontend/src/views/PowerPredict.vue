@@ -1,41 +1,42 @@
 <template>
   <el-container>
-    <el-aside width="auto">
+    <el-aside class="el-aside" width="auto">
       <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
     </el-aside>
-    <el-container>
-      <el-main class="main-ctx">
-        <el-header class="platform-header">
-          <el-row align="middle" style="margin-top: 5px;">
-            <el-icon class="collapse" v-if="!isCollapse" :size="35">
-              <Fold @click="goCollapse" />
-            </el-icon>
-            <el-icon class="collapse" v-if="isCollapse" :size="35">
-              <Expand @click="goCollapse" />
-            </el-icon>
-            <TabTime />
-            <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown">
-              <el-option v-for="turbine in windTurbines" :key="turbine" :label="turbine" :value="turbine"></el-option>
-            </el-select>
-          </el-row>
-        </el-header>
-        <div class="container">
-          <div class="chart-container">
-            <TemperatureChart />
-          </div>
-          <div class="windmill-container">
-            <BackgroundWindmill />
-          </div>
-          <div class="wind-speed_container">
-            <WindSpeedChart />
-          </div>
+    <el-main class="main-ctx">
+      <el-header class="platform-header">
+        <el-row align="middle" style="margin-top: 5px;">
+          <el-icon class="collapse" v-if="!isCollapse" :size="35">
+            <Fold @click="goCollapse" />
+          </el-icon>
+          <el-icon class="collapse" v-if="isCollapse" :size="35">
+            <Expand @click="goCollapse" />
+          </el-icon>
+          <TabTime />
+          <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown">
+            <el-option v-for="turbine in windTurbines" :key="turbine" :label="turbine" :value="turbine"></el-option>
+          </el-select>
+        </el-row>
+      </el-header>
+      <div class="top-container">
+        <div class="chart-container">
+          <TemperatureChart />
         </div>
-        <div class="bottom-container">
-          <PowerChart class="bottom-left-container"/>
-          <ElectricChart class="bottom-right-container"/>
+        <div class="windmill-container">
+          <BackgroundWindmill />
         </div>
-      </el-main>
-    </el-container>
+        <div class="wind-speed_container">
+          <WindSpeedChart />
+        </div>
+      </div>
+      <div class="middle-container">
+        <PowerChart class="power-container" />
+        <ElectricChart class="electric-container" />
+      </div>
+      <div class="bottom-container">
+        <CompareChart />
+      </div>
+    </el-main>
   </el-container>
 </template>
 
@@ -48,7 +49,7 @@ import TemperatureChart from "@/components/PowerPredictComponents/TemperatureCha
 import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
 import PowerChart from "@/components/PowerPredictComponents/PowerChart";
 import ElectricChart from "@/components/PowerPredictComponents/ElectricChart";
-
+import CompareChart from "@/components/PowerPredictComponents/CompareChart";
 export default {
   name: "PowerPredict",
   components: {
@@ -58,7 +59,8 @@ export default {
     TemperatureChart,
     WindSpeedChart,
     PowerChart,
-    ElectricChart
+    ElectricChart,
+    CompareChart
   },
   data() {
     return {
@@ -88,9 +90,11 @@ export default {
 <style scoped>
 .main-ctx {
   --el-main-padding: 0px 20px 0px 20px;
-  height: auto;
+  height: 100vh;
+  /* 限制高度为视口高度 */
   width: 100%;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .platform-header {
@@ -107,7 +111,7 @@ export default {
   cursor: pointer;
 }
 
-.container {
+.top-container {
   margin: auto 5px;
   display: flex;
   justify-content: space-between;
@@ -118,18 +122,35 @@ export default {
   margin-right: 40px;
 }
 
-.bottom-container {
+.middle-container {
   margin: 20px 0;
   display: flex;
   height: 360px;
   justify-content: space-between;
 }
 
-.bottom-left-container {
+.power-container {
   margin-left: 5px;
   margin-right: 10px;
 }
-.bottom-right-container {
+
+.electric-container {
   margin-left: 10px;
+}
+
+.bottom-container {
+  margin: 20px 0px 20px 5px;
+  display: block;
+  height: 450px;
+  border: 2px solid var(--theme--color);
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.bottom-container:hover {
+  transform: scale(1.01);
+  /* 鼠标悬浮时放大1.01倍 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  /* 添加阴影效果 */
 }
 </style>

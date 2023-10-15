@@ -36,6 +36,9 @@
       <div class="bottom-container">
         <CompareChart />
       </div>
+      <!-- <div class="bottom-container">
+        <AnalysisCard />
+      </div> -->
     </el-main>
   </el-container>
 </template>
@@ -50,6 +53,8 @@ import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
 import PowerChart from "@/components/PowerPredictComponents/PowerChart";
 import ElectricChart from "@/components/PowerPredictComponents/ElectricChart";
 import CompareChart from "@/components/PowerPredictComponents/CompareChart";
+// import AnalysisCard from "@/components/PowerPredictComponents/AnalysisCard";
+
 export default {
   name: "PowerPredict",
   components: {
@@ -60,7 +65,8 @@ export default {
     WindSpeedChart,
     PowerChart,
     ElectricChart,
-    CompareChart
+    CompareChart,
+    // AnalysisCard
   },
   data() {
     return {

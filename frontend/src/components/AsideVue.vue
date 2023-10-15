@@ -3,7 +3,7 @@
     :default-active="activeIndex">
     <div class="platform">
       <router-link to="/PowerPredict">
-        <img class="platform-logo" :src="require('@/assets/image/logo/logo.png')" alt="logo">
+        <img class="platform-logo" :src="require('@/assets/image/logo/logo.gif')" alt="logo">
       </router-link>
       <div v-if="!isCollapse" id="platform-title">
         <a class="platform-title" @click="goShow">风电功率预测</a>

@@ -1,20 +1,103 @@
 <template>
   <div class="home">
-    <router-link to="/PowerPredict">
-      <img alt="Vue logo" src="../assets/logo.png">
-    </router-link>
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HomeScene class="HomeScene" />
+    <div class="logo-container">
+      <img class="logo-image" src="@\assets\image\logo\logo.gif" alt="logo Image" style="height: 250px;">
+    </div>
+    <h1>风电功率预测平台</h1>
+    <div class="btn-container">
+      <button class="btn-hover color-9" @click="redirectToPowerPredict">开始使用</button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import HomeScene from '@/components/HomeScreen'
 export default {
   name: 'HomeView',
   components: {
-    HelloWorld
+    HomeScene
+  },
+  methods: {
+    redirectToPowerPredict() {
+      this.$router.push('/PowerPredict'); // Redirect to the desired route
+    }
   }
 }
 </script>
+
+<style scoped>
+.home {
+  overflow: hidden
+}
+h1 {
+  padding: 0;
+  margin-top: 0;
+  font-family: 'Microsoft YaHei';
+  font-weight: bold;
+  color: rgb(10, 105, 206);
+  letter-spacing: 2px;
+  font-size: 80px;
+  text-align: center;
+}
+
+.HomeScene {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* Set a lower z-index to ensure it's in the background */
+}
+
+.logo-container {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+}
+
+.btn-hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+  transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:hover {
+  background-position: 100% 0;
+  transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+.btn-hover:focus {
+  outline: none;
+}
+
+.btn-hover.color-9 {
+  background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+  box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+</style>

@@ -29,6 +29,7 @@ export default {
 			myChart: null,
 			inputSequenceLength: "7", // 用于存储输入序列长度
 			outputPredictLength: "3", // 用于存储输出预测长
+			loading: false,
 			option: null,
 		};
 	},
@@ -191,6 +192,13 @@ export default {
 		},
 		formatDate(date) {
 			return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+		},
+		loadingData() {
+			this.$loading.show('数据加载中'); // 显示 loading
+			// 模拟异步请求
+			setTimeout(() => {
+				this.$loading.hide(); // 隐藏 loading
+			}, 2000);
 		}
 	}
 

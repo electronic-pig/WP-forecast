@@ -4,11 +4,13 @@
 			<p class="compare-label">实时数据与预测数据对比图</p>
 		</div>
 		<div class="dropdowns">
+			<span class="input-output-label" style="margin-top: 5px;font-weight: bold;">输入：</span>
 			<el-select v-model="inputSequenceLength" placeholder="输入序列长度" class="dropdown-left">
 				<el-option label="过去7天" value="7"></el-option>
 				<el-option label="过去5天" value="5"></el-option>
 				<el-option label="过去3天" value="3"></el-option>
 			</el-select>
+			<span class="input-output-label" style="margin-top: 5px;font-weight: bold;">输出：</span>
 			<el-select v-model="outputPredictLength" placeholder="输出预测长度" class="dropdown-right">
 				<el-option label="未来1天" value="1"></el-option>
 				<el-option label="未来2天" value="2"></el-option>

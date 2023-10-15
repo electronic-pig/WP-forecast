@@ -4,7 +4,7 @@
     <div class="logo-container">
       <img class="logo-image" src="@\assets\image\logo\logo.gif" alt="logo Image" style="height: 250px;">
     </div>
-    <h1>风电功率预测平台</h1>
+    <h1>风电功率预测系统</h1>
     <div class="btn-container">
       <button class="btn-hover color-9" @click="redirectToPowerPredict">开始使用</button>
     </div>

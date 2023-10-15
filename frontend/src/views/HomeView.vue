@@ -20,8 +20,16 @@ export default {
   },
   methods: {
     redirectToPowerPredict() {
+      const loadingInstance = this.$loading({
+        text: '努力加载中...', // 可以设置加载时显示的文本
+      });
+
+      // 模拟异步操作
+      setTimeout(() => {
+        loadingInstance.close(); // 关闭 loading
+      }, 1500);
       this.$router.push('/PowerPredict'); // Redirect to the desired route
-    }
+    },
   }
 }
 </script>
@@ -30,6 +38,7 @@ export default {
 .home {
   overflow: hidden
 }
+
 h1 {
   padding: 0;
   margin-top: 0;

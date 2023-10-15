@@ -43,10 +43,16 @@ export default {
 		this.myChart.setOption(this.option);
 	},
 	watch: {
-		inputSequenceLength: 'updateChart',
-		outputPredictLength: 'updateChart'
+		inputSequenceLength: 'HandleChange',
+		outputPredictLength: 'HandleChange'
 	},
 	methods: {
+		HandleChange() {
+			this.showLoading(),
+				setTimeout(() => {
+					this.updateChart();
+				}, 1500); // 1.5秒后执行 updateChart()
+		},
 		initChartOptions() {
 			this.option = {
 				tooltip: {
@@ -195,13 +201,15 @@ export default {
 		formatDate(date) {
 			return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 		},
-		loadingData() {
-			this.$loading.show('数据加载中'); // 显示 loading
-			// 模拟异步请求
+		showLoading() {
+			const loadingInstance = this.$loading({
+				text: '努力加载中...', // 可以设置加载时显示的文本
+			});
+
 			setTimeout(() => {
-				this.$loading.hide(); // 隐藏 loading
-			}, 2000);
-		}
+				loadingInstance.close();
+			}, 1500);
+		},
 	}
 
 };

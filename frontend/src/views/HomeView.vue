@@ -33,9 +33,9 @@ export default {
 h1 {
   padding: 0;
   margin-top: 0;
-  font-family: 'Microsoft YaHei';
+  font-family: 'Source Han Sans SC';
   font-weight: bold;
-  color: rgb(10, 105, 206);
+  color: rgb(63, 129, 200);
   letter-spacing: 2px;
   font-size: 80px;
   text-align: center;

@@ -28,7 +28,10 @@ export default {
       setTimeout(() => {
         loadingInstance.close(); // 关闭 loading
       }, 1500);
-      this.$router.push('/PowerPredict'); // Redirect to the desired route
+      setTimeout(() => {
+        this.$router.push('/PowerPredict'); // Redirect to the desired route
+      }, 1000);
+
     },
   }
 }

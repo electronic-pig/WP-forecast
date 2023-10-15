@@ -94,12 +94,33 @@ export default {
 			return res;
 		},
 		generateData() {
-			let res = [];
+			let rawData = [];
+			let smoothData = [];
 			let len = 10;
+
+			// Generate raw data
 			while (len--) {
-				res.push(Math.round(Math.random() * 50000));
+				rawData.push(Math.round(Math.random() * 50000));
 			}
-			return res;
+
+			// Calculate moving average to smooth the data
+			const windowSize = 3;  // Adjust the window size as needed
+			for (let i = 0; i < rawData.length; i++) {
+				let sum = 0;
+				let count = 0;
+
+				for (let j = i - Math.floor(windowSize / 2); j <= i + Math.floor(windowSize / 2); j++) {
+					if (j >= 0 && j < rawData.length) {
+						sum += rawData[j];
+						count++;
+					}
+				}
+
+				const avg = sum / count;
+				smoothData.push(avg);
+			}
+
+			return smoothData;
 		},
 		updateData() {
 			setInterval(() => {

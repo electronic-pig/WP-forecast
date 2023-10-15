@@ -94,12 +94,32 @@ export default {
 			return res;
 		},
 		generateData() {
-			let res = [];
+			let rawData = [];
+			let smoothData = [];
 			let len = 10;
+
+			// Generate raw data
 			while (len--) {
-				res.push(Math.round(Math.random() * 100));
+				rawData.push(Math.round(Math.random() * 100));
 			}
-			return res;
+
+			// Apply median smoothing to smooth the data
+			for (let i = 0; i < rawData.length; i++) {
+				let values = [];
+
+				for (let j = i - 1; j <= i + 1; j++) {
+					if (j >= 0 && j < rawData.length) {
+						values.push(rawData[j]);
+					}
+				}
+
+				// Sort the values and take the median
+				values.sort((a, b) => a - b);
+				const median = values[Math.floor(values.length / 2)];
+				smoothData.push(median);
+			}
+
+			return smoothData;
 		},
 		updateData() {
 			setInterval(() => {
@@ -138,5 +158,4 @@ export default {
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 	/* 添加阴影效果 */
 }
-
 </style>

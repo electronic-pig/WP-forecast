@@ -106,6 +106,7 @@ export default {
 						type: 'line',
 						symbol: 'none',
 						sampling: 'lttb',
+						smooth: true,  // 让曲线更加平滑
 						itemStyle: {
 							color: 'rgb(255, 70, 131)'
 						},
@@ -128,6 +129,7 @@ export default {
 						type: 'line',
 						symbol: 'none',
 						sampling: 'lttb',
+						smooth: true,  // 让曲线更加平滑
 						itemStyle: {
 							color: 'rgb(70, 131, 255)'
 						},
@@ -188,11 +190,20 @@ export default {
 			return dateRange;
 		},
 		generateRandomData(startDate, endDate) {
+			const smoothingFactor = 15000;
 			const data = [];
 			const currentDate = new Date(startDate);
+			let previousValue = Math.random() * 100001;  // Initial random value
 
 			while (currentDate <= endDate) {
-				data.push(Math.floor(Math.random() * 100001));
+				// Generate a random value within a range based on the previous value and smoothing factor
+				const minValue = Math.max(previousValue - smoothingFactor, 0);
+				const maxValue = Math.min(previousValue + smoothingFactor, 100000);
+				const newValue = Math.floor(Math.random() * (maxValue - minValue + 1)) + minValue;
+
+				data.push(newValue);
+				previousValue = newValue;
+
 				currentDate.setTime(currentDate.getTime() + 15 * 60 * 1000);
 			}
 

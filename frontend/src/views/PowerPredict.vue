@@ -13,7 +13,7 @@
             <Expand @click="goCollapse" />
           </el-icon>
           <TabTime />
-          <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown">
+          <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown" @change="handleWindTurbineChange">
             <el-option v-for="turbine in windTurbines" :key="turbine" :label="turbine" :value="turbine"></el-option>
           </el-select>
         </el-row>

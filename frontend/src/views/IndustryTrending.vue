@@ -49,25 +49,25 @@
             <h4 class='title'>风力发电相关数据一览</h4>
           </div>
           <div class='page3'>
-            <div class='page3_1' @mouseenter="scaleUp" @mouseleave="scaleDown">
+            <div class='page3_1'>
               <barChart title="2016-2022年中国风力发电累计装机容量统计" valueName="万千瓦" :colorOption=0 />
             </div>
-            <div class='page3_1' @mouseenter="scaleUp" @mouseleave="scaleDown">
+            <div class='page3_1'>
               <barChart title="2016-2022年中国风力发电新增装机容量统计" :value="page3_data" valueName="万千瓦" :colorOption=2 />
             </div>
-            <div class='page3_1' @mouseenter="scaleUp" @mouseleave="scaleDown">
+            <div class='page3_1'>
               <pieChart />
             </div>
           </div>
           <div class='page4'>
-            <div class='page4_1' @mouseenter="scaleUp" @mouseleave="scaleDown">
+            <div class='page4_1'>
               <lineBarChart />
             </div>
-            <div class='page4_2' @mouseenter="scaleUp" @mouseleave="scaleDown">
+            <div class='page4_2'>
               <lineChart />
             </div>
           </div>
-          <div class='page5' @mouseenter="scaleUp" @mouseleave="scaleDown">
+          <div class='page5'>
             <chinaMap />
           </div>
         </div>
@@ -128,12 +128,6 @@ export default {
     goCollapse() {
       this.isCollapse = !this.isCollapse;
     },
-    scaleUp(event) {
-      event.currentTarget.style.transform = 'scale(1.05)'
-    },
-    scaleDown(event) {
-      event.currentTarget.style.transform = 'scale(1)'
-    },
   },
 };
 </script>
@@ -142,7 +136,6 @@ export default {
 .main-ctx {
   --el-main-padding: 0px 20px 0px 20px;
   height: 100vh;
-  /* 限制高度为视口高度 */
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -197,9 +190,7 @@ export default {
 
 .page1_1:hover {
   transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
 }
 
 .page2 {
@@ -214,9 +205,6 @@ export default {
 .page2_1 {
   width: 24%;
   height: 100%;
-  background-color: white;
-  border: 1px solid cadetblue;
-  border-radius: 15px;
 }
 
 .page3 {
@@ -231,9 +219,14 @@ export default {
 .page3_1 {
   width: 32%;
   height: 100%;
-  background-color: white;
-  border: 1px solid cadetblue;
+  border: 2px solid var(--theme--color);
   border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.page3_1:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .page4 {
@@ -248,26 +241,39 @@ export default {
 .page4_1 {
   width: 42.5%;
   height: 100%;
-  background-color: white;
-  border: 1px solid cadetblue;
+  border: 2px solid var(--theme--color);
   border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.page4_1:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .page4_2 {
   width: 55%;
   height: 100%;
-  background-color: white;
-  border: 1px solid cadetblue;
+  border: 2px solid var(--theme--color);
   border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.page4_2:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .page5 {
-  margin-left: 2.5%;
+  margin-left: 5px;
   margin-top: 20px;
-  width: 95%;
   height: 600px;
-  background-color: white;
-  border: 1px solid cadetblue;
-  border-radius: 30px;
+  border: 2px solid var(--theme--color);
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-</style>
+
+.page5:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}</style>

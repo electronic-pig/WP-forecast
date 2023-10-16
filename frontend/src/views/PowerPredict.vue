@@ -13,7 +13,7 @@
             <Expand @click="goCollapse" />
           </el-icon>
           <TabTime />
-          <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown" @change="handleWindTurbineChange">
+          <el-select v-model="selectedWindTurbine" placeholder="请选择风机" class="custom-dropdown">
             <el-option v-for="turbine in windTurbines" :key="turbine" :label="turbine" :value="turbine"></el-option>
           </el-select>
         </el-row>
@@ -36,9 +36,6 @@
       <div class="bottom-container">
         <CompareChart />
       </div>
-      <!-- <div class="bottom-container">
-        <AnalysisCard />
-      </div> -->
     </el-main>
   </el-container>
 </template>
@@ -53,7 +50,6 @@ import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
 import PowerChart from "@/components/PowerPredictComponents/PowerChart";
 import ElectricChart from "@/components/PowerPredictComponents/ElectricChart";
 import CompareChart from "@/components/PowerPredictComponents/CompareChart";
-// import AnalysisCard from "@/components/PowerPredictComponents/AnalysisCard";
 
 export default {
   name: "PowerPredict",
@@ -66,7 +62,6 @@ export default {
     PowerChart,
     ElectricChart,
     CompareChart,
-    // AnalysisCard
   },
   data() {
     return {

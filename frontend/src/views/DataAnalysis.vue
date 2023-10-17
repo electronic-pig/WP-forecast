@@ -187,7 +187,7 @@ export default {
 
 .recent-container {
   padding: 10px;
-  margin: 20px 10px 0px 10px;
+  margin: 20px 10px 20px 10px;
   display: block;
   border: 2px solid var(--theme--color);
   border-radius: 15px;

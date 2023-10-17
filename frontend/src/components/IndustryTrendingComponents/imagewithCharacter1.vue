@@ -165,6 +165,7 @@ body {
   color: white;
   background-color: black;
   border: none;
+  border-radius: 5px;
 }
 .btn:hover {
   background-color: brown;

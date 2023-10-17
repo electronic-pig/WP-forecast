@@ -9,7 +9,7 @@ export default {
 
 	data() {
 		return {
-			colorStyle: [['#A5CC82', '#00467F'], ['#699879', '#FFF723'], ['#ffc0cb', '#800080']]
+			colorStyle: [['#A5CC82', '#00467F'], ['#699879', '#FFF723'], ['#32CD32', '#CDAD00']]
 		}
 	},
 
@@ -27,7 +27,7 @@ export default {
 		value: {
 			type: Array,
 			require: false,
-			default: () => { return [14900, 16000, 18700, 20100, 27800, 32800, 35096] }
+			default: () => { return [1490, 1600, 1870, 2010, 2780, 3280, 3510] }
 		},
 		colorOption: {
 			type: Number,
@@ -105,14 +105,19 @@ export default {
 				},
 				left: 'center',
 			},
-
+			tooltip: {
+				trigger: 'axis',
+				axisPointer: {
+					type: 'shadow'
+				}
+			},
 			toolbox: {
 				feature: {
 					magicType: { show: true, type: ['line', 'bar'] },
 					restore: { show: true },
 					saveAsImage: { show: true }
 				},
-				top: '8%',
+				top: '6%',
 			},
 
 			xAxis: {

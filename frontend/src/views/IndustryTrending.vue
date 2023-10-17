@@ -29,7 +29,7 @@
             </div>
           </div>
           <div class='pageforTitle'>
-            <h4 class='title'>风力发电相关政策一览</h4>
+            <h3 class='title'>风力发电相关政策一览</h3>
           </div>
           <div class='page2'>
             <div class='page2_1'>
@@ -46,14 +46,14 @@
             </div>
           </div>
           <div class='pageforTitle'>
-            <h4 class='title'>风力发电相关数据一览</h4>
+            <h3 class='title'>风力发电相关数据一览</h3>
           </div>
           <div class='page3'>
             <div class='page3_1'>
-              <barChart title="2016-2022年中国风力发电累计装机容量统计" valueName="万千瓦" :colorOption=0 />
+              <barChart title="2016-2022年中国风力发电累计装机容量统计" valueName="亿瓦" :colorOption=0 />
             </div>
             <div class='page3_1'>
-              <barChart title="2016-2022年中国风力发电新增装机容量统计" :value="page3_data" valueName="万千瓦" :colorOption=2 />
+              <barChart title="2016-2022年中国风力发电新增装机容量统计" :value="page3_data" valueName="亿瓦" :colorOption=2 />
             </div>
             <div class='page3_1'>
               <pieChart />
@@ -112,7 +112,7 @@ export default {
     return {
       isCollapse: false,
       activeIndex: this.$route.path,
-      page3_data: [12000, 9500, 10000, 11500, 20100, 15500, 11098],
+      page3_data: [1200, 950, 1000, 1150, 2010, 1550, 1110],
     };
   },
   mounted() {
@@ -156,7 +156,6 @@ export default {
 }
 
 .page {
-  height: 2200px;
   display: flex;
   flex-direction: column;
 }
@@ -267,6 +266,7 @@ export default {
 .page5 {
   margin-left: 5px;
   margin-top: 20px;
+  margin-bottom: 10px;
   height: 600px;
   border: 2px solid var(--theme--color);
   border-radius: 15px;

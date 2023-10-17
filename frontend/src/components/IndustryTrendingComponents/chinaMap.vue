@@ -155,7 +155,3 @@ export default {
 	}
 };
 </script>
-
-<style scoped>
-/* 根据需要为组件添加任何必要的自定义样式 */
-</style>

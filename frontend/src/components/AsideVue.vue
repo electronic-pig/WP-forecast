@@ -14,32 +14,26 @@
       <span class="divider-title" v-show="!isCollapse">功能区</span>
     </el-divider>
 
-    <router-link to="/PowerPredict" style="text-decoration: none;">
-      <el-menu-item class="el-menu-item" index="/PowerPredict">
+      <el-menu-item class="el-menu-item" index="/PowerPredict" @click="showLoading('PowerPredict')">
         <el-icon>
           <DataAnalysis />
         </el-icon>
         <template #title>功率预测</template>
       </el-menu-item>
-    </router-link>
 
-    <router-link to="/DataAnalysis" style="text-decoration: none;">
-      <el-menu-item class="el-menu-item" index="/DataAnalysis">
+      <el-menu-item class="el-menu-item" index="/DataAnalysis" @click="showLoading('DataAnalysis')">
         <el-icon>
           <Histogram />
         </el-icon>
         <template #title>数据分析</template>
       </el-menu-item>
-    </router-link>
 
-    <router-link to="/IndustryTrending" style="text-decoration: none;">
-      <el-menu-item class="el-menu-item" index="/IndustryTrending">
+      <el-menu-item class="el-menu-item" index="/IndustryTrending" @click="showLoading('IndustryTrending')">
         <el-icon>
           <TrendCharts />
         </el-icon>
         <template #title>行业动态</template>
       </el-menu-item>
-    </router-link>
   </el-menu>
 </template>
 
@@ -58,6 +52,18 @@ export default {
   methods: {
     goShow() {
       this.$message.success('欢迎来到本平台')
+    },
+    showLoading(page) {
+      const loadingInstance = this.$loading({
+        target: document.querySelector('.el-menu-item[index="/' + page + '"]'),
+        text: '加载中...',
+      });
+
+      // 延迟1秒后关闭loading
+      setTimeout(() => {
+        loadingInstance.close();
+        this.$router.push(page);
+      }, 1000);
     }
   },
 };

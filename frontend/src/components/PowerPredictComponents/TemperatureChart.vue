@@ -9,12 +9,6 @@
 import * as echarts from 'echarts';
 
 export default {
-	props: {
-		selectedWindTurbine: {
-			type: String, // Assuming selectedWindTurbine is of type String
-			required: true // You can set it to false if it's optional
-		}
-	},
 	mounted() {
 		const chartDom = document.getElementById('temperature-chart');
 		const myChart = echarts.init(chartDom);

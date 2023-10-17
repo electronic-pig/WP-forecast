@@ -68,12 +68,28 @@ export default {
 			}
 		};
 	},
+	props: {
+		selectedWindTurbine: {
+			type: String, // Assuming selectedWindTurbine is of type String
+			required: true // You can set it to false if it's optional
+		}
+	},
+	watch: {
+		selectedWindTurbine() {
+			this.HandleChange();
+		}
+	},
 	mounted() {
 		this.myChart = echarts.init(this.$refs.chart);
 		this.initializeData();
 		this.updateData();
 	},
 	methods: {
+		HandleChange() {
+			setTimeout(() => {
+				this.initializeData();
+			}, 1500); // 1.5秒后执行
+		},
 		initializeData() {
 			this.categories = this.generateCategories();
 			this.data = this.generateData();
@@ -136,7 +152,7 @@ export default {
 						{ data: this.data }
 					]
 				});
-			}, 2100);
+			}, 4000);
 		}
 	}
 };

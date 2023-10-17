@@ -72,9 +72,6 @@ export default {
 		mapValueToColor(value, minValue, maxValue, minColor, maxColor) {
 			let normalizedValue = (value - minValue) / (maxValue - minValue); // 将值标准化到 [0, 1] 范围
 
-			// let colorRange = ['#A5CC82', '#00467F']; // 最小值到最大值的颜色渐变范围
-
-
 			function colorHex2RGB(str) {
 				return [parseInt('0x' + str.slice(1, 3)), parseInt('0x' + str.slice(3, 5)), parseInt('0x' + str.slice(5, 7))]
 			}
@@ -146,7 +143,7 @@ export default {
 
 			// 地图基本格式及其数据
 			series: [{
-				id: 'population',
+				id: 'turbine',
 				type: "map",
 				map: "chinaMap",
 				roam: false,
@@ -192,7 +189,7 @@ export default {
 			animationDurationUpdate: 1000,
 
 			series: {
-				id: 'population',
+				id: 'turbine',
 				type: 'bar',
 				data: this.sortedArray[1],
 				itemStyle: {
@@ -204,8 +201,8 @@ export default {
 			}
 		}
 
-		chart.setOption(mapOption)
-		let currentOption = mapOption
+		chart.setOption(mapOption);
+		let currentOption = mapOption;
 		setInterval(() => {
 			currentOption = currentOption === mapOption ? barOption : mapOption;
 			chart.setOption(currentOption, true);

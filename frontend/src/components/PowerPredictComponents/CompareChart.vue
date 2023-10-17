@@ -35,6 +35,12 @@ export default {
 			option: null,
 		};
 	},
+	props: {
+		selectedWindTurbine: {
+			type: String, // Assuming selectedWindTurbine is of type String
+			required: true // You can set it to false if it's optional
+		}
+	},
 	mounted() {
 		this.chartDom = document.getElementById('main');
 		this.myChart = echarts.init(this.chartDom);
@@ -44,7 +50,10 @@ export default {
 	},
 	watch: {
 		inputSequenceLength: 'HandleChange',
-		outputPredictLength: 'HandleChange'
+		outputPredictLength: 'HandleChange',
+		selectedWindTurbine() {
+			this.HandleChange();
+		}
 	},
 	methods: {
 		HandleChange() {

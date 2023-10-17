@@ -20,7 +20,7 @@
       </el-header>
       <div class="top-container">
         <div class="chart-container">
-          <TemperatureChart />
+          <TemperatureChart :selectedWindTurbine="selectedWindTurbine"/>
         </div>
         <div class="windmill-container">
           <BackgroundWindmill />
@@ -34,7 +34,7 @@
         <ElectricChart class="electric-container" />
       </div>
       <div class="bottom-container">
-        <CompareChart />
+        <CompareChart :selectedWindTurbine="selectedWindTurbine"/>
       </div>
     </el-main>
   </el-container>

@@ -1,181 +1,131 @@
 <template>
-	<div ref="mapContainer" class='mapStyle'></div>
+	<div id="main" style="width: 100%; height: 100%;"></div>
 </template>
 
 <script>
-import * as echarts from 'echarts'
-import china from '@/assets/resource/china.json'
+import * as echarts from 'echarts';
 
-echarts.registerMap('chinaMap', china)
+import chinaJson from "@/assets/resource/china.json"
 export default {
-	name: 'chinaMap',
-	data() {
-		return {
-			city: ["北京", "天津", "上海", "重庆", "河北", "河南", "云南", "辽宁", "黑龙江", "湖南", "安徽", "山东", "新疆", "江苏", "浙江", "江西",
-				"湖北", "广西", "甘肃", "山西", "内蒙古", "陕西", "吉林", "福建", "贵州", "广东", "青海", "西藏", "四川", "宁夏", "海南", "台湾",
-				"香港", "澳门",],
-			value: [0.11, 1.15, 1.80, 0, 20.26, 10.00, 9.00, 23.19, 20.96, 5.31, 3.88, 14.23, 49.00, 12.53, 4.55, 2.00, 5.00,
-				17.97, 24.80, 10.26, 51.15, 45.00, 16.23, 4.10, 5.00, 20.00, 8.07, 0, 6.00, 3.73, 5.00, 1.00, 0, 0],
-			valueName: "新增装机容量",
-			// 图表
-			topNum: 23,
-		}
-	},
-
-	computed: {
-		valueInEachProvince() {
-			let cityDice = {}
-			for (let i = 0; i < this.city.length; ++i) {
-				cityDice[this.city[i]] = this.value[i]//Math.ceil(Math.random()*100)
-			}
-			return cityDice
-		},
-
-		minValue() {
-			return Math.min(...Object.values(this.valueInEachProvince))
-		},
-
-		maxValue() {
-			return Math.max(...Object.values(this.valueInEachProvince))
-		},
-
-		sortedArray() {
-			let tmpArray = []
-			Object.keys(this.valueInEachProvince).forEach(key => {
-				tmpArray.push([key, this.valueInEachProvince[key]])
-			})
-
-			// desc
-			tmpArray.sort((item1, item2) => {
-				return item2[1] - item1[1]
-			})
-
-			let keyArray = []
-			let valueArray = []
-			for (let i = 0; i < Math.min(tmpArray.length, this.topNum); ++i) {
-				keyArray.push(tmpArray[i][0])
-				valueArray.push(tmpArray[i][1])
-			}
-			return [keyArray.reverse(), valueArray.reverse()]
-		},
-
-	},
-
-	methods: {
-		setCityValue(data) {
-			for (let i = 0; i < this.city.length; ++i) {
-				data.push({ name: this.city[i], value: this.valueInEachProvince[this.city[i]] })
-			}
-		},
-
-		//柱状图着色
-		mapValueToColor(value, minValue, maxValue, minColor, maxColor) {
-			let normalizedValue = (value - minValue) / (maxValue - minValue); // 将值标准化到 [0, 1] 范围
-
-			function colorHex2RGB(str) {
-				return [parseInt('0x' + str.slice(1, 3)), parseInt('0x' + str.slice(3, 5)), parseInt('0x' + str.slice(5, 7))]
-			}
-
-			function colorRGB2Hex(r, g, b) {
-				return '#' + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0')
-			}
-
-			let color0 = colorHex2RGB(minColor)
-			let color1 = colorHex2RGB(maxColor)
-
-			// calculate (r,g,b)
-			let r_base = Math.min(color0[0], color1[0])
-			let r_increase = Math.abs(color0[0] - color1[0])
-
-
-			let g_base = Math.min(color0[1], color1[1])
-			let g_increase = Math.abs(color0[1] - color1[1])
-
-
-			let b_base = Math.min(color0[2], color1[2])
-			let b_increase = Math.abs(color0[2] - color1[2])
-
-			return colorRGB2Hex(
-				Math.round(r_base + r_increase * normalizedValue),
-				Math.round(g_base + g_increase * normalizedValue),
-				Math.round(b_base + b_increase * normalizedValue)
-			)
-
-		}
-	},
-
 	mounted() {
-		let chart = echarts.init(this.$refs.mapContainer)
+		const chartDom = document.getElementById('main');
+		const myChart = echarts.init(chartDom);
+		let currentOption;
 
-		let mapOption = {
+		// 注册地图并配置特定区域的位置
+		echarts.registerMap('china', chinaJson,);
+
+		// 地图和柱状图的数据
+		const data = [
+			{ name: '北京', value: 0.11 },
+			{ name: '天津', value: 1.15 },
+			{ name: '上海', value: 1.80 },
+			{ name: '重庆', value: 0 },
+			{ name: '河北', value: 20.26 },
+			{ name: '河南', value: 10.00 },
+			{ name: '云南', value: 9.00 },
+			{ name: '辽宁', value: 23.19 },
+			{ name: '黑龙江', value: 20.96 },
+			{ name: '湖南', value: 5.31 },
+			{ name: '安徽', value: 3.88 },
+			{ name: '山东', value: 14.23 },
+			{ name: '新疆', value: 49.00 },
+			{ name: '江苏', value: 12.53 },
+			{ name: '浙江', value: 4.55 },
+			{ name: '江西', value: 2.00 },
+			{ name: '湖北', value: 5.00 },
+			{ name: '广西', value: 17.97 },
+			{ name: '甘肃', value: 24.80 },
+			{ name: '山西', value: 10.26 },
+			{ name: '内蒙古', value: 51.15 },
+			{ name: '陕西', value: 45.00 },
+			{ name: '吉林', value: 16.23 },
+			{ name: '福建', value: 4.10 },
+			{ name: '贵州', value: 5.00 },
+			{ name: '广东', value: 20.00 },
+			{ name: '青海', value: 8.07 },
+			{ name: '西藏', value: 0 },
+			{ name: '四川', value: 6.00 },
+			{ name: '宁夏', value: 3.73 },
+			{ name: '海南', value: 5.00 },
+			{ name: '台湾', value: 1.00 },
+			{ name: '香港', value: 0 },
+			{ name: '澳门', value: 0 }
+		];
+		data.sort((a, b) => a.value - b.value);
+		// const maxDataValue = Math.max(...data.map(item => item.value));
+		// const minDataValue = Math.min(...data.map(item => item.value));
+
+		const colorPalette = [
+			'#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
+			'#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'
+		];
+
+		const colorScale = value => {
+			const maxIndex = colorPalette.length - 1;
+			const index = Math.round(((value - 0) / (60 - 0)) * maxIndex);
+			return colorPalette[index];
+		};
+		const seriesData = data.map(item => ({
+			name: item.name,
+			value: item.value,
+			itemStyle: {
+				color: colorScale(item.value)
+			}
+		}));
+		// 地图和柱状图的选项
+		const mapOption = {
 			title: {
-				text: '我国' + this.topNum + '个省份"十四五"期间规划新增风电装机超310GW',
+				text: '我国23个省份"十四五"期间规划新增风电装机超310GW',
 				textStyle: {
 					color: '#333',
 					fontSize: 18,
 					fontWeight: 'bold',
 				},
-				left: '5%',
-				top: '5%'
+				top: '2%'
 			},
-
-			// 鼠标移动到相应模块上的显示
 			tooltip: {
 				trigger: "item",
 				formatter: (params) => {
 					var value = params.value;
 					var name = params.name;
-					return `${name}` + `:` + this.valueName + `${value}` + 'GW';
+					return `${name}` + `:` + "新增装机容量" + `${value}` + 'GW';
 				},
 			},
-
 			visualMap: {
 				left: 'right',
-				top: '65%',
-				min: this.minValue,
-				max: this.maxValue,
+				min: 0,
+				max: 60,
 				inRange: {
-					color: ['#00467F', '#A5CC82'] // 蓝绿
+					color: colorPalette
 				},
-				text: ['High', 'Low'],
-				calculable: true,
+				text: ['高', '低'],
+				calculable: true
 			},
-
-			// 地图基本格式及其数据
-			series: [{
-				id: 'turbine',
-				type: "map",
-				map: "chinaMap",
-				roam: false,
-				label: {
-					normal: {
-						show: false, //省份名称
-					},
-					emphasis: {
-						show: true,
-					},
-				},
-				data: [],
-				zoom: 1.25,
-				animationDurationUpdate: 1000,
-				universalTransition: true,
-			}],
+			series: [
+				{
+					id: 'population',
+					type: 'map',
+					roam: true,
+					map: 'china',
+					animationDurationUpdate: 1000,
+					universalTransition: true,
+					data: data,
+					zoom: 1.20,
+				}
+			]
 		};
 
-		this.setCityValue(mapOption.series[0].data)
-
-		let barOption = {
+		const barOption = {
 			title: {
-				text: '我国' + this.topNum + '个省份"十四五"期间规划新增风电装机超310GW',
+				text: '我国23个省份"十四五"期间规划新增风电装机超310GW',
 				textStyle: {
 					color: '#333',
 					fontSize: 18,
 					fontWeight: 'bold',
 				},
-				left: '5%',
-				top: '5%',
+				top: '2%',
 			},
-
 			xAxis: {
 				type: 'value'
 			},
@@ -184,36 +134,28 @@ export default {
 				axisLabel: {
 					rotate: 30
 				},
-				data: this.sortedArray[0]
+				data: data.map(item => item.name)
 			},
 			animationDurationUpdate: 1000,
-
 			series: {
-				id: 'turbine',
 				type: 'bar',
-				data: this.sortedArray[1],
-				itemStyle: {
-					color: params => {
-						return this.mapValueToColor(params.data, this.minValue, this.maxValue, '#A5CC82', '#00467F');
-					},
-				},
-				universalTransition: true,
+				id: 'population',
+				data: seriesData,
+				universalTransition: true
 			}
-		}
+		};
 
-		chart.setOption(mapOption);
-		let currentOption = mapOption;
+		currentOption = mapOption;
+		myChart.setOption(mapOption);
+
 		setInterval(() => {
 			currentOption = currentOption === mapOption ? barOption : mapOption;
-			chart.setOption(currentOption, true);
+			myChart.setOption(currentOption, true);
 		}, 7000);
-	},
-}
+	}
+};
 </script>
 
 <style scoped>
-.mapStyle {
-	width: 100%;
-	height: 100%
-}
+/* 根据需要为组件添加任何必要的自定义样式 */
 </style>

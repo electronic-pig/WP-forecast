@@ -38,7 +38,9 @@
             <CompareCard />
           </div>
         </div>
-        <div class="recent-container"><RecentChart /></div>
+        <div class="recent-container">
+          <RecentChart />
+        </div>
       </el-main>
     </el-container>
   </el-container>
@@ -124,16 +126,8 @@ export default {
   align-items: center;
 }
 
-.gap {
-  width: 100px;
-}
-
-.mgap {
-  width: 0px;
-}
-
 .history-container {
-  margin: 20px 0px 20px 5px;
+  margin: 20px 0px 10px 5px;
   display: block;
   height: 450px;
   border: 2px solid var(--theme--color);
@@ -157,7 +151,7 @@ export default {
   flex: 7;
 }
 
-.sortTable-container {
+.sortTable-container:hover {
   transform: scale(1.01);
   /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -174,7 +168,7 @@ export default {
   flex: 3;
 }
 
-.compareCard-container {
+.compareCard-container:hover {
   transform: scale(1.01);
   /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

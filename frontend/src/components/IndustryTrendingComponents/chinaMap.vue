@@ -54,9 +54,6 @@ export default {
 			{ name: '南海诸岛', value: 1.00 }
 		];
 		data.sort((a, b) => a.value - b.value);
-		// const maxDataValue = Math.max(...data.map(item => item.value));
-		// const minDataValue = Math.min(...data.map(item => item.value));
-
 		const colorPalette = [
 			'#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8',
 			'#ffffbf', '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026'
@@ -107,7 +104,7 @@ export default {
 				{
 					id: 'population',
 					type: 'map',
-					roam: true,
+					roam: false,
 					map: 'china',
 					animationDurationUpdate: 1000,
 					universalTransition: true,

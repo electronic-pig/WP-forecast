@@ -12,8 +12,7 @@
             </div>
         </div>
 
-        <el-table :data="tableData" border v-loading="loading">
-            <!-- 表格列配置保持不变 -->
+        <el-table :data="tableData" border style="width: 100%">
             <el-table-column prop="rank" label="平均发电功率排名" sortable></el-table-column>
             <el-table-column prop="serialNumber" label="风机序列号"></el-table-column>
             <el-table-column prop="maxPower" label="最高发电功率" sortable></el-table-column>
@@ -28,14 +27,12 @@ export default {
         return {
             timeRange: 'year', // 默认选择前一年
             tableData: [], // 表格数据
-            loading: false // 加载状态
         };
     },
+    mounted() {
+        this.generateRandomData()
+    },
     methods: {
-        fetchData() {
-            // 根据时间范围获取数据的逻辑
-            // 你可以在这里发起 API 请求，获取相应的数据，并将其赋值给 tableData
-        },
         setTimeRange(range) {
             this.timeRange = range;
             this.HandleChange()
@@ -63,7 +60,6 @@ export default {
         HandleChange() {
             this.showLoading(),
                 setTimeout(() => {
-                    this.fetchData(); // 选择时间范围后立即获取数据
                     this.generateRandomData()
                 }, 1500); // 1.5秒后执行 updateChart()
         },
@@ -76,10 +72,6 @@ export default {
                 loadingInstance.close();
             }, 1500);
         },
-    },
-    created() {
-        this.fetchData(); // 初始化时获取数据
-        this.generateRandomData()
     },
 };
 </script>
@@ -107,4 +99,5 @@ export default {
     margin: 10px;
 }
 </style>
+
   

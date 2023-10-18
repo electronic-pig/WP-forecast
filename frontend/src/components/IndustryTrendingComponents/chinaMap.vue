@@ -116,6 +116,21 @@ export default {
 				}
 			]
 		};
+		const copyrightText = '© 2022 高德软件 GS京(2022)1061号';
+		mapOption.graphic = [
+			{
+				type: 'text',
+				right: 80,
+				bottom: 20,
+				z: 100,
+				style: {
+					text: copyrightText,
+					fill: '#333', // 文本颜色
+					fontSize: 12,
+					fontWeight: 'bold',
+				},
+			},
+		];
 
 		const barOption = {
 			title: {
@@ -145,6 +160,21 @@ export default {
 				universalTransition: true
 			}
 		};
+
+		barOption.graphic = [
+			{
+				type: 'text',
+				right: 80,
+				bottom: 20,
+				z: 100,
+				style: {
+					text: copyrightText,
+					fill: '#333', // 文本颜色
+					fontSize: 12,
+					fontWeight: 'bold',
+				},
+			},
+		];
 
 		currentOption = mapOption;
 		myChart.setOption(mapOption);

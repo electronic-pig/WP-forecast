@@ -11,7 +11,7 @@
                         </el-icon><el-icon v-else>
                             <ArrowDownBold />
                         </el-icon>
-                        {{ Math.abs(item.difference) }}{{ unit[index] }}相较于年平均{{ item.title }}
+                        {{ Math.abs(item.difference) }}{{ unit[index] }}<span style="color: #666; " >&nbsp;相较于年平均{{ item.title }}</span>
                     </div>
                     <div class="icon"><i :class="item.icon"></i></div>
                 </div>

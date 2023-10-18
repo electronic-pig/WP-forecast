@@ -15,7 +15,7 @@ export default {
   name:"imagewithCharacter4",
   data() {
     return {
-      imageSrc: '@/assets/image/4.png', 
+      imageSrc: '@/assets/image/bg1.png', 
       policy:[
         {
           title:'《能源碳达峰碳中和标准化提升行动计划》的通知',
@@ -110,7 +110,7 @@ body {
   background-position: 0 0;
   transition: transform calc(0.7s * 1.5) cubic-bezier(0.19, 1, 0.22, 1);
   pointer-events: none;
-  background-image: url('@/assets/image/7.png');
+  background-image: url('@/assets/image/bg4.png');
 }
 
 .card:after {

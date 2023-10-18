@@ -47,6 +47,7 @@ export default {
 		this.initChartOptions();
 		this.updateChart();
 		this.myChart.setOption(this.option);
+		console.log(this.option.series[0].data.length)
 	},
 	watch: {
 		inputSequenceLength: 'HandleChange',
@@ -114,6 +115,7 @@ export default {
 						name: '实际功率',
 						type: 'line',
 						symbol: 'none',
+						symbolSize: 40,
 						sampling: 'lttb',
 						smooth: true,  // 让曲线更加平滑
 						itemStyle: {

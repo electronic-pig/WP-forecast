@@ -14,26 +14,34 @@
       <span class="divider-title" v-show="!isCollapse">功能区</span>
     </el-divider>
 
-      <el-menu-item class="el-menu-item" index="/PowerPredict" @click="showLoading('PowerPredict')">
-        <el-icon>
-          <DataAnalysis />
-        </el-icon>
-        <template #title>功率预测</template>
-      </el-menu-item>
+    <el-menu-item class="el-menu-item" index="/PowerPredict" @click="showLoading('PowerPredict')">
+      <el-icon>
+        <DataAnalysis />
+      </el-icon>
+      <template #title>功率预测</template>
+    </el-menu-item>
 
-      <el-menu-item class="el-menu-item" index="/DataAnalysis" @click="showLoading('DataAnalysis')">
-        <el-icon>
-          <Histogram />
-        </el-icon>
-        <template #title>数据分析</template>
-      </el-menu-item>
+    <el-menu-item class="el-menu-item" index="/DataAnalysis" @click="showLoading('DataAnalysis')">
+      <el-icon>
+        <Histogram />
+      </el-icon>
+      <template #title>数据分析</template>
+    </el-menu-item>
 
-      <el-menu-item class="el-menu-item" index="/IndustryTrending" @click="showLoading('IndustryTrending')">
-        <el-icon>
-          <TrendCharts />
-        </el-icon>
-        <template #title>行业动态</template>
-      </el-menu-item>
+    <el-menu-item class="el-menu-item" index="/IndustryTrending" @click="showLoading('IndustryTrending')">
+      <el-icon>
+        <TrendCharts />
+      </el-icon>
+      <template #title>行业动态</template>
+    </el-menu-item>
+
+    <el-divider content-position="center" style="margin-top: 300px;">
+      <span class="divider-title" v-show="!isCollapse" >友情链接</span>
+    </el-divider>
+
+    <p><a href="https://www.in-en.com/" target="_blank" class="link-title" v-show="!isCollapse">国际能源网</a></p>
+    <p><a href="https://www.ceic.com/" target="_blank" class="link-title" v-show="!isCollapse">国家能源集团</a><br></p>
+    <p><a href="https://wind.in-en.com/" target="_blank" class="link-title" v-show="!isCollapse">国际风力发电网</a></p>
   </el-menu>
 </template>
 
@@ -145,7 +153,7 @@ export default {
 
 .divider-title {
   display: block;
-  line-height: 24.4px;
+  line-height: 24px;
   overflow: hidden;
   width: 70px;
   color: rgb(140, 157, 182)
@@ -174,6 +182,17 @@ export default {
   left: 7%;
   right: 7%;
   width: 85%;
+}
+
+.link-title {
+  color: rgb(140, 157, 182);
+  text-decoration: none;
+}
+
+.link-title:hover {
+  color: var(--theme--color);
+  text-decoration: none;
+  cursor: pointer;
 }
 </style>
  

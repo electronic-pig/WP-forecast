@@ -21,9 +21,6 @@ export default {
         this.windFarmData = this.generateRandomData();
         this.chart = echarts.init(this.chartDom);
         this.initChart();
-        this.chart.dispatchAction({
-            type: 'restore'
-        });
     },
     methods: {
         initChart() {

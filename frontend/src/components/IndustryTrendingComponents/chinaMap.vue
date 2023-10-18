@@ -5,7 +5,7 @@
 <script>
 import * as echarts from 'echarts';
 
-import chinaJson from "@/assets/resource/china.json"
+import chinaJson from "@/assets/resource/gdchina.json"
 export default {
 	mounted() {
 		const chartDom = document.getElementById('main');
@@ -17,40 +17,41 @@ export default {
 
 		// 地图和柱状图的数据
 		const data = [
-			{ name: '北京', value: 0.11 },
-			{ name: '天津', value: 1.15 },
-			{ name: '上海', value: 1.80 },
-			{ name: '重庆', value: 0 },
-			{ name: '河北', value: 20.26 },
-			{ name: '河南', value: 10.00 },
-			{ name: '云南', value: 9.00 },
-			{ name: '辽宁', value: 23.19 },
-			{ name: '黑龙江', value: 20.96 },
-			{ name: '湖南', value: 5.31 },
-			{ name: '安徽', value: 3.88 },
-			{ name: '山东', value: 14.23 },
-			{ name: '新疆', value: 49.00 },
-			{ name: '江苏', value: 12.53 },
-			{ name: '浙江', value: 4.55 },
-			{ name: '江西', value: 2.00 },
-			{ name: '湖北', value: 5.00 },
-			{ name: '广西', value: 17.97 },
-			{ name: '甘肃', value: 24.80 },
-			{ name: '山西', value: 10.26 },
-			{ name: '内蒙古', value: 51.15 },
-			{ name: '陕西', value: 45.00 },
-			{ name: '吉林', value: 16.23 },
-			{ name: '福建', value: 4.10 },
-			{ name: '贵州', value: 5.00 },
-			{ name: '广东', value: 20.00 },
-			{ name: '青海', value: 8.07 },
-			{ name: '西藏', value: 0 },
-			{ name: '四川', value: 6.00 },
-			{ name: '宁夏', value: 3.73 },
-			{ name: '海南', value: 5.00 },
-			{ name: '台湾', value: 1.00 },
-			{ name: '香港', value: 0 },
-			{ name: '澳门', value: 0 }
+			{ name: '北京市', value: 0.11 },
+			{ name: '天津市', value: 1.15 },
+			{ name: '上海市', value: 1.80 },
+			{ name: '重庆市', value: 0 },
+			{ name: '河北省', value: 20.26 },
+			{ name: '河南省', value: 10.00 },
+			{ name: '云南省', value: 9.00 },
+			{ name: '辽宁省', value: 23.19 },
+			{ name: '黑龙江省', value: 20.96 },
+			{ name: '湖南省', value: 5.31 },
+			{ name: '安徽省', value: 3.88 },
+			{ name: '山东省', value: 14.23 },
+			{ name: '新疆维吾尔自治区', value: 49.00 },
+			{ name: '江苏省', value: 12.53 },
+			{ name: '浙江省', value: 4.55 },
+			{ name: '江西省', value: 2.00 },
+			{ name: '湖北省', value: 5.00 },
+			{ name: '广西壮族自治区', value: 17.97 },
+			{ name: '甘肃省', value: 24.80 },
+			{ name: '山西省', value: 10.26 },
+			{ name: '内蒙古自治区', value: 51.15 },
+			{ name: '陕西省', value: 45.00 },
+			{ name: '吉林省', value: 16.23 },
+			{ name: '福建省', value: 4.10 },
+			{ name: '贵州省', value: 5.00 },
+			{ name: '广东省', value: 20.00 },
+			{ name: '青海省', value: 8.07 },
+			{ name: '西藏自治区', value: 0 },
+			{ name: '四川省', value: 6.00 },
+			{ name: '宁夏回族自治区', value: 3.73 },
+			{ name: '海南省', value: 5.00 },
+			{ name: '台湾省', value: 1.00 },
+			{ name: '香港特别行政区', value: 1.00 },
+			{ name: '澳门特别行政区', value: 1.00 },
+			{ name: '南海诸岛', value: 1.00 }
 		];
 		data.sort((a, b) => a.value - b.value);
 		// const maxDataValue = Math.max(...data.map(item => item.value));

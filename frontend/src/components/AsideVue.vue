@@ -35,11 +35,33 @@
       <template #title>行业动态</template>
     </el-menu-item>
 
-    <el-divider content-position="center" style="margin-top: 300px;">
-      <span class="divider-title" v-show="!isCollapse" >友情链接</span>
+    <el-menu-item class="el-menu-item" index="/MapPredict" @click="showLoading('MapPredict')">
+      <el-icon>
+        <MapLocation />
+      </el-icon>
+      <template #title>定点预测</template>
+    </el-menu-item>
+
+    <el-menu-item class="el-menu-item" index="/TurbineManage" @click="showLoading('TurbineManage')">
+      <el-icon>
+        <SetUp />
+      </el-icon>
+      <template #title>风机管理</template>
+    </el-menu-item>
+
+    <el-menu-item class="el-menu-item" index="/ModelTraining" @click="showLoading('ModelTraining')">
+      <el-icon>
+        <ChromeFilled />
+      </el-icon>
+      <template #title>模型训练</template>
+    </el-menu-item>
+
+    <el-divider content-position="center" style="margin-top: 30px;">
+      <span class="divider-title" v-show="!isCollapse">友情链接</span>
     </el-divider>
 
-    <p><a href="https://www.in-en.com/" target="_blank" class="link-title" v-show="!isCollapse">国际能源网</a></p>
+    <p style="margin-top: 40px;"><a href="https://www.in-en.com/" target="_blank" class="link-title"
+        v-show="!isCollapse">国际能源网</a></p>
     <p><a href="https://www.ceic.com/" target="_blank" class="link-title" v-show="!isCollapse">国家能源集团</a><br></p>
     <p><a href="https://wind.in-en.com/" target="_blank" class="link-title" v-show="!isCollapse">国际风力发电网</a></p>
   </el-menu>

@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView.vue'
 import PowerPredict from '../views/PowerPredict.vue'
 import DataAnalysis from '../views/DataAnalysis.vue'
 import IndustryTrending from '../views/IndustryTrending.vue'
+import MapPredict from '../views/MapPredict.vue'
+import TurbineManage from '../views/TurbineManage.vue'
+import ModelTraining from '../views/ModelTraining.vue'
 
 const routes = [
   {
@@ -24,6 +27,21 @@ const routes = [
     path: '/IndustryTrending',
     name: 'IndustryTrending',
     component: IndustryTrending
+  },
+  {
+    path: '/MapPredict',
+    name: 'MapPredict',
+    component: MapPredict
+  },
+  {
+    path: '/TurbineManage',
+    name: 'TurbineManage',
+    component: TurbineManage
+  },
+  {
+    path: '/ModelTraining',
+    name: 'ModelTraining',
+    component: ModelTraining
   }
 ]
 

@@ -2,7 +2,7 @@
   <el-menu class="el-menu-vertical" :collapse="isCollapse" background-color="rgb(247,246,242)"
     :default-active="activeIndex">
     <div class="platform">
-      <router-link to="/PowerPredict">
+      <router-link to="/">
         <img class="platform-logo" :src="require('@/assets/image/logo/logo.gif')" alt="logo">
       </router-link>
       <div v-if="!isCollapse" id="platform-title">
@@ -49,11 +49,11 @@
       <template #title>风机管理</template>
     </el-menu-item>
 
-    <el-menu-item class="el-menu-item" index="/ModelTraining" @click="showLoading('ModelTraining')">
+    <el-menu-item class="el-menu-item" index="/KnowledgePage" @click="showLoading('KnowledgePage')">
       <el-icon>
         <ChromeFilled />
       </el-icon>
-      <template #title>模型训练</template>
+      <template #title>风电科普</template>
     </el-menu-item>
 
     <el-divider content-position="center" style="margin-top: 30px;">

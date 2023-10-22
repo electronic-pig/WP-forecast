@@ -47,7 +47,6 @@ export default {
 		this.initChartOptions();
 		this.updateChart();
 		this.myChart.setOption(this.option);
-		console.log(this.option.series[0].data.length)
 	},
 	watch: {
 		inputSequenceLength: 'HandleChange',

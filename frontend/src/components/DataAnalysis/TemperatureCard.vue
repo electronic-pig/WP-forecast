@@ -3,7 +3,7 @@
         <div class="text-container">
             <p class="bold-text">年平均温度</p>
             <p class="english-text">average temperature</p>
-            <p class="orange-text">{{ temperature }}℃</p>
+            <p class="data-text">{{ temperature }}℃</p>
         </div>
         <div class="img-container">
             <img src="https://sghimages.shobserver.com/img/catch/2022/07/12/d0c439a6-5f9b-460d-8ad8-ebc1de971436.gif"
@@ -50,16 +50,20 @@ export default {
 }
 
 .bold-text {
+    line-height: 0%;
+    font-size:larger;
     font-weight: bold;
 }
 
 .english-text {
     font-family: 'Arial', sans-serif;
-    font-size: small;
+    font-size: large;
     color: #b0abab;
 }
 
-.orange-text {
+.data-text {
+    line-height: 0%;
+    font-size: x-large;
     color: orange;
 }
 

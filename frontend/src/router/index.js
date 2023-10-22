@@ -5,7 +5,7 @@ import DataAnalysis from '../views/DataAnalysis.vue'
 import IndustryTrending from '../views/IndustryTrending.vue'
 import MapPredict from '../views/MapPredict.vue'
 import TurbineManage from '../views/TurbineManage.vue'
-import ModelTraining from '../views/ModelTraining.vue'
+import KnowledgePage from '../views/KnowledgePage.vue'
 
 const routes = [
   {
@@ -39,9 +39,9 @@ const routes = [
     component: TurbineManage
   },
   {
-    path: '/ModelTraining',
-    name: 'ModelTraining',
-    component: ModelTraining
+    path: '/KnowledgePage',
+    name: 'KnowledgePage',
+    component: KnowledgePage
   }
 ]
 

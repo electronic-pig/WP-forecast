@@ -17,15 +17,15 @@
           </el-row>
         </el-header>
         <div class="card-container">
-          <div class="gap"></div>
+          <div></div>
           <TemperatureCard />
-          <div class="mgap"></div>
+          <div></div>
           <HumidityCard />
-          <div class="mgap"></div>
+          <div></div>
           <PressureCard />
-          <div class="mgap"></div>
+          <div></div>
           <WindspeedCard />
-          <div class="gap"></div>
+          <div></div>
         </div>
         <div class="history-container">
           <HistoryChart />

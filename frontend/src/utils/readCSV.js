@@ -3,7 +3,7 @@ export default function readCSV(file) {
     const reader = new FileReader();
 
     reader.onload = () => {
-      const rows = reader.result.split('\n');
+      const rows = reader.result.split('\r\n');
       const data = [];
 
       // 忽略第一行标题内容

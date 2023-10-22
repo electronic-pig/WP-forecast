@@ -3,7 +3,7 @@
         <div class="text-container">
             <p class="bold-text">年平均风速</p>
             <p class="english-text">average windspeed</p>
-            <p class="orange-text">{{ temperature }}m/s</p>
+            <p class="data-text">{{ temperature }}m/s</p>
         </div>
         <div class="img-container">
             <img src="@/assets/image/windspeed.gif"
@@ -50,16 +50,20 @@ export default {
 }
 
 .bold-text {
+    line-height: 0%;
+    font-size:larger;
     font-weight: bold;
 }
 
 .english-text {
     font-family: 'Arial', sans-serif;
-    font-size: small;
+    font-size: large;
     color: #b0abab;
 }
 
-.orange-text {
+.data-text {
+    line-height: 0%;
+    font-size: x-large;
     color: rgb(48, 178, 15);
 }
 

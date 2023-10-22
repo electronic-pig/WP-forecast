@@ -26,7 +26,7 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-import VideoChart from "@/components/ModelTrainingComponents/VideoChart"
+import VideoChart from "@/components/KnowledgePageComponents/VideoChart"
 export default {
     name: "PowerPredict",
     components: {

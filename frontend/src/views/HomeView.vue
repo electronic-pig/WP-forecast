@@ -4,6 +4,7 @@
     <HomeHeader />
     <MainBody />
     <FunctionsList />
+    <ModelsStatics />
   </div>
 </template>
 
@@ -12,13 +13,15 @@ import HomeScene from '@/components/HomeViewComponents/HomeScreen'
 import HomeHeader from '@/components/HomeViewComponents/HomeHeader'
 import MainBody from '@/components/HomeViewComponents/MainBody';
 import FunctionsList from '@/components/HomeViewComponents/FunctionsList';
+import ModelsStatics from '@/components/HomeViewComponents/ModelsStatics';
 export default {
   name: 'HomeView',
   components: {
     HomeScene,
     HomeHeader,
     MainBody,
-    FunctionsList
+    FunctionsList,
+    ModelsStatics
   }
 }
 </script>

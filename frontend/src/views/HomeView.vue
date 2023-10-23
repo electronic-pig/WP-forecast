@@ -5,6 +5,7 @@
     <MainBody />
     <FunctionsList />
     <ModelsStatics />
+    <ProductAdvantages />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import HomeHeader from '@/components/HomeViewComponents/HomeHeader'
 import MainBody from '@/components/HomeViewComponents/MainBody';
 import FunctionsList from '@/components/HomeViewComponents/FunctionsList';
 import ModelsStatics from '@/components/HomeViewComponents/ModelsStatics';
+import ProductAdvantages from '@/components/HomeViewComponents/ProductAdvantages';
 export default {
   name: 'HomeView',
   components: {
@@ -21,7 +23,8 @@ export default {
     HomeHeader,
     MainBody,
     FunctionsList,
-    ModelsStatics
+    ModelsStatics,
+    ProductAdvantages
   }
 }
 </script>

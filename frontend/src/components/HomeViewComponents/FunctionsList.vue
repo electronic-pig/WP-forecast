@@ -4,7 +4,7 @@
             <p class="title">Functions list</p>
         </div>
         <h2 style="font-weight: bold;font-size: 40px;margin: 10px; color: rgb(75, 124, 189);">功能列表</h2>
-        <p style="color: #65676b; font-size: 24px;">掌握国土资源利用和土地覆盖类型，是地理国情普查与监测的重要内容</p>
+        <p style="color: #65676b; font-size: 24px;">使用AI为风力发电赋能，是加速AI落地的重要举措</p>
     </div>
     <div class="card-container">
         <div class="card" v-for="(card, index) in cards" :key="index">

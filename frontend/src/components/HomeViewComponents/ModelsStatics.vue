@@ -102,6 +102,7 @@ export default {
 }
 
 .text {
+    color: #181818;
     font-size: x-large;
     font-weight: bold;
     margin-top: 10px;

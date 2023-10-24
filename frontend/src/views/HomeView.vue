@@ -6,6 +6,7 @@
     <FunctionsList />
     <ModelsStatics />
     <ProductAdvantages />
+    <TryNow />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import MainBody from '@/components/HomeViewComponents/MainBody';
 import FunctionsList from '@/components/HomeViewComponents/FunctionsList';
 import ModelsStatics from '@/components/HomeViewComponents/ModelsStatics';
 import ProductAdvantages from '@/components/HomeViewComponents/ProductAdvantages';
+import TryNow from '@/components/HomeViewComponents/TryNow';
 export default {
   name: 'HomeView',
   components: {
@@ -24,20 +26,16 @@ export default {
     MainBody,
     FunctionsList,
     ModelsStatics,
-    ProductAdvantages
+    ProductAdvantages,
+    TryNow
   }
 }
 </script>
 
 <style scoped>
-.home {
-  overflow: hidden
-}
 
 .HomeScene {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;

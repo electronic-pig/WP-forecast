@@ -1,15 +1,30 @@
 <template>
-    <div class="centered-content">
+    <div class="centered-content" ref="content" :class="{ animate: isVisible }">
         <div class="title-box">
             <p class="title">Functions list</p>
         </div>
-        <h2 style="font-weight: bold;font-size: 40px;margin: 10px; color: rgb(75, 124, 189);">功能列表</h2>
+        <h2 style="font-weight: bold;font-size: 44px;margin: 10px; color: rgb(75, 124, 189);">功能列表</h2>
         <p style="color: #65676b; font-size: 24px;">使用AI为风力发电赋能，是加速AI落地的重要举措</p>
     </div>
-    <div class="card-container">
-        <div class="card" v-for="(card, index) in cards" :key="index">
+    <div class="card-container" ref="content" :class="{ animate: isVisible }">
+        <div class="card" :class="{ animate: card1Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/${card.imageUrl}`)" :alt="card.altText" />
+                <img :src="require(`@/assets/image/rain.gif`)" />
+            </div>
+        </div>
+        <div class="card" :class="{ animate: card2Visible }">
+            <div class="image-container">
+                <img :src="require(`@/assets/image/rain.gif`)" />
+            </div>
+        </div>
+        <div class="card" :class="{ animate: card3Visible }">
+            <div class="image-container">
+                <img :src="require(`@/assets/image/rain.gif`)" />
+            </div>
+        </div>
+        <div class="card" :class="{ animate: card4Visible }">
+            <div class="image-container">
+                <img :src="require(`@/assets/image/rain.gif`)" />
             </div>
         </div>
     </div>
@@ -18,35 +33,41 @@
 export default {
     data() {
         return {
-            cards: [
-                {
-                    imageUrl: 'rain.gif',
-                    altText: 'Card 1',
-                },
-                {
-                    imageUrl: 'rain.gif',
-                    altText: 'Card 2',
-                },
-                {
-                    imageUrl: 'rain.gif',
-                    altText: 'Card 3',
-                },
-                {
-                    imageUrl: 'rain.gif',
-                    altText: 'Card 4',
-                },
-            ],
-            showTitle: false,
+            isVisible: false,
+            card1Visible: false,
+            card2Visible: false,
+            card3Visible: false,
+            card4Visible: false
         };
     },
+    mounted() {
+        // 在组件挂载后，初始化滚动监听
+        window.addEventListener('scroll', this.handleScroll);
+    },
     methods: {
-        handleScroll(event) {
-            if (event.deltaY > 0) {
-                // 鼠标向下滚动
-                this.showTitle = false;
-            } else {
-                // 鼠标向上滚动
-                this.showTitle = true;
+        handleScroll() {
+            const element = this.$refs.content;
+            const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+
+            const location = windowHeight * 0.9;
+
+            if (elementTop <= location) {
+                this.isVisible = true;
+                setTimeout(() => {
+                    this.card1Visible = true;
+                }, 0);
+                setTimeout(() => {
+                    this.card2Visible = true;
+                }, 200);
+                setTimeout(() => {
+                    this.card3Visible = true;
+                }, 400);
+                setTimeout(() => {
+                    this.card4Visible = true;
+                }, 600);
+                // 停止监听滚动事件，因为我们已经触发了回调
+                window.removeEventListener('scroll', this.handleScroll);
             }
         },
     },
@@ -60,6 +81,7 @@ export default {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    opacity: 0;
 }
 
 .title-box {
@@ -90,7 +112,7 @@ export default {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    /* 用于控制卡片之间的间距 */
+    opacity: 0;
 }
 
 .card {
@@ -99,6 +121,7 @@ export default {
     background-color: rgb(233, 248, 254);
     border-radius: 15px;
     margin: 0 10px;
+    opacity: 0;
 }
 
 .image-container {
@@ -115,5 +138,21 @@ img {
     max-height: 100%;
     object-fit: contain;
     /* 图像在容器内居中显示并保持宽高比 */
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate {
+    animation: slideInFromBottom 1s ease forwards;
 }
 </style>

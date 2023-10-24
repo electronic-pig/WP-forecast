@@ -1,5 +1,5 @@
 <template>
-    <el-row type="flex" justify="center" style="color: rgb(75, 124, 189);">
+    <el-row type="flex" justify="center" style="color: rgb(75, 124, 189);" class="animate">
         <el-col :span="3"><span id="subtitle">功率预测</span></el-col>
         <el-col :span="5"><span id="subtitle">数据分析</span></el-col>
         <el-col :span="2"><img id="logo" :src="require('@/assets/image/logo/logo.gif')" title="点击前往功能区" /></el-col>
@@ -51,5 +51,21 @@ export default {
     left: 0%;
     right: 0%;
     width: 100%;
+}
+
+@keyframes slideInFromBottom {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.animate {
+    animation: slideInFromBottom 1s ease forwards;
 }
 </style>

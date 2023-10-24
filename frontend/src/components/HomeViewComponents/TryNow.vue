@@ -1,14 +1,13 @@
 <template>
-    <div class="container">
-        <div class="left-div">
-            <div style="display: flex; align-items: center;">
+    <div class="container" ref="content">
+        <div class="left-div" :class="{ animateLeft: isVisible }">
+            <div style="display: flex; align-items: center;margin-top: 40px;">
                 <img class="logo" :src="require('@/assets/image/logo/logo.gif')" />
                 <span class="title">风电功率预测及可视化平台</span>
             </div>
-
-            <p>想要试试强大的预测功能吗？<br>马上体验一下</P>
+            <p style="margin: 0;color: #3c3d3f;">想要试试强大的预测功能吗？<br>马上体验一下</P>
         </div>
-        <div class="right-div">
+        <div class="right-div" :class="{ animateRight: isVisible }">
             <div class="btn-container animated-text">
                 <button class="btn-hover color-9" @click="redirectToPowerPredict">立即体验
                     <vue-feather type="arrow-right"></vue-feather></button>
@@ -19,12 +18,31 @@
 
 <script>
 export default {
+    data() {
+        return {
+            isVisible: false,
+        }
+    },
+    mounted() {
+        // 在组件挂载后，初始化滚动监听
+        window.addEventListener('scroll', this.handleScroll);
+    },
     methods: {
+        handleScroll() {
+            const element = this.$refs.content;
+            const windowHeight = window.innerHeight;
+            const elementTop = element.getBoundingClientRect().top;
+            const location = windowHeight * 0.9;
+            if (elementTop <= location) {
+                this.isVisible = true;
+                // 停止监听滚动事件，因为我们已经触发了回调
+                window.removeEventListener('scroll', this.handleScroll);
+            }
+        },
         redirectToPowerPredict() {
             const loadingInstance = this.$loading({
                 text: '努力加载中...', // 可以设置加载时显示的文本
             });
-
             // 模拟异步操作
             setTimeout(() => {
                 loadingInstance.close(); // 关闭 loading
@@ -34,7 +52,8 @@ export default {
             }, 1000);
 
         },
-    }
+    },
+
 }
 </script>
 
@@ -43,6 +62,7 @@ export default {
     margin: 100px 120px;
     display: flex;
     height: 200px;
+    overflow: hidden;
 }
 
 .left-div {
@@ -54,6 +74,7 @@ export default {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    opacity: 0;
 }
 
 .logo {
@@ -119,5 +140,37 @@ p {
 .btn-hover.color-9 {
     background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animateLeft {
+    animation: slideInFromLeft 1s ease forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animateRight {
+    animation: slideInFromRight 1s ease forwards;
 }
 </style>

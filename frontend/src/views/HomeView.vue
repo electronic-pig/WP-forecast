@@ -1,13 +1,11 @@
 <template>
-  <div class="home">
-    <HomeScene class="HomeScene" />
-    <HomeHeader />
-    <MainBody />
-    <FunctionsList />
-    <ModelsStatics />
-    <ProductAdvantages />
-    <TryNow />
-  </div>
+  <HomeScene class="HomeScene" />
+  <HomeHeader />
+  <MainBody />
+  <FunctionsList />
+  <ModelsStatics />
+  <ProductAdvantages />
+  <TryNow />
 </template>
 
 <script>
@@ -33,7 +31,6 @@ export default {
 </script>
 
 <style scoped>
-
 .HomeScene {
   position: fixed;
   width: 100%;

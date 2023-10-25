@@ -1,91 +1,103 @@
 <template>
-    <div class="dashboard">
-        <div v-for="(item, index) in data" :key="index">
-            <el-card >
-                <div class="dashboard-item">
-                    <div class="title">最高{{ item.title }}</div>
-                    <div class="value">{{ item.value }}{{ unit[index] }}</div>
-                    <div class="difference" :class="{ 'positive': item.difference >= 0, 'negative': item.difference < 0 }">
-                        <el-icon v-if="item.difference >= 0">
-                            <ArrowUpBold />
-                        </el-icon><el-icon v-else>
-                            <ArrowDownBold />
-                        </el-icon>
-                        {{ Math.abs(item.difference) }}{{ unit[index] }}<span style="color: #666; " >&nbsp;相较于年平均{{ item.title }}</span>
-                    </div>
-                    <div class="icon"><i :class="item.icon"></i></div>
-                </div>
-            </el-card>
-        </div>
-    </div>
+	<div class="dashboard">
+		<div v-for="(item, index) in data" :key="index">
+			<el-card style="border-radius: 15px;height: 140px;">
+				<div class="dashboard-item" alt="icon-image">
+					<div class="left-content">
+						<div class="title">平均{{ item.title }}</div>
+						<div class="value">{{ item.value }}{{ unit[index] }}</div>
+						<div class="difference" :class="{ 'positive': item.difference >= 0, 'negative': item.difference < 0 }">
+							<el-icon v-if="item.difference >= 0">
+								<Top />
+							</el-icon>
+							<el-icon v-else>
+								<Bottom />
+							</el-icon>
+							{{ (Math.abs(item.difference)).toFixed(1) }}{{ unit[index] }}<span style="color: #666; ">&nbsp;较年平均{{ item.title
+							}}</span>
+						</div>
+					</div>
+					<div class="right-content">
+						<img :src="require('@/assets/icon/' + item.icon)" alt="My Image" />
+					</div>
+				</div>
+			</el-card>
+		</div>
+	</div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            data: [
-                { title: '功率', value: 10, average: 50, difference: 0, icon: 'el-icon-flash' },
-                { title: '气温', value: 25, average: 20, difference: 0, icon: 'el-icon-temperature' },
-                { title: '风速', value: 30, average: 25, difference: 0, icon: 'el-icon-wind' },
-                { title: '气压', value: 1010, average: 1005, difference: 0, icon: 'el-icon-s-flag' },
-                { title: '湿度', value: 70, average: 65, difference: 0, icon: 'el-icon-water-drop' },
-            ],
-            unit: ["W", "℃", "m/s", "HPa", "%"]
-        };
-    },
-    mounted() {
-        this.calculateDifferences();
-    },
-    methods: {
-        calculateDifferences() {
-            this.data.forEach(item => {
-                item.difference = item.value - item.average;
-            });
-        },
-    },
+	data() {
+		return {
+			data: [
+				{ title: '功率', value: 50499, average: 42450, difference: 0, icon: 'caihong.png' },
+				{ title: '气温', value: 14.2, average: 12.7, difference: 0, icon: 'jubuduoyun.png' },
+				{ title: '风速', value: 9.1, average: 10.3, difference: 0, icon: 'fengxiang.png' },
+				{ title: '气压', value: 1014.7, average: 1013.2, difference: 0, icon: 'wendu.png' },
+				{ title: '湿度', value: 15, average: 22, difference: 0, icon: 'yudi.png' },
+			],
+			unit: ["W", "℃", "m/s", "hPa", "%"],
+		};
+	},
+	mounted() {
+		this.calculateDifferences();
+	},
+	methods: {
+		calculateDifferences() {
+			this.data.forEach(item => {
+				item.difference = item.value - item.average;
+			});
+		},
+	},
 };
 </script>
   
 <style scoped>
 .dashboard {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .dashboard-item {
-    text-align: center;
+	display: flex;
+	justify-content: space-between;
 }
 
 .title {
-    font-weight: bold;
-    color: #666;
-    /* 灰色 */
-    font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	/* 灰色 */
+	font-size: 14px;
 }
 
 .value {
-    font-size: 28px;
-    /* 更大的字体 */
-    margin-top: 10px;
+	font-size: 28px;
+	margin-top: 10px;
 }
 
 .difference {
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    /* 较小的字体 */
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	font-size: 18px;
 }
 
 .positive {
-    color: rgb(255, 27, 27);
+	color: #CC0000;
 }
-
 .negative {
-    color: rgb(38, 124, 6);
+	color: #009900;
 }
 
-.icon {
-    margin-top: 10px;
-}</style>
+.left-content {
+	flex: 2;
+}
+.right-content {
+	flex: 1;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+</style>
   

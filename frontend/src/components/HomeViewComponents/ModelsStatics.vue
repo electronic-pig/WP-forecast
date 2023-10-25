@@ -119,7 +119,7 @@ export default {
 }
 
 .large-number {
-    background: linear-gradient(to right, #8c00ff, #00e5ff);
+    background: #6699FF;
     background-clip: text;
     /* Webkit浏览器需要添加此属性 */
     color: transparent;

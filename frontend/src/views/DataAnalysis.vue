@@ -159,7 +159,7 @@ export default {
 }
 
 .compareCard-container {
-  padding: 10px;
+  /* padding: 10px; */
   margin: 20px 0px 20px 10px;
   display: block;
   border: 2px solid var(--theme--color);

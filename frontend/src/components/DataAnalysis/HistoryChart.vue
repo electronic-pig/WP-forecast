@@ -13,9 +13,8 @@
 			</div>
 			<div class="dropdown-right">
 				<span class="choice-label" style="margin-top: 5px;font-weight: bold;">日期范围：</span>
-				<el-date-picker v-model="dateRange"  type="daterange" unlink-panels
-					range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" :shortcuts="shortcuts"
-					:disabledDate="disabledDate">
+				<el-date-picker v-model="dateRange" type="daterange" unlink-panels range-separator="至"
+					start-placeholder="开始日期" end-placeholder="结束日期" :shortcuts="shortcuts" :disabledDate="disabledDate">
 				</el-date-picker>
 			</div>
 		</div>
@@ -38,7 +37,7 @@ export default {
 			disabledDate(time) {
 				// 禁用未来日期
 				var date = new Date()
-				date.setDate(date.getDate()-1)
+				date.setDate(date.getDate() - 1)
 				return time.getTime() >= date.getTime();
 			},
 			shortcuts: [
@@ -93,7 +92,7 @@ export default {
 		},
 		getInitialDateRange() {
 			const endDate = new Date(); // 当前日期
-			endDate.setDate(endDate.getDate()-1)
+			endDate.setDate(endDate.getDate() - 1)
 			endDate.setHours(0, 0, 0, 0); // 将时分秒设置为0，以便在计算时不考虑当天
 
 			const startDate = new Date(endDate);
@@ -141,6 +140,7 @@ export default {
 				},
 				yAxis: {
 					type: 'value',
+					name: 'W',
 					boundaryGap: [0, '100%']
 				},
 				dataZoom: [

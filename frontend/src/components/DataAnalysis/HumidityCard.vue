@@ -3,29 +3,16 @@
         <div class="text-container">
             <p class="bold-text">年平均湿度</p>
             <p class="english-text">average humidity</p>
-            <p class="data-text">{{ temperature }}%</p>
+            <p class="data-text">22%</p>
         </div>
         <div class="img-container">
-            <img src="@/assets/image/rain.gif"
-                alt="Weather" class="card-image">
+            <img src="@/assets/image/rain.gif" alt="Weather" class="card-image">
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            temperature: 10
-        }
-    },
-    mounted() {
-        setInterval(() => {
-            const random = ((-11 + (Math.random() - 0.5) * 0.4).toFixed(1));
-            this.temperature = random
-        }, 2000);
-    }
-}
+export default {}
 </script>
 <style scoped>
 .humidity-card {
@@ -51,7 +38,7 @@ export default {
 
 .bold-text {
     line-height: 0%;
-    font-size:larger;
+    font-size: larger;
     font-weight: bold;
 }
 
@@ -68,7 +55,7 @@ export default {
 }
 
 .img-container {
-    
+
     display: flex;
     justify-content: center;
     align-items: center;

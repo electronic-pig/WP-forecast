@@ -162,7 +162,6 @@ export default {
 <style scoped>
 .chart-container {
 	flex: 1;
-	/* 平分父容器的宽度 */
 	display: block;
 	border: 2px solid var(--theme--color);
 	border-radius: 15px;
@@ -171,8 +170,6 @@ export default {
 
 .chart-container:hover {
 	transform: scale(1.01);
-	/* 鼠标悬浮时放大1.01倍 */
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	/* 添加阴影效果 */
 }
 </style>

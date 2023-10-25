@@ -6,15 +6,17 @@
 					<div class="left-content">
 						<div class="title">平均{{ item.title }}</div>
 						<div class="value">{{ item.value }}{{ unit[index] }}</div>
-						<div class="difference" :class="{ 'positive': item.difference >= 0, 'negative': item.difference < 0 }">
+						<div class="difference"
+							:class="{ 'positive': item.difference >= 0, 'negative': item.difference < 0 }">
 							<el-icon v-if="item.difference >= 0">
 								<Top />
 							</el-icon>
 							<el-icon v-else>
 								<Bottom />
 							</el-icon>
-							{{ (Math.abs(item.difference)).toFixed(1) }}{{ unit[index] }}<span style="color: #666; ">&nbsp;较年平均{{ item.title
-							}}</span>
+							{{ (Math.abs(item.difference)).toFixed(1) }}{{ unit[index] }}<span
+								style="color: #666; ">&nbsp;较年平均{{ item.title
+								}}</span>
 						</div>
 					</div>
 					<div class="right-content">
@@ -66,12 +68,12 @@ export default {
 .title {
 	font-weight: bold;
 	color: #666;
-	/* 灰色 */
 	font-size: 14px;
 }
 
 .value {
 	font-size: 28px;
+	font-weight: 600;
 	margin-top: 10px;
 }
 
@@ -85,6 +87,7 @@ export default {
 .positive {
 	color: #CC0000;
 }
+
 .negative {
 	color: #009900;
 }
@@ -92,12 +95,12 @@ export default {
 .left-content {
 	flex: 2;
 }
+
 .right-content {
 	flex: 1;
 	display: flex;
-  justify-content: center;
-  align-items: center;
+	justify-content: center;
+	align-items: center;
 }
-
 </style>
   

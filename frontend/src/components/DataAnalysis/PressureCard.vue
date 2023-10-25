@@ -3,29 +3,16 @@
         <div class="text-container">
             <p class="bold-text">年平均气压</p>
             <p class="english-text">average pressure</p>
-            <p class="data-text">{{ temperature }}hPa</p>
+            <p class="data-text">1013.2hPa</p>
         </div>
         <div class="img-container">
-            <img src="@/assets/image/pressure.gif"
-                alt="Weather" class="card-image">
+            <img src="@/assets/image/pressure.gif" alt="Weather" class="card-image">
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            temperature: 10
-        }
-    },
-    mounted() {
-        setInterval(() => {
-            const random = ((-11 + (Math.random() - 0.5) * 0.4).toFixed(1));
-            this.temperature = random
-        }, 2000);
-    }
-}
+export default {}
 </script>
 <style scoped>
 .temperature-card {
@@ -51,7 +38,7 @@ export default {
 
 .bold-text {
     line-height: 0%;
-    font-size:larger;
+    font-size: larger;
     font-weight: bold;
 }
 
@@ -63,14 +50,14 @@ export default {
 
 .data-text {
     line-height: 0%;
-    font-size: x-large; 
-    color: rgb(255, 238, 0);
+    font-size: x-large;
+    color: #FF3300;
 }
 
 .img-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-image {

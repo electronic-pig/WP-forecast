@@ -101,6 +101,7 @@ export default {
 				},
 				yAxis: {
 					type: 'value',
+					name: 'W',
 					boundaryGap: [0, '100%']
 				},
 				dataZoom: [

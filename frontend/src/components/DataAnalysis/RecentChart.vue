@@ -50,6 +50,7 @@ export default {
             },
             yAxis: {
                 type: 'value',
+                name: 'W',
             },
             series: Array.from({ length: 3 }, (_, monthIndex) => ({
                 name: `月份${monthIndex + 1}`,
@@ -62,7 +63,7 @@ export default {
     },
     methods: {
         generateRandomData() {
-            const generateRandomNumber = () => Math.floor(Math.random() * (150 - 80 + 1)) + 80;
+            const generateRandomNumber = () => Math.floor(Math.random() * 60000) + 30000;
 
             return Array.from({ length: 10 }, () => ({
                 data: [generateRandomNumber(), generateRandomNumber(), generateRandomNumber()],

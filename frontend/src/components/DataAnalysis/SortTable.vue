@@ -42,8 +42,8 @@ export default {
 
             const generateRow = () => ({
                 serialNumber: `SN${getRandomNumber(1000, 9999)}`,
-                maxPower: getRandomNumber(100, 1000),
-                avgPower: getRandomNumber(50, 500)
+                maxPower: getRandomNumber(70000, 100000),
+                avgPower: getRandomNumber(50000, 70000)
             });
 
             const numberOfRows = 15;

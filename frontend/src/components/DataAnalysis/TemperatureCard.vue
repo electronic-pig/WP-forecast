@@ -6,7 +6,7 @@
             <p class="data-text">{{ temperature }}℃</p>
         </div>
         <div class="img-container">
-            <img src="https://sghimages.shobserver.com/img/catch/2022/07/12/d0c439a6-5f9b-460d-8ad8-ebc1de971436.gif"
+            <img src="@/assets/image/temperature.gif"
                 alt="Weather" class="card-image">
         </div>
     </div>

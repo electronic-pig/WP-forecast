@@ -3,7 +3,7 @@
         <div class="video-wrapper">
             <el-button type="primary" @click="previousVideo" style="height: 160px;">上一个</el-button>
             <video class="video" ref="videoElement" controls width="1190" style="border-radius: 15px;">
-                <source :src="currentVideoSrc" type="video/mp4">
+                <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <el-button type="primary" @click="nextVideo" style="height: 160px;">下一个</el-button>
@@ -17,9 +17,9 @@ export default {
         return {
             currentVideoIndex: 1,
             videoSources: [
-                "/video/video1.mp4",
-                "/video/video2.mp4",
-                "/video/video3.mp4"
+                "video1.mp4",
+                "video2.mp4",
+                "video3.mp4"
             ]
         };
     },

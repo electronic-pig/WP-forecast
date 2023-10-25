@@ -1,14 +1,63 @@
 <template>
     <el-row type="flex" justify="center" style="color: rgb(75, 124, 189);" class="animate">
-        <el-col :span="3"><span id="subtitle">功率预测</span></el-col>
-        <el-col :span="5"><span id="subtitle">数据分析</span></el-col>
-        <el-col :span="2"><img id="logo" :src="require('@/assets/image/logo/logo.gif')" title="点击前往功能区" /></el-col>
-        <el-col :span="5"><span id="subtitle">定点预测</span></el-col>
-        <el-col :span="3"><span id="subtitle">风机管理</span></el-col>
+        <el-col :span="3"><span id="subtitle" @click="routerToPowerPredict">功率预测</span></el-col>
+        <el-col :span="5"><span id="subtitle" @click="routerToDataAnalysis">数据分析</span></el-col>
+        <el-col :span="2"><img id="logo" :src="require('@/assets/image/logo/logo.gif')"/></el-col>
+        <el-col :span="5"><span id="subtitle" @click="routerToMapPredict">定点预测</span></el-col>
+        <el-col :span="3"><span id="subtitle" @click="routerToTurbineManage">风机管理</span></el-col>
     </el-row>
 </template>
 <script>
 export default {
+    methods: {
+        routerToPowerPredict() {
+            const loadingInstance = this.$loading({
+                text: '努力加载中...', // 可以设置加载时显示的文本
+            });
+            setTimeout(() => {
+                loadingInstance.close(); // 关闭 loading
+            }, 1500);
+            setTimeout(() => {
+                this.$router.push('/PowerPredict'); // Redirect to the desired route
+            }, 1000);
+
+        },
+        routerToDataAnalysis() {
+            const loadingInstance = this.$loading({
+                text: '努力加载中...', // 可以设置加载时显示的文本
+            });
+            setTimeout(() => {
+                loadingInstance.close(); // 关闭 loading
+            }, 1500);
+            setTimeout(() => {
+                this.$router.push('/DataAnalysis'); // Redirect to the desired route
+            }, 1000);
+
+        },
+        routerToMapPredict() {
+            const loadingInstance = this.$loading({
+                text: '努力加载中...', // 可以设置加载时显示的文本
+            });            setTimeout(() => {
+                loadingInstance.close(); // 关闭 loading
+            }, 1500);
+            setTimeout(() => {
+                this.$router.push('/MapPredict'); // Redirect to the desired route
+            }, 1000);
+
+        },
+        routerToTurbineManage() {
+            const loadingInstance = this.$loading({
+                text: '努力加载中...', // 可以设置加载时显示的文本
+            });
+            setTimeout(() => {
+                loadingInstance.close(); // 关闭 loading
+            }, 1500);
+            setTimeout(() => {
+                this.$router.push('/TurbineManage'); // Redirect to the desired route
+            }, 1000);
+
+        },
+    }
 }
 </script>
 <style scoped>

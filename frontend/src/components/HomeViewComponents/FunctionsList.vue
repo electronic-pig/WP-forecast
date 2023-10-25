@@ -9,22 +9,26 @@
     <div class="card-container" ref="content" :class="{ animate: isVisible }">
         <div class="card" :class="{ animate: card1Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/rain.gif`)" />
+                <img :src="require(`@/assets/image/screenShot1.png`)" />
+                <p class="text" @click="routerToPowerPredict">功率预测</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card2Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/rain.gif`)" />
+                <img :src="require(`@/assets/image/screenShot2.png`)" />
+                <p class="text">数据分析</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card3Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/rain.gif`)" />
+                <img :src="require(`@/assets/image/screenShot1.png`)" />
+                <p class="text">定点预测</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card4Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/rain.gif`)" />
+                <img :src="require(`@/assets/image/screenShot2.png`)" />
+                <p class="text">风机管理</p>
             </div>
         </div>
     </div>
@@ -70,6 +74,7 @@ export default {
                 window.removeEventListener('scroll', this.handleScroll);
             }
         },
+
     },
 };
 </script>
@@ -122,14 +127,33 @@ export default {
     border-radius: 15px;
     margin: 0 10px;
     opacity: 0;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* 添加阴影效果 */
+    cursor: pointer;
+}
+
+.text {
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 85px;
+    transition: color 0.4s ease;
+}
+
+.text:hover {
+    cursor: pointer;
+    color: #0b82d2;
 }
 
 .image-container {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0 10px;
+    margin-top: 10px;
 }
 
 img {

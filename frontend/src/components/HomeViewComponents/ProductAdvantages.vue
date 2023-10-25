@@ -122,6 +122,12 @@ export default {
     align-items: center;
     text-align: center;
     opacity: 0;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    /* 添加阴影效果 */
 }
 
 @keyframes slideInFromBottom {

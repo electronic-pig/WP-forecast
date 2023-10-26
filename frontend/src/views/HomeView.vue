@@ -26,7 +26,7 @@ export default {
     ModelsStatics,
     ProductAdvantages,
     TryNow
-  }
+  },
 }
 </script>
 

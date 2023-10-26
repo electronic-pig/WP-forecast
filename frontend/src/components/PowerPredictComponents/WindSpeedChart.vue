@@ -10,7 +10,6 @@ import * as echarts from 'echarts';
 
 export default {
   mounted() {
-    // Initialize the chart
     const chartDom = document.getElementById('wind-speed-chart');
     const myChart = echarts.init(chartDom);
     const option = {
@@ -93,7 +92,7 @@ export default {
         ]
       });
     }, 2000);
-    
+
     // Set the chart options
     option && myChart.setOption(option);
   }
@@ -111,9 +110,7 @@ export default {
 
 .chart-container:hover {
   transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
 }
 
 .wind-speed-label {

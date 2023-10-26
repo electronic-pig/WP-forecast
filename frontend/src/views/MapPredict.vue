@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-aside class="el-aside" width="auto">
+        <el-aside width="auto">
             <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
         </el-aside>
         <el-main class="main-ctx">

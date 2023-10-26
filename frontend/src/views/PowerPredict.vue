@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-aside class="el-aside" width="auto">
+    <el-aside width="auto">
       <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
     </el-aside>
     <el-main class="main-ctx">
@@ -19,22 +19,16 @@
         </el-row>
       </el-header>
       <div class="top-container">
-        <div class="chart-container">
           <TemperatureChart />
-        </div>
-        <div class="windmill-container">
           <BackgroundWindmill />
-        </div>
-        <div class="wind-speed_container">
           <WindSpeedChart />
-        </div>
       </div>
       <div class="middle-container">
-        <PowerChart class="power-container" :selectedWindTurbine="selectedWindTurbine"/>
-        <ElectricChart class="electric-container" :selectedWindTurbine="selectedWindTurbine"/>
+        <PowerChart class="power-container" :selectedWindTurbine="selectedWindTurbine" />
+        <ElectricChart class="electric-container" :selectedWindTurbine="selectedWindTurbine" />
       </div>
       <div class="bottom-container">
-        <CompareChart :selectedWindTurbine="selectedWindTurbine"/>
+        <CompareChart :selectedWindTurbine="selectedWindTurbine" />
       </div>
     </el-main>
   </el-container>
@@ -65,10 +59,11 @@ export default {
   },
   data() {
     return {
-      windTurbines: ['风机01', '风机02', '风机03', '风机04', '风机05', '风机06', '风机07', '风机08', '风机09', '风机10'],
-      selectedWindTurbine: '风机01',  // 默认选中风机01
+      windTurbines: ['风机1', '风机2', '风机3', '风机4', '风机5', '风机6', '风机7', '风机8', '风机9', '风机10'],
+      selectedWindTurbine: '风机1',  // 默认选中风机01
       isCollapse: false,
       activeIndex: this.$route.path,
+      asideWidth: '15%',
     };
   },
   mounted() {
@@ -83,6 +78,7 @@ export default {
   methods: {
     goCollapse() {
       this.isCollapse = !this.isCollapse;
+      this.asideWidth = this.isCollapse ? 'auto' : 'auto';
     },
   }
 };

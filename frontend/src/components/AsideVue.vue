@@ -15,45 +15,57 @@
     </el-divider>
 
     <el-menu-item class="el-menu-item" index="/PowerPredict" @click="showLoading('PowerPredict')">
-      <el-icon>
+      <el-icon v-show="isCollapse">
         <DataAnalysis />
       </el-icon>
-      <template #title>功率预测</template>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <DataAnalysis />
+          </el-icon>功率预测</span></template>
     </el-menu-item>
 
     <el-menu-item class="el-menu-item" index="/DataAnalysis" @click="showLoading('DataAnalysis')">
-      <el-icon>
+      <el-icon v-show="isCollapse">
         <Histogram />
       </el-icon>
-      <template #title>数据分析</template>
-    </el-menu-item>
-
-    <el-menu-item class="el-menu-item" index="/IndustryTrending" @click="showLoading('IndustryTrending')">
-      <el-icon>
-        <TrendCharts />
-      </el-icon>
-      <template #title>行业动态</template>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <Histogram />
+          </el-icon>数据分析</span></template>
     </el-menu-item>
 
     <el-menu-item class="el-menu-item" index="/MapPredict" @click="showLoading('MapPredict')">
-      <el-icon>
+      <el-icon v-show="isCollapse">
         <MapLocation />
       </el-icon>
-      <template #title>定点预测</template>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <MapLocation />
+          </el-icon>定点预测</span></template>
     </el-menu-item>
 
     <el-menu-item class="el-menu-item" index="/TurbineManage" @click="showLoading('TurbineManage')">
-      <el-icon>
+      <el-icon v-show="isCollapse">
         <SetUp />
       </el-icon>
-      <template #title>风机管理</template>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <SetUp />
+          </el-icon>风机管理</span></template>
+    </el-menu-item>
+
+    <el-menu-item class="el-menu-item" index="/IndustryTrending" @click="showLoading('IndustryTrending')">
+      <el-icon v-show="isCollapse">
+        <TrendCharts />
+      </el-icon>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <TrendCharts />
+          </el-icon>行业动态</span></template>
     </el-menu-item>
 
     <el-menu-item class="el-menu-item" index="/KnowledgePage" @click="showLoading('KnowledgePage')">
-      <el-icon>
+      <el-icon v-show="isCollapse">
         <ChromeFilled />
       </el-icon>
-      <template #title>风电科普</template>
+      <template #title><span style="margin: 0 auto;"><el-icon>
+            <ChromeFilled />
+          </el-icon>风电科普</span></template>
     </el-menu-item>
 
     <el-divider content-position="center" style="margin-top: 30px;">
@@ -109,7 +121,6 @@ export default {
   font-family: Microsoft JhengHei UI, sans-serif;
 
   .el-menu-item {
-    padding: 0;
     border-radius: 5px;
     color: var(--theme--color);
     z-index: 1;
@@ -140,7 +151,7 @@ export default {
 }
 
 .el-menu-vertical:not(.el-menu--collapse) {
-  width: 140px;
+  width: 12vw;
   min-height: 400px;
 }
 

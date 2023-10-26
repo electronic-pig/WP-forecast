@@ -215,7 +215,7 @@
 	position: relative;
 	margin: 0 10px;
 	text-align: center;
-	width: 600px;
+	width: 50%;
 	height: 280px;
 	overflow: hidden;
 	display: block;
@@ -228,9 +228,7 @@
 
 .main-wrapper:hover {
 	transform: scale(1.01);
-	/* 鼠标悬浮时放大1.01倍 */
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	/* 添加阴影效果 */
 }
 .sun {
 	position: absolute;

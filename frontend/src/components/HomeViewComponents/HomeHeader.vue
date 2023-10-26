@@ -1,10 +1,10 @@
 <template>
     <el-row type="flex" justify="center" style="color: rgb(75, 124, 189);" class="animate">
-        <el-col :span="3"><span id="subtitle" @click="routerToPowerPredict">功率预测</span></el-col>
-        <el-col :span="5"><span id="subtitle" @click="routerToDataAnalysis">数据分析</span></el-col>
-        <el-col :span="2"><img id="logo" :src="require('@/assets/image/logo/logo.gif')"/></el-col>
-        <el-col :span="5"><span id="subtitle" @click="routerToMapPredict">定点预测</span></el-col>
-        <el-col :span="3"><span id="subtitle" @click="routerToTurbineManage">风机管理</span></el-col>
+        <el-col :span="3"><span class="subtitle" @click="routerToPowerPredict">功率预测</span></el-col>
+        <el-col :span="5"><span class="subtitle" @click="routerToDataAnalysis">数据分析</span></el-col>
+        <el-col :span="2"><img class="logo" src="@/assets/image/logo/logo.gif" /></el-col>
+        <el-col :span="5"><span class="subtitle" @click="routerToMapPredict">定点预测</span></el-col>
+        <el-col :span="3"><span class="subtitle" @click="routerToTurbineManage">风机管理</span></el-col>
     </el-row>
 </template>
 <script>
@@ -37,7 +37,7 @@ export default {
         routerToMapPredict() {
             const loadingInstance = this.$loading({
                 text: '努力加载中...', // 可以设置加载时显示的文本
-            });            setTimeout(() => {
+            }); setTimeout(() => {
                 loadingInstance.close(); // 关闭 loading
             }, 1500);
             setTimeout(() => {
@@ -69,13 +69,13 @@ export default {
     font-family: SimHei sans-serif;
 }
 
-#logo {
+.logo {
     margin-top: 20px;
     height: 100px;
     cursor: pointer;
 }
 
-#subtitle {
+.subtitle {
     font-size: 22px;
     position: relative;
     display: inline;
@@ -84,7 +84,7 @@ export default {
     cursor: pointer;
 }
 
-#subtitle::after {
+.subtitle::after {
     content: "";
     width: 0px;
     height: 3px;
@@ -96,10 +96,14 @@ export default {
     transition: all 0.5s;
 }
 
-#subtitle:hover:after {
+.subtitle:hover:after {
     left: 0%;
     right: 0%;
     width: 100%;
+}
+
+.animate {
+    animation: slideInFromBottom 1s ease forwards;
 }
 
 @keyframes slideInFromBottom {
@@ -112,9 +116,5 @@ export default {
         transform: translateY(0);
         opacity: 1;
     }
-}
-
-.animate {
-    animation: slideInFromBottom 1s ease forwards;
 }
 </style>

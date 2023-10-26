@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 .container {
-    margin: 100px 120px;
+    margin: 30px 120px;
     display: flex;
     height: 200px;
     overflow: hidden;

@@ -48,10 +48,7 @@ export default {
             const element = this.$refs.content;
             const windowHeight = window.innerHeight;
             const elementTop = element.getBoundingClientRect().top;
-
-            const location = windowHeight * 0.9;
-
-            if (elementTop <= location) {
+            if (elementTop <= windowHeight * 0.5) {
                 this.isVisible = true;
                 setTimeout(() => {
                     this.card1Visible = true;
@@ -130,6 +127,10 @@ export default {
     /* 添加阴影效果 */
 }
 
+.animate {
+    animation: slideInFromBottom 1s ease forwards;
+}
+
 @keyframes slideInFromBottom {
     0% {
         transform: translateY(100%);
@@ -140,9 +141,5 @@ export default {
         transform: translateY(0);
         opacity: 1;
     }
-}
-
-.animate {
-    animation: slideInFromBottom 1s ease forwards;
 }
 </style>

@@ -2,7 +2,7 @@
   <el-menu :collapse="isCollapse" background-color="rgb(247,246,242)" :default-active="activeIndex">
     <div class="platform">
       <router-link to="/">
-        <img class="platform-logo" :src="require('@/assets/image/logo/logo.gif')" alt="logo">
+        <img class="platform-logo" src="@/assets/image/logo/logo.gif" alt="logo">
       </router-link>
       <div v-if="!isCollapse" class="platform-title">
         <a @click="goShow">风电功率预测</a>

@@ -18,7 +18,7 @@
 			</el-select>
 		</div>
 	</div>
-	<div id="main" style="width: 90%; height: 90%;"></div>
+	<div id="main" style="width: 100%; height: 92%;"></div>
 </template>
 
 <script>

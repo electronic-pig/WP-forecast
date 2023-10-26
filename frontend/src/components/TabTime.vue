@@ -1,7 +1,11 @@
 <template>
-  <div class="date hidden-sm-and-down">
-    <span class="hms">{{ currenthour }}:{{ currentminute }}:{{ currentsecond }}</span>
-    <span class="ymd">[{{ currentyear }}-{{ currentmonth }}-{{ currentday }}]</span>
+  <div class="date">
+    <vue-feather type="clock" size="24px" stroke-width="2" style="margin-right: 5px;"></vue-feather>
+    <span>{{ currenthour }}:{{ currentminute }}:{{ currentsecond }}</span>
+    <span>[{{ currentyear }}-{{ currentmonth }}-{{ currentday }}]</span>
+    <a href="https://github.com/electronic-pig/WP-predict" target="_blank" style="display: flex;align-items: center;">
+      <img src="@/assets/icon/GitHub.png" alt="github" style="margin-left: 10px;">
+    </a>
   </div>
 </template>
 
@@ -18,14 +22,12 @@ export default {
     };
   },
   mounted() {
-    this.updateTime();  // Call updateTime function initially
-    // Set up a timer to call updateTime every second
+    this.updateTime();
     this.timer = setInterval(() => {
       this.updateTime();
     }, 1000);
   },
   unmounted() {
-    // Clear the timer when the component is unmounted to prevent memory leaks
     clearInterval(this.timer);
   },
   methods: {
@@ -43,22 +45,12 @@ export default {
 </script>
 
 <style scoped>
-* {
-  font-family: Microsoft JhengHei UI, sans-serif;
-}
-
 .date {
-  font-family: Microsoft YaHei;
-  font-weight: 400;
-}
-
-.hms {
-  color: var(--theme--color);
+  font-family: Microsoft YaHei, sans-serif;
+  font-weight: 500;
   font-size: 18px;
-}
-
-.ymd {
   color: var(--theme--color);
-  font-size: 18px;
+  display: flex;
+  align-items: center;
 }
 </style>

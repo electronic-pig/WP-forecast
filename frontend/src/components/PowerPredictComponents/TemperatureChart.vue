@@ -116,9 +116,7 @@ export default {
 
 .chart-container:hover {
 	transform: scale(1.01);
-	/* 鼠标悬浮时放大1.01倍 */
 	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-	/* 添加阴影效果 */
 }
 
 .temperature-label {
@@ -127,8 +125,8 @@ export default {
 	font-weight: bold;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	/* 调整与图表的间距 */
 	text-align: center;
+	color:#333;
 }
 
 #temperature-chart {

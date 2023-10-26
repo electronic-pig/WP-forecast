@@ -119,8 +119,8 @@ export default {
   font-weight: bold;
   margin-top: 5px;
   margin-bottom: 5px;
-  /* 调整与图表的间距 */
   text-align: center;
+  color: #333;
 }
 
 #wind-speed-chart {

@@ -25,7 +25,7 @@
       </div>
       <div class="middle-container">
         <PowerChart class="power-container" :selectedWindTurbine="selectedWindTurbine" />
-        <ElectricChart class="electric-container" :selectedWindTurbine="selectedWindTurbine" />
+        <LoadChart class="electric-container" :selectedWindTurbine="selectedWindTurbine" />
       </div>
       <div class="bottom-container">
         <CompareChart :selectedWindTurbine="selectedWindTurbine" />
@@ -42,7 +42,7 @@ import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWi
 import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart"
 import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
 import PowerChart from "@/components/PowerPredictComponents/PowerChart";
-import ElectricChart from "@/components/PowerPredictComponents/ElectricChart";
+import LoadChart from "@/components/PowerPredictComponents/LoadChart";
 import CompareChart from "@/components/PowerPredictComponents/CompareChart";
 
 export default {
@@ -54,7 +54,7 @@ export default {
     TemperatureChart,
     WindSpeedChart,
     PowerChart,
-    ElectricChart,
+    LoadChart,
     CompareChart,
   },
   data() {

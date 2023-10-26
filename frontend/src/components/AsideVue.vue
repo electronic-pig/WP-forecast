@@ -1,16 +1,15 @@
 <template>
-  <el-menu class="el-menu-vertical" :collapse="isCollapse" background-color="rgb(247,246,242)"
-    :default-active="activeIndex">
+  <el-menu :collapse="isCollapse" background-color="rgb(247,246,242)" :default-active="activeIndex">
     <div class="platform">
       <router-link to="/">
         <img class="platform-logo" :src="require('@/assets/image/logo/logo.gif')" alt="logo">
       </router-link>
-      <div v-if="!isCollapse" id="platform-title">
-        <a class="platform-title" @click="goShow">风电功率预测</a>
+      <div v-if="!isCollapse" class="platform-title">
+        <a @click="goShow">风电功率预测</a>
       </div>
     </div>
 
-    <el-divider content-position="center">
+    <el-divider>
       <span class="divider-title" v-show="!isCollapse">功能区</span>
     </el-divider>
 
@@ -98,10 +97,8 @@ export default {
     showLoading(page) {
       const loadingInstance = this.$loading({
         target: document.querySelector('.el-menu-item[index="/' + page + '"]'),
-        text: '加载中...',
+        text: '努力加载中...',
       });
-
-      // 延迟1秒后关闭loading
       setTimeout(() => {
         loadingInstance.close();
         this.$router.push(page);
@@ -111,95 +108,39 @@ export default {
 };
 </script>
 
-<style lang="less">
-.el-menu-vertical {
-  position: relative;
-  height: 100vh;
-  top: 0;
-  bottom: 0;
-  text-align: center;
-  font-family: Microsoft JhengHei UI, sans-serif;
-
-  .el-menu-item {
-    border-radius: 5px;
-    color: var(--theme--color);
-    z-index: 1;
-    font-size: 16px;
-  }
-
-  .el-menu-item:hover {
-    background-color: var(--theme--color);
-    color: #ecf4ff !important;
-  }
-
-  .el-menu-item :hover::after {
-    width: 100%;
-    background: var(--theme--color);
-  }
-
-  .el-menu-item ::after {
-    position: absolute;
-    content: "";
-    width: 0;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: 5px;
-    transition: 0.25s;
-    z-index: -1;
-  }
+<style scoped>
+.el-menu-item {
+  border-radius: 5px;
+  color: var(--theme--color);
+  z-index: 1;
+  font-size: 16px;
 }
 
-.el-menu-vertical:not(.el-menu--collapse) {
-  width: 12vw;
-  min-height: 400px;
-}
-
-.el-menu-vertical .el-divider__text {
-  background-color: rgb(247, 246, 242);
-}
-
-.is-active {
+.el-menu-item:hover {
   background-color: var(--theme--color);
-  color: #ecf4ff !important;
+  color: #ecf4ff;
 }
 
 .platform {
-  padding-top: 14px;
-  text-align: center;
+  padding: 10px 0;
   color: var(--theme--color);
   height: 80px;
-  width: auto;
-  overflow: hidden;
-
-  .platform-logo {
-    color: var(--theme--color);
-    width: 45px;
-  }
-
-  .platform-title {
-    color: var(--theme--color);
-    font-family: Microsoft JhengHei UI, sans-serif;
-    font-size: 21px;
-  }
 }
 
-.divider-title {
-  display: block;
-  line-height: 24px;
-  overflow: hidden;
-  width: 70px;
-  color: rgb(140, 157, 182)
+.platform-logo {
+  width: 60px;
 }
 
-#platform-title {
+.platform-title {
   position: relative;
-  font-size: 20px;
   font-weight: 1000;
+  font-family: Microsoft JhengHei UI, sans-serif;
+  font-size: 22px;
   cursor: pointer;
+  color: var(--theme--color);
 }
 
-#platform-title::after {
+.platform-title::after {
   content: "";
   width: 0;
   height: 3px;
@@ -211,10 +152,18 @@ export default {
   transition: all 0.5s;
 }
 
-#platform-title:hover:after {
-  left: 7%;
-  right: 7%;
+.platform-title:hover:after {
+  left: 8%;
+  right: 8%;
   width: 85%;
+}
+
+.divider-title {
+  display: block;
+  line-height: 24px;
+  overflow: hidden;
+  width: 4em;
+  color: rgb(140, 157, 182);
 }
 
 .link-title {

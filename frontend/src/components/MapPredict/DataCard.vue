@@ -76,6 +76,7 @@ export default {
 
 .right-content {
     flex: 1;
+    height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;

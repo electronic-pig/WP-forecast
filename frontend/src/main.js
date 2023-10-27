@@ -9,10 +9,14 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
 import '@/assets/css/app.css'
 import 'normalize.css'
-
+import BaiduMap from 'vue-baidu-map-3x'
 const app = createApp(App)
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
 }
+app.use(BaiduMap, {
+  ak: 'eIgFzfEycAEaEXXAUN0rQc1G8WMPqMqM',
+});
 app.component(VueFeather.name, VueFeather);
 app.use(router).use(ElementPlus, { locale: zhCn }).mount('#app')
+

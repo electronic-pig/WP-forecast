@@ -15,6 +15,23 @@
                     <TabTime />
                 </el-row>
             </el-header>
+            <div class="map-container">
+                <BaiduMap />
+            </div>
+            <div class="card-container">
+                <DataCard />
+            </div>
+            <div class="chart-container">
+                <div class="left-chart">
+                    <PredictChart />
+                </div>
+                <div class="right-chart">
+                    <PWChange />
+                </div>
+            </div>
+            <div class="frame-container">
+                <iframe src="https://globalwindatlas.info/zh/area/China/Sichuan" width="1500" height="800"></iframe>
+            </div>
         </el-main>
     </el-container>
 </template>
@@ -23,13 +40,19 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-
-
+import BaiduMap from "@/components/MapPredict/BaiduMap"
+import DataCard from "@/components/MapPredict/DataCard.vue";
+import PredictChart from "@/components/MapPredict/PredictChart.vue"
+import PWChange from "@/components/MapPredict/PWChange.vue";
 export default {
     name: "PowerPredict",
     components: {
         AsideVue,
         TabTime,
+        BaiduMap,
+        DataCard,
+        PredictChart,
+        PWChange
     },
     data() {
         return {
@@ -69,6 +92,48 @@ export default {
     width: 105%;
 }
 
+.map-container {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 1%;
+    justify-content: center;
+}
+
+.power-predict {
+    margin-left: 2%;
+}
+
+.card-container {
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    justify-content: center;
+}
+
+.chart-container{
+    display: flex;
+    margin-left: 2%;
+    margin-right: 2% ;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.left-chart{
+    flex: 7;
+    margin-right: 10px;
+}
+.right-chart{
+    flex: 3;
+    margin-left: 10px;
+}
+.frame-container{
+    padding: 1%;
+    margin-left: 2%;
+    margin-right: 2% ;
+    margin-bottom: 40px;
+    border: 2px solid var(--theme--color);
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
 .collapse {
     margin-right: 30px;
 }

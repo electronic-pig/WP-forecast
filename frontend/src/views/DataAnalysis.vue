@@ -127,7 +127,7 @@ export default {
 }
 
 .history-container {
-  margin: 20px 0px 10px 5px;
+  margin: 20px 1% 10px 1%;
   display: block;
   height: 450px;
   border: 2px solid var(--theme--color);
@@ -177,21 +177,11 @@ export default {
 
 .cardTable {
   display: flex;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .recent-container {
-  padding: 10px;
-  margin: 20px 10px 20px 10px;
-  display: block;
-  border: 2px solid var(--theme--color);
-  border-radius: 15px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.recent-container {
-  transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
+  margin: 20px 1% 20px 1%;
 }
 </style>

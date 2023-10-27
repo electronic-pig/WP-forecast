@@ -1,5 +1,5 @@
 <template>
-    <div class="chart-container">
+    <div class="container">
         <div id="chart" style="width: 100%; height: 400px;"></div>
     </div>
 </template>
@@ -72,4 +72,22 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.container {
+	padding: 10px;
+	justify-content: center;
+	/* width: 80%; */
+	border: 2px solid var(--theme--color);
+	border-radius: 15px;
+	transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.container:hover {
+	transform: scale(1.01);
+	/* 鼠标悬浮时放大1.01倍 */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	/* 添加阴影效果 */
+}
+</style>
   

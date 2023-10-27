@@ -1,7 +1,7 @@
 <template>
     <div class="bmap-container">
         <div class="title">百度地图选点</div>
-        <baidu-map class="map" scroll-wheel-zoom=true type="API" :center="mapCenter" :zoom="zoomLevel"
+        <baidu-map class="map" scroll-wheel-zoom=false type="API" :center="mapCenter" :zoom="zoomLevel"
             @click="handleMapClick">
             <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
             <bm-map-type :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']" anchor="BMAP_ANCHOR_TOP_LEFT"></bm-map-type>

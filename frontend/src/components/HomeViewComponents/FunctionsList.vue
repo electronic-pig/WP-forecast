@@ -21,7 +21,7 @@
         </div>
         <div class="card" :class="{ animate: card3Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot1.png`)" />
+                <img :src="require(`@/assets/image/screenShot3.png`)" />
                 <p class="text">定点预测</p>
             </div>
         </div>

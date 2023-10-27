@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="frame-container">
-                <iframe src="https://globalwindatlas.info/zh/area/China/Sichuan" width="1500" height="800"></iframe>
+                <iframe src="https://globalwindatlas.info/zh/area/China/Sichuan" width="100%" height="800px"></iframe>
             </div>
         </el-main>
     </el-container>

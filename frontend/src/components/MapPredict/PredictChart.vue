@@ -41,7 +41,7 @@ export default {
 				yAxis: [
 					{
 						type: 'value',
-						name: '功率',
+						name: '功率 / W',
 						position: 'left',
 						splitLine: {
 							show: true,
@@ -49,7 +49,7 @@ export default {
 					},
 					{
 						type: 'value',
-						name: '风速',
+						name: '风速 / m/s',
 						position: 'right',
 						splitLine: {
 							show: true,
@@ -96,8 +96,8 @@ export default {
 			for (let i = 0; i < 24 * 4; i++) {
 				// 24小时，每小时4个数据点（15分钟一个）
 				const timestamp = baseTime + i * 900000; // 15分钟一个数据点
-				const power = Math.random() * 100; // 随机生成功率值（0到100之间）
-				const windSpeed = Math.random() * 10; // 随机生成风速值（0到10之间）
+				const power = Math.round(60000 + Math.random() * 30000); // 随机生成功率值
+				const windSpeed = (Math.random() * 10).toFixed(1); // 随机生成风速值
 
 				data.push([timestamp, power, windSpeed]);
 			}

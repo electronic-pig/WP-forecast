@@ -51,3 +51,7 @@
 .el-divider__text {
   background-color: rgb(247, 246, 242) !important;
 }
+
+.el-alert__title {
+  font-size: 20px !important;
+}

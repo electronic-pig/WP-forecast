@@ -1,6 +1,6 @@
 <template>
     <div class="bmap-container">
-        <div class="title">百度地图选点</div>
+        <div class="title">风机选址</div>
         <baidu-map class="map" :scroll-wheel-zoom="false" type="API" :center="mapCenter" :zoom="zoomLevel"
             @click="handleMapClick">
             <bm-scale anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-scale>
@@ -9,23 +9,28 @@
             <bm-geolocation anchor="BMAP_ANCHOR_BOTTOM_RIGHT" :showAddressBar="true" :autoLocation="true"></bm-geolocation>
             <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
             <bm-marker :position="selectedCoordinate" :dragging="true" @dragend="handleMapClick"
-                animation="BMAP_ANIMATION_BOUNCE" :icon="{ url: '/windmill.gif', size: { width: 100, height: 100 } }">
+                animation="BMAP_ANIMATION_BOUNCE"
+                :icon="{ url: require('@/assets/icon/windmill.gif'), size: { width: 100, height: 100 } }">
             </bm-marker>
         </baidu-map>
         <el-row :gutter="20">
             <el-col :span="12">
                 <el-card class="coordinate-card">
                     <el-row>
-                        <el-col :span="12">经度: {{ selectedCoordinate.lng }}</el-col>
-                        <el-col :span="12">纬度: {{ selectedCoordinate.lat }}</el-col>
+                        <el-col :span="12" style="font-size: x-large;text-align: center;">经度: {{
+                            selectedCoordinate.lng.toFixed(3) }}</el-col>
+                        <el-col :span="12" style="font-size: x-large;text-align: center;">纬度: {{
+                            selectedCoordinate.lat.toFixed(3) }}</el-col>
                     </el-row>
                 </el-card>
             </el-col>
             <el-col :span="12">
                 <el-alert v-if="!showSuccessAlert" title="请点击地图或拖拽风机图标到您想要建造风机的位置" type="info" :closable="false"
-                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center show-icon />
+                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center
+                    show-icon />
                 <el-alert v-if="showSuccessAlert" title="成功定位风机，天气数据已获取，开始进行功率预测" type="success" :closable="false"
-                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center show-icon />
+                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center
+                    show-icon />
             </el-col>
         </el-row>
     </div>
@@ -38,8 +43,8 @@
 export default {
     data() {
         return {
-            mapCenter: { lng: 104.0668, lat: 30.5728 },
-            selectedCoordinate: { lng: 104.0668, lat: 30.5728 },
+            mapCenter: { lng: 104.067, lat: 30.573 },
+            selectedCoordinate: { lng: 104.067, lat: 30.573 },
             zoomLevel: 10, // 设置初始缩放级别
             showSuccessAlert: false
         }
@@ -52,7 +57,19 @@ export default {
             this.selectedCoordinate = coordinate;
             // 同步经纬度信息给父组件
             this.$emit("updateCoordinate", this.selectedCoordinate);
-            this.showSuccessAlert = true;
+            this.showLoading(),
+                setTimeout(() => {
+                    this.showSuccessAlert = true;
+                }, 1500);
+        },
+        showLoading() {
+            const loadingInstance = this.$loading({
+                text: '努力加载中...', // 可以设置加载时显示的文本
+            });
+
+            setTimeout(() => {
+                loadingInstance.close();
+            }, 1500);
         },
     },
     computed: {
@@ -71,15 +88,11 @@ export default {
 .bmap-container {
     padding: 10px;
     justify-content: center;
-    /* width: 80%; */
     border: 2px solid var(--theme--color);
     border-radius: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-
 .coordinate-card {
-    margin-top: 0px;
     width: 100%;
 }
 
@@ -90,10 +103,8 @@ export default {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    /* width: 80%; */
     border: 2px solid var(--theme--color);
     border-radius: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .title {
@@ -101,12 +112,4 @@ export default {
     font-weight: bold;
     margin-bottom: 10px;
 }
-/* 
-.el-alert__icon{
-    font-size: 30px;
-}
-
-.el-alert__title{
-    font-size: 30px;
-} */
 </style>

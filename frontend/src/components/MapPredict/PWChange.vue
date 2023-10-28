@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-    <div id="mchart" style="height: 400px; margin-top: 10px;"></div>
+        <div id="mchart" style="height: 400px; margin-top: 10px;"></div>
     </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
                 },
                 legend: {
                     data: ['功率', '风速'],
+                    top: '8%',
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -64,8 +65,8 @@ export default {
             for (let i = 0; i < 24; i++) {
                 data.push({
                     hour: `${i < 10 ? '0' : ''}${i}:00`,
-                    power: Math.random() * 100, // 生成随机功率数据
-                    windSpeed: Math.random() * 10, // 生成随机风速数据
+                    power: Math.round(60000 + Math.random() * 30000), // 生成随机功率数据
+                    windSpeed: (Math.random() * 10).toFixed(1), // 生成随机风速数据
                 });
             }
             return data;
@@ -95,10 +96,6 @@ export default {
     },
     mounted() {
         this.initializechart()
-        //每15分钟更新一次数据
-        // setInterval(() => {
-        //     this.updateData();
-        // }, 900000); // 15分钟
     }
 }
 </script>
@@ -107,16 +104,12 @@ export default {
 .container {
     padding: 10px;
     justify-content: center;
-    /* width: 80%; */
     border: 2px solid var(--theme--color);
     border-radius: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .container:hover {
     transform: scale(1.01);
-    /* 鼠标悬浮时放大1.01倍 */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* 添加阴影效果 */
 }
 </style>

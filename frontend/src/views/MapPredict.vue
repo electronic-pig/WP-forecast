@@ -37,15 +37,14 @@
 </template>
   
 <script>
-import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
 import BaiduMap from "@/components/MapPredict/BaiduMap"
-import DataCard from "@/components/MapPredict/DataCard.vue";
-import PredictChart from "@/components/MapPredict/PredictChart.vue"
-import PWChange from "@/components/MapPredict/PWChange.vue";
+import DataCard from "@/components/MapPredict/DataCard";
+import PredictChart from "@/components/MapPredict/PredictChart"
+import PWChange from "@/components/MapPredict/PWChange";
 export default {
-    name: "PowerPredict",
+    name: "MapPredict",
     components: {
         AsideVue,
         TabTime,
@@ -81,7 +80,6 @@ export default {
 .main-ctx {
     --el-main-padding: 0px 20px 0px 20px;
     height: 100vh;
-    /* 限制高度为视口高度 */
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -99,10 +97,6 @@ export default {
     justify-content: center;
 }
 
-.power-predict {
-    margin-left: 2%;
-}
-
 .card-container {
     margin-top: 1%;
     margin-left: 1%;
@@ -110,30 +104,34 @@ export default {
     justify-content: center;
 }
 
-.chart-container{
+.chart-container {
     display: flex;
     margin-left: 2%;
-    margin-right: 2% ;
+    margin-right: 2%;
     margin-top: 20px;
     margin-bottom: 20px;
 }
-.left-chart{
+
+.left-chart {
     flex: 7;
     margin-right: 10px;
 }
-.right-chart{
+
+.right-chart {
     flex: 3;
     margin-left: 10px;
 }
-.frame-container{
+
+.frame-container {
     padding: 1%;
     margin-left: 2%;
-    margin-right: 2% ;
+    margin-right: 2%;
     margin-bottom: 40px;
     border: 2px solid var(--theme--color);
     border-radius: 15px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
 .collapse {
     margin-right: 30px;
 }
@@ -141,5 +139,4 @@ export default {
 .collapse:hover {
     color: var(--theme--color);
     cursor: pointer;
-}
-</style>
+}</style>

@@ -9,7 +9,7 @@
                             <div class="value">{{ item.value }}{{ unit[index] }}</div>
                         </div>
                         <div class="right-content">
-                            <img :src="require('@/assets/icon/' + item.icon)" alt="My Image" />
+                            <img :src="require('@/assets/icon/' + item.icon)" alt="icon" />
                         </div>
                     </div>
                 </el-card>
@@ -23,12 +23,12 @@ export default {
     data() {
         return {
             data: [
-                { title: '功率', value: 123, icon: 'caihong.png' },
-                { title: '气温', value: 456, icon: 'jubuduoyun.png' },
-                { title: '风速', value: 789, icon: 'fengxiang.png' },
-                { title: '气压', value: 101, icon: 'wendu.png' },
+                { title: '功率', value: 961201, icon: 'caihong.png' },
+                { title: '气温', value: 27, icon: 'jubuduoyun.png' },
+                { title: '风速', value: 15, icon: 'fengxiang.png' },
+                { title: '气压', value: 1013.8, icon: 'wendu.png' },
             ],
-            unit: ["W", "℃", "m/s", "HPa"]
+            unit: ["W", "℃", "m/s", "hPa"]
         };
     },
 };
@@ -38,20 +38,17 @@ export default {
 .title {
     font-weight: bold;
     color: #666;
-    /* 灰色 */
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .value {
     font-size: 28px;
-    /* 更大的字体 */
     margin-top: 10px;
 }
 
 .card-container {
-    padding: 10px;
+    padding: 5px;
     justify-content: center;
-    /* width: 80%; */
     border: 2px solid var(--theme--color);
     border-radius: 15px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -59,16 +56,13 @@ export default {
 
 .card-container:hover {
     transform: scale(1.01);
-    /* 鼠标悬浮时放大1.01倍 */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* 添加阴影效果 */
 }
 
 .dashboard {
 	display: flex;
 	justify-content: space-between;
 }
-
 
 .left-content {
     flex: 2;

@@ -1,5 +1,5 @@
 <template>
-  <el-menu :collapse="isCollapse" background-color="rgb(247,246,242)" :default-active="activeIndex">
+  <el-menu id="aside-menu" :collapse="isCollapse" background-color="rgb(247,246,242)" :default-active="activeIndex">
     <div class="platform">
       <router-link to="/">
         <img class="platform-logo" src="@/assets/image/logo/logo.gif" alt="logo">
@@ -119,6 +119,11 @@ export default {
 .el-menu-item:hover {
   background-color: var(--theme--color);
   color: #ecf4ff;
+}
+
+.el-menu-item.is-active {
+  background-color: var(--theme--color);
+  color: #ecf4ff !important;
 }
 
 .platform {

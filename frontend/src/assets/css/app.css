@@ -21,31 +21,14 @@
   transform: scale(1.02);
 }
 
-.el-menu {
+#aside-menu {
   height: 100vh;
   text-align: center;
   overflow: hidden;
 }
 
-.el-menu:not(.el-menu--collapse) {
+#aside-menu:not(.el-menu--collapse) {
   width: 12vw;
-}
-
-.el-menu-item {
-  border-radius: 5px;
-  color: var(--theme--color);
-  z-index: 1;
-  font-size: 16px;
-}
-
-.el-menu-item:hover {
-  background-color: var(--theme--color);
-  color: #ecf4ff;
-}
-
-.el-menu-item.is-active {
-  background-color: var(--theme--color);
-  color: #ecf4ff !important;
 }
 
 .el-divider__text {

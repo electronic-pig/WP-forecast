@@ -1,143 +1,150 @@
 <template>
-    <div style='text-align:right;margin-bottom:5px'>
-        <el-button size="small" type="primary" round @click="openAddPage">新增记录</el-button>
+    <div class="container">
+        <div class="header">风机历史警报信息</div>
+        <div style='text-align:right;margin-bottom:5px'>
+            <el-button size="small" type="primary" round @click="openAddPage">新增记录</el-button>
+        </div>
+
+        <el-table :data="fanDataItems.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
+            :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }" border
+            style="width: 100%;" max-height="100%">
+
+            <el-table-column label="时间" width="185" sortable
+                :sort-method="(a, b) => { return a.time.localeCompare(b.time) }">
+
+                <template #default="item">
+                    <el-icon>
+                        <timer />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.time }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="风速(m/s)" width="120" sortable
+                :sort-method="(a, b) => { return a.windSpeed - b.windSpeed }">
+
+                <template #default="item">
+                    <el-icon>
+                        <Stopwatch />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.windSpeed.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="风向(°)" width="95" sortable
+                :sort-method="(a, b) => { return a.windDirection - b.windDirection }">
+
+                <template #default="item">
+                    <el-icon>
+                        <Position />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.windDirection.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="湿度(%)" width="110" sortable :sort-method="(a, b) => { return a.humidity - b.humidity }">
+
+                <template #default="item">
+                    <el-icon>
+                        <Umbrella />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.humidity.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="压强(KPa)" width="115" sortable
+                :sort-method="(a, b) => { return a.pressure - b.pressure }">
+
+                <template #default="item">
+                    <el-icon>
+                        <DishDot />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.pressure.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="转速(r/s)" width="110" sortable :sort-method="(a, b) => { return a.speed - b.speed }">
+
+                <template #default="item">
+                    <el-icon>
+                        <Orange />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.speed }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="温度(℃)" width="110" sortable
+                :sort-method="(a, b) => { return a.temperature - b.temperature }">
+
+                <template #default="item">
+                    <el-icon>
+                        <Smoking />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.temperature.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+
+            <el-table-column label="电压(V)" width="110" sortable :sort-method="(a, b) => { return a.voltage - b.voltage }">
+
+                <template #default="item">
+                    <el-icon>
+                        <FirstAidKit />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.voltage.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+
+            <el-table-column label="电流(A)" width="110" sortable :sort-method="(a, b) => { return a.current - b.current }">
+
+                <template #default="item">
+                    <el-icon>
+                        <FolderRemove />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.current.toFixed(1) }}</span>
+                </template>
+
+            </el-table-column>
+
+
+            <el-table-column label="功率(KW)" width="115" sortable :sort-method="(a, b) => { return a.power - b.power }">
+
+                <template #default="item">
+                    <el-icon>
+                        <WindPower />
+                    </el-icon>
+                    <span style="margin-left: 5px">{{ item.row.power.toFixed(2) }}</span>
+                </template>
+
+            </el-table-column>
+
+            <el-table-column label="操作" width="150" align="center">
+                <template #default="item">
+                    <div class='cell'>
+                        <el-button size="small" type="success" round @click="handleEdit(item.$index)">编辑</el-button>
+                        <el-button size="small" type="danger" round @click="handleDelete(item.$index)">删除</el-button>
+                    </div>
+                </template>
+            </el-table-column>
+
+
+        </el-table>
+        <!-- @size-change="handleSizeChange" -->
+        <!-- :page-sizes="[5, 10, 15, 20]" -->
+        <!-- layout="total, sizes, prev, pager, next, jumper" -->
+        <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize"
+            layout="total, prev, pager, next, jumper" :total="fanDataItems.length">
+        </el-pagination>
     </div>
-
-    <el-table :data="fanDataItems.slice((currentPage - 1) * pageSize, currentPage * pageSize)"
-        :header-cell-style="{ 'text-align': 'center' }" :cell-style="{ 'text-align': 'center' }" border style="width: 100%;"
-        max-height="100%">
-
-        <el-table-column label="时间" width="185" sortable :sort-method="(a, b) => { return a.time.localeCompare(b.time) }">
-
-            <template #default="item">
-                <el-icon>
-                    <timer />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.time }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="风速(m/s)" width="120" sortable :sort-method="(a, b) => { return a.windSpeed - b.windSpeed }">
-
-            <template #default="item">
-                <el-icon>
-                    <Stopwatch />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.windSpeed.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="风向(°)" width="95" sortable :sort-method="(a, b) => { return a.windDirection - b.windDirection }">
-
-            <template #default="item">
-                <el-icon>
-                    <Position />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.windDirection.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="湿度(%)" width="110" sortable :sort-method="(a, b) => { return a.humidity - b.humidity }">
-
-            <template #default="item">
-                <el-icon>
-                    <Umbrella />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.humidity.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="压强(KPa)" width="115" sortable :sort-method="(a, b) => { return a.pressure - b.pressure }">
-
-            <template #default="item">
-                <el-icon>
-                    <DishDot />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.pressure.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="转速(r/s)" width="110" sortable :sort-method="(a, b) => { return a.speed - b.speed }">
-
-            <template #default="item">
-                <el-icon>
-                    <Orange />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.speed }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="温度(℃)" width="110" sortable :sort-method="(a, b) => { return a.temperature - b.temperature }">
-
-            <template #default="item">
-                <el-icon>
-                    <Smoking />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.temperature.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-
-        <el-table-column label="电压(V)" width="110" sortable :sort-method="(a, b) => { return a.voltage - b.voltage }">
-
-            <template #default="item">
-                <el-icon>
-                    <FirstAidKit />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.voltage.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-
-        <el-table-column label="电流(A)" width="110" sortable :sort-method="(a, b) => { return a.current - b.current }">
-
-            <template #default="item">
-                <el-icon>
-                    <FolderRemove />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.current.toFixed(1) }}</span>
-            </template>
-
-        </el-table-column>
-
-
-        <el-table-column label="功率(KW)" width="115" sortable :sort-method="(a, b) => { return a.power - b.power }">
-
-            <template #default="item">
-                <el-icon>
-                    <WindPower />
-                </el-icon>
-                <span style="margin-left: 5px">{{ item.row.power.toFixed(2) }}</span>
-            </template>
-
-        </el-table-column>
-
-        <el-table-column label="操作" width="150" align="center">
-            <template #default="item">
-                <div class='cell'>
-                    <el-button size="small" type="success" round @click="handleEdit(item.$index)">编辑</el-button>
-                    <el-button size="small" type="danger" round @click="handleDelete(item.$index)">删除</el-button>
-                </div>
-            </template>
-        </el-table-column>
-
-
-    </el-table>
-    <!-- @size-change="handleSizeChange" -->
-    <!-- :page-sizes="[5, 10, 15, 20]" -->
-    <!-- layout="total, sizes, prev, pager, next, jumper" -->
-    <el-pagination @current-change="handleCurrentChange" :current-page="currentPage" :page-size="pageSize"
-        layout="total, prev, pager, next, jumper" :total="fanDataItems.length">
-    </el-pagination>
-
 
     <div class="subpage" v-if="isEditPageOpen">
         <div class="subpageContent">
@@ -406,6 +413,29 @@ export default {
     /* 确保模态框位于其他内容之上 */
 }
 
+.header {
+    font-size: x-large;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.container {
+    padding: 10px;
+    justify-content: center;
+    /* width: 80%; */
+    border: 2px solid var(--theme--color);
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: scale(1.01);
+    /* 鼠标悬浮时放大1.01倍 */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* 添加阴影效果 */
+}
+
 .subpageContent {
     background-color: #fff;
 
@@ -417,5 +447,4 @@ export default {
     border-radius: 15px;
 
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-}
-</style>
+}</style>

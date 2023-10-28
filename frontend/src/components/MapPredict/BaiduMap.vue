@@ -12,12 +12,22 @@
                 animation="BMAP_ANIMATION_BOUNCE" :icon="{ url: '/windmill.gif', size: { width: 100, height: 100 } }">
             </bm-marker>
         </baidu-map>
-        <el-card class="coordinate-card">
-            <el-row :gutter="10">
-                <el-col :span="12">经度: {{ selectedCoordinate.lng }}</el-col>
-                <el-col :span="12">纬度: {{ selectedCoordinate.lat }}</el-col>
-            </el-row>
-        </el-card>
+        <el-row :gutter="20">
+            <el-col :span="12">
+                <el-card class="coordinate-card">
+                    <el-row>
+                        <el-col :span="12">经度: {{ selectedCoordinate.lng }}</el-col>
+                        <el-col :span="12">纬度: {{ selectedCoordinate.lat }}</el-col>
+                    </el-row>
+                </el-card>
+            </el-col>
+            <el-col :span="12">
+                <el-alert v-if="!showSuccessAlert" title="请点击地图或拖拽风机图标到您想要建造风机的位置" type="info" :closable="false"
+                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center show-icon />
+                <el-alert v-if="showSuccessAlert" title="成功定位风机，天气数据已获取，开始进行功率预测" type="success" :closable="false"
+                    style="flex: 1; display: flex; align-items: center; justify-content: center; height: 100%;" center show-icon />
+            </el-col>
+        </el-row>
     </div>
     <div class="wind-container">
         <iframe width="1800" height="800" :src="generateWindyUrl" frameborder="0"></iframe>
@@ -31,6 +41,7 @@ export default {
             mapCenter: { lng: 104.0668, lat: 30.5728 },
             selectedCoordinate: { lng: 104.0668, lat: 30.5728 },
             zoomLevel: 10, // 设置初始缩放级别
+            showSuccessAlert: false
         }
     },
     methods: {
@@ -41,6 +52,7 @@ export default {
             this.selectedCoordinate = coordinate;
             // 同步经纬度信息给父组件
             this.$emit("updateCoordinate", this.selectedCoordinate);
+            this.showSuccessAlert = true;
         },
     },
     computed: {
@@ -89,4 +101,12 @@ export default {
     font-weight: bold;
     margin-bottom: 10px;
 }
+/* 
+.el-alert__icon{
+    font-size: 30px;
+}
+
+.el-alert__title{
+    font-size: 30px;
+} */
 </style>

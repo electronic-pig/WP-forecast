@@ -15,7 +15,16 @@
                     <TabTime />
                 </el-row>
             </el-header>
-
+            <!-- <div class="select-menu"> -->
+                <el-menu :default-active="currentFanId" mode="horizontal" :ellipsis="false" @select="handleMenuClick">
+                    <el-menu-item index="add">新增风机</el-menu-item>
+                    <el-menu-item v-for="fan in fans" :key="fan.id" :index="fan.id">
+                        {{ fan.name }}
+                    </el-menu-item>
+                </el-menu>
+            <!-- </div> -->
+            <!-- <AlarmTable :id="currentFanId" />
+            <HistoryDataTable :id="currentFanId" /> -->
         </el-main>
     </el-container>
 </template>
@@ -24,18 +33,29 @@
 import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-
-
+// import AlarmTable from "@/components/TurbineManage/AlarmTable"
+// import HistoryDataTable from "@/components/TurbineManage/HistoryDataTable"
 export default {
     name: "PowerPredict",
     components: {
         AsideVue,
         TabTime,
+        // AlarmTable,
+        // HistoryDataTable
     },
     data() {
         return {
             isCollapse: false,
             activeIndex: this.$route.path,
+            currentFanId: "1",
+            fans: [
+                { id: 1, name: '风机1' },
+                { id: 2, name: '风机2' },
+                { id: 3, name: '风机3' },
+                { id: 4, name: '风机4' },
+                { id: 5, name: '风机5' },
+                { id: 6, name: '风机6' },
+            ]
         };
     },
     mounted() {
@@ -50,6 +70,13 @@ export default {
     methods: {
         goCollapse() {
             this.isCollapse = !this.isCollapse;
+        },
+        handleMenuClick(index) {
+            if (index === 'add') {
+                this.showAddForm = true;
+            } else {
+                this.currentFanId = index;
+            }
         },
     }
 };
@@ -73,7 +100,10 @@ export default {
 .collapse {
     margin-right: 30px;
 }
-
+.select-menu{
+    width: 30px;
+    height: 100%;
+}
 .collapse:hover {
     color: var(--theme--color);
     cursor: pointer;

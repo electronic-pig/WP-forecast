@@ -4,28 +4,21 @@
       <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
     </el-aside>
     <el-container>
-      <el-main class="main-ctx">
-        <el-header class="platform-header">
-          <el-row align="middle" style="margin-top: 5px;">
-            <el-icon class="collapse" v-if="!isCollapse" :size="35">
-              <Fold @click="goCollapse" />
-            </el-icon>
-            <el-icon class="collapse" v-if="isCollapse" :size="35">
-              <Expand @click="goCollapse" />
-            </el-icon>
-            <TabTime />
-          </el-row>
-        </el-header>
+      <el-header>
+        <el-icon class="collapse" v-if="!isCollapse" :size="35">
+          <Fold @click="goCollapse" />
+        </el-icon>
+        <el-icon class="collapse" v-if="isCollapse" :size="35">
+          <Expand @click="goCollapse" />
+        </el-icon>
+        <TabTime />
+      </el-header>
+      <el-main>
         <div class="card-container">
-          <div></div>
           <TemperatureCard />
-          <div></div>
           <HumidityCard />
-          <div></div>
           <PressureCard />
-          <div></div>
           <WindspeedCard />
-          <div></div>
         </div>
         <div class="history-container">
           <HistoryChart />
@@ -47,7 +40,6 @@
 </template>
   
 <script>
-import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
 import TemperatureCard from '@/components/DataAnalysis/TemperatureCard.vue';
@@ -59,7 +51,6 @@ import SortTable from "@/components/DataAnalysis/SortTable.vue";
 import CompareCard from "@/components/DataAnalysis/CompareCard.vue";
 import RecentChart from "@/components/DataAnalysis/RecentChart.vue";
 export default {
-  name: "DataAnalysis",
   components: {
     AsideVue,
     TabTime,
@@ -96,30 +87,6 @@ export default {
 </script>
   
 <style scoped>
-.main-ctx {
-  --el-main-padding: 0px 20px 0px 20px;
-  height: 100vh;
-  /* 限制高度为视口高度 */
-  width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
-
-.platform-header {
-  left: -20px;
-  width: 105%;
-}
-
-.collapse {
-  margin-right: 30px;
-}
-
-.collapse:hover {
-  color: var(--theme--color);
-  cursor: pointer;
-}
-
 .card-container {
   display: flex;
   justify-content: space-between;
@@ -127,7 +94,7 @@ export default {
 }
 
 .history-container {
-  margin: 20px 1% 10px 1%;
+  margin-top: 10px;
   display: block;
   height: 450px;
   border: 2px solid var(--theme--color);
@@ -137,13 +104,16 @@ export default {
 
 .history-container:hover {
   transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
+}
+
+.cardTable {
+  display: flex;
+  margin-top: 10px;
 }
 
 .sortTable-container {
-  margin: 20px 10px 20px 5px;
+  margin-right: 10px;
   display: block;
   border: 2px solid var(--theme--color);
   border-radius: 15px;
@@ -153,15 +123,11 @@ export default {
 
 .sortTable-container:hover {
   transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
 }
 
 .compareCard-container {
-  /* padding: 10px; */
-  margin: 20px 0px 20px 10px;
-  display: block;
+    display: block;
   border: 2px solid var(--theme--color);
   border-radius: 15px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -170,18 +136,10 @@ export default {
 
 .compareCard-container:hover {
   transform: scale(1.01);
-  /* 鼠标悬浮时放大1.01倍 */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  /* 添加阴影效果 */
-}
-
-.cardTable {
-  display: flex;
-  margin-left: 1%;
-  margin-right: 1%;
 }
 
 .recent-container {
-  margin: 20px 1% 20px 1%;
+  margin-top: 10px;
 }
 </style>

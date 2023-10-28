@@ -3,32 +3,30 @@
         <el-aside width="auto">
             <AsideVue :is-collapse="isCollapse" :active-index="activeIndex" />
         </el-aside>
-        <el-main class="main-ctx">
-            <el-header class="platform-header">
-                <el-row align="middle" style="margin-top: 5px;">
-                    <el-icon class="collapse" v-if="!isCollapse" :size="35">
-                        <Fold @click="goCollapse" />
-                    </el-icon>
-                    <el-icon class="collapse" v-if="isCollapse" :size="35">
-                        <Expand @click="goCollapse" />
-                    </el-icon>
-                    <TabTime />
-                </el-row>
+        <el-container>
+            <el-header>
+                <el-icon class="collapse" v-if="!isCollapse" :size="35">
+                    <Fold @click="goCollapse" />
+                </el-icon>
+                <el-icon class="collapse" v-if="isCollapse" :size="35">
+                    <Expand @click="goCollapse" />
+                </el-icon>
+                <TabTime />
             </el-header>
-            <div class="top-container">
-                <VideoChart />
-            </div>
-        </el-main>
+            <el-main>
+                <div class="top-container">
+                    <VideoChart />
+                </div>
+            </el-main>
+        </el-container>
     </el-container>
 </template>
   
 <script>
-import "@/assets/css/app.css";
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
 import VideoChart from "@/components/KnowledgePageComponents/VideoChart"
 export default {
-    name: "PowerPredict",
     components: {
         AsideVue,
         TabTime,
@@ -58,31 +56,8 @@ export default {
 </script>
   
 <style scoped>
-.main-ctx {
-    --el-main-padding: 0px 20px 0px 20px;
-    height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-
-.platform-header {
-    left: -20px;
-    width: 105%;
-}
-
-.collapse {
-    margin-right: 30px;
-}
-
-.collapse:hover {
-    color: var(--theme--color);
-    cursor: pointer;
-}
-
 .top-container {
     display: block;
     justify-content: space-between;
-    margin-bottom: 15px;
 }
 </style>

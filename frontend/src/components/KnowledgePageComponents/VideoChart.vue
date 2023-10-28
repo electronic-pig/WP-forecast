@@ -1,14 +1,12 @@
 <template>
-    <div class="upload-container">
-        <div class="video-wrapper">
-            <video class="video" ref="videoElement" controls style="border-radius: 15px;width: 80vw;">
-                <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
+    <video class="video" ref="videoElement" controls>
+        <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div style="display: flex; justify-content: space-between;">
+        <el-button type="primary" @click="previousVideo">上一个</el-button>
+        <el-button type="primary" @click="nextVideo">下一个</el-button>
     </div>
-    <el-button type="primary" @click="previousVideo" style="margin-left: 2vw;">上一个</el-button>
-    <el-button type="primary" @click="nextVideo" style="margin-left: 71vw;">下一个</el-button>
 </template>
 
 <script>
@@ -46,25 +44,9 @@ export default {
 </script>
 
 <style scoped>
-.upload-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .video {
+    width: 100%;
     border: 2px solid var(--theme--color);
-    border-radius: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.video:hover {
-    transform: scale(1.001);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.video-wrapper {
-    display: flex;
-    align-items: center;
+    border-radius: 10px;
 }
 </style>

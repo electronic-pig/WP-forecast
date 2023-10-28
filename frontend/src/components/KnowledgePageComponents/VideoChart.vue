@@ -1,14 +1,14 @@
 <template>
     <div class="upload-container">
         <div class="video-wrapper">
-            <!-- <el-button type="primary" @click="previousVideo" style="height: 160px;">上一个</el-button> -->
-            <video class="video" ref="videoElement" controls style="border-radius: 15px;">
+            <video class="video" ref="videoElement" controls style="border-radius: 15px;width: 80vw;">
                 <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <!-- <el-button type="primary" @click="nextVideo" style="height: 160px;">下一个</el-button> -->
         </div>
     </div>
+    <el-button type="primary" @click="previousVideo" style="margin-left: 2vw;">上一个</el-button>
+    <el-button type="primary" @click="nextVideo" style="margin-left: 71vw;">下一个</el-button>
 </template>
 
 <script>
@@ -66,16 +66,5 @@ export default {
 .video-wrapper {
     display: flex;
     align-items: center;
-}
-
-
-.switch-button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    background-color: #007ee6;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
 }
 </style>

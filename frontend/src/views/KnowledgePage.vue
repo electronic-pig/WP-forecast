@@ -61,7 +61,6 @@ export default {
 .main-ctx {
     --el-main-padding: 0px 20px 0px 20px;
     height: 100vh;
-    /* 限制高度为视口高度 */
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
@@ -83,7 +82,7 @@ export default {
 
 .top-container {
     display: block;
-    /* height: 270px; */
     justify-content: space-between;
+    margin-bottom: 15px;
 }
 </style>

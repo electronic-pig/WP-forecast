@@ -17,7 +17,7 @@
       <el-icon v-show="isCollapse">
         <DataAnalysis />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
+      <template #title><span class="title"><el-icon>
             <DataAnalysis />
           </el-icon>功率预测</span></template>
     </el-menu-item>
@@ -26,7 +26,7 @@
       <el-icon v-show="isCollapse">
         <Histogram />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
+      <template #title><span class="title"><el-icon>
             <Histogram />
           </el-icon>数据分析</span></template>
     </el-menu-item>
@@ -35,7 +35,7 @@
       <el-icon v-show="isCollapse">
         <MapLocation />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
+      <template #title><span class="title"><el-icon>
             <MapLocation />
           </el-icon>定点预测</span></template>
     </el-menu-item>
@@ -44,7 +44,7 @@
       <el-icon v-show="isCollapse">
         <SetUp />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
+      <template #title><span class="title"><el-icon>
             <SetUp />
           </el-icon>风机管理</span></template>
     </el-menu-item>
@@ -53,17 +53,17 @@
       <el-icon v-show="isCollapse">
         <TrendCharts />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
+      <template #title><span class="title"><el-icon>
             <TrendCharts />
           </el-icon>行业动态</span></template>
     </el-menu-item>
 
     <el-menu-item class="el-menu-item" index="/KnowledgePage" @click="showLoading('KnowledgePage')">
       <el-icon v-show="isCollapse">
-        <ChromeFilled />
+        <Film />
       </el-icon>
-      <template #title><span style="margin: 0 auto;"><el-icon>
-            <ChromeFilled />
+      <template #title><span class="title"><el-icon>
+            <Film />
           </el-icon>风电科普</span></template>
     </el-menu-item>
 
@@ -169,6 +169,13 @@ export default {
   overflow: hidden;
   width: 4em;
   color: rgb(140, 157, 182);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .link-title {

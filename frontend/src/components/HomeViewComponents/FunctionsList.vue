@@ -27,7 +27,7 @@
         </div>
         <div class="card" :class="{ animate: card4Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot2.png`)" />
+                <img :src="require(`@/assets/image/screenShot4.png`)" />
                 <p class="text">风机管理</p>
             </div>
         </div>

@@ -18,7 +18,7 @@ export default {
 	name: 'labelDisplay',
 	data() {
 		return {
-			imageSrc: [require('@/assets/image/wind-power.gif'), require('@/assets/image/electrical-energy.gif'), require('@/assets/image/power-transformer.gif')]
+			imageSrc: [require('@/assets/image/electrical-energy.gif'), require('@/assets/image/turbine.gif'), require('@/assets/image/power-transformer.gif')]
 		}
 	},
 

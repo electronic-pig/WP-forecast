@@ -62,7 +62,6 @@ export default {
     margin: 30px 120px;
     display: flex;
     height: 200px;
-    overflow: hidden;
 }
 
 .left-div {

@@ -10,19 +10,19 @@
     <div class="card-container">
         <div class="card" :class="{ animate: card1Visible }">
             <vue-feather type="activity" size="80px" stroke="#059DFF" stroke-width="1" style="margin: 10px;"></vue-feather>
-            <p style="font-size: 24px;font-weight: bold;">高精模型</p>
-            <p style="color: #65676b;font-size: 18px;">基于官方提供的测试样本<br>
-                建筑变化类别的F1得分达到0.87611</p>
+            <p style="font-size: 24px;font-weight: bold;color: #333;">高精模型</p>
+            <p style="color: #65676b;font-size: 18px;">海量的训练和测试数据<br>
+                强大的模型和快速响应时间</p>
         </div>
         <div class="card" :class="{ animate: card2Visible }">
             <vue-feather type="cast" size="80px" stroke="#059DFF" stroke-width="1" style="margin: 10px;"></vue-feather>
-            <p style="font-size: 24px;font-weight: bold;">高效处理</p>
+            <p style="font-size: 24px;font-weight: bold;color: #333">高效处理</p>
             <p style="color: #65676b;font-size: 18px;">在线处理，简洁高效<br>
                 操作便捷，立等可取</p>
         </div>
         <div class="card" :class="{ animate: card3Visible }">
             <vue-feather type="map" size="80px" stroke="#059DFF" stroke-width="1" style="margin: 10px;"></vue-feather>
-            <p style="font-size: 24px;font-weight: bold;">可视分析</p>
+            <p style="font-size: 24px;font-weight: bold;color: #333">可视分析</p>
             <p style="color: #65676b;font-size: 18px;">友好的图形用户界面<br>
                 提供可视化的结果在线分析</p>
         </div>
@@ -80,22 +80,17 @@ export default {
 
 .title-box {
     background-color: #c6e3f6;
-    /* 浅灰色背景 */
     padding: 2px;
     border-radius: 4px;
     text-align: center;
     display: inline-block;
-    /* 设置为内联块元素，高度与文本内容匹配 */
 }
 
 .title {
     background: linear-gradient(to right, #0000FF, #00BFFF);
-    /* 深蓝到浅蓝的渐变 */
     background-clip: text;
     color: transparent;
-    /* 使文本颜色透明 */
     font-weight: bold;
-    /* 加粗文本 */
     font-size: 18px;
     display: inline-block;
     margin: 0;
@@ -124,7 +119,6 @@ export default {
 
 .card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    /* 添加阴影效果 */
 }
 
 .animate {

@@ -4,7 +4,7 @@
             <p class="title">Models Statics</p>
         </div>
         <h2 style="font-weight: bold;font-size: 44px;margin: 10px; color: rgb(75, 124, 189);">模型表现</h2>
-        <p style="color: #65676b; font-size: 24px;">模型对10个风场的的平均预测分数为0.73468，其中3，7，11，13号风场预测精度尤佳
+        <p style="color: #65676b; font-size: 24px;">模型对10个风机的的平均预测分数为0.73468，其中3，7，11，13号风机预测精度尤佳
         </p>
     </div>
     <div class="numbers-container" ref="number">
@@ -21,9 +21,9 @@ export default {
     data() {
         return {
             numbers: [
-                { text: '3号风机', currentNumber: 0, targetNumber: 91 },
+                { text: '3号风机', currentNumber: 0, targetNumber: 86 },
                 { text: '7号风机', currentNumber: 0, targetNumber: 92 },
-                { text: '11号风机', currentNumber: 0, targetNumber: 93 },
+                { text: '11号风机', currentNumber: 0, targetNumber: 89 },
                 { text: '13号风机', currentNumber: 0, targetNumber: 94 },
             ],
             isVisible: false,
@@ -85,22 +85,17 @@ export default {
 
 .title-box {
     background-color: #c6e3f6;
-    /* 浅灰色背景 */
     padding: 2px;
     border-radius: 4px;
     text-align: center;
     display: inline-block;
-    /* 设置为内联块元素，高度与文本内容匹配 */
 }
 
 .title {
     background: linear-gradient(to right, #0000FF, #00BFFF);
-    /* 深蓝到浅蓝的渐变 */
     background-clip: text;
     color: transparent;
-    /* 使文本颜色透明 */
     font-weight: bold;
-    /* 加粗文本 */
     font-size: 18px;
     display: inline-block;
     margin: 0;
@@ -121,16 +116,13 @@ export default {
 .large-number {
     background: #6699FF;
     background-clip: text;
-    /* Webkit浏览器需要添加此属性 */
     color: transparent;
-    /* 将文字颜色设置为透明，以使渐变颜色显示在文字上 */
-    /* display: inline; */
     font-size: 100px;
     font-weight: 200;
 }
 
 .text {
-    color: #181818;
+    color: #333;
     font-size: x-large;
     font-weight: bold;
     margin-top: 10px;

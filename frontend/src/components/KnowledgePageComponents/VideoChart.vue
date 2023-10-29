@@ -1,11 +1,11 @@
 <template>
-    <video class="video" ref="videoElement" controls>
-        <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div style="display: flex; justify-content: space-between;">
-        <el-button type="primary" @click="previousVideo">上一个</el-button>
-        <el-button type="primary" @click="nextVideo">下一个</el-button>
+    <div class="container">
+        <video class="video" ref="videoElement" controls>
+            <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <el-button @click="previousVideo" class="left-button">&lsaquo;</el-button>
+        <el-button @click="nextVideo" class="right-button">&rsaquo;</el-button>
     </div>
 </template>
 
@@ -44,9 +44,41 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    position: relative;
+    text-align: center;
+}
+
 .video {
     width: 100%;
-    border: 2px solid var(--theme--color);
+    border: 1px solid var(--theme--color);
     border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.left-button {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 20%;
+    width: 3%;
+    opacity: 0.4;
+    padding: 0;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.right-button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 20%;
+    width: 3%;
+    opacity: 0.4;
+    padding: 0;
+    font-weight: bold;
+    font-size: xx-large;
 }
 </style>

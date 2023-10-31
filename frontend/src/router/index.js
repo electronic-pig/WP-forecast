@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import PowerPredict from '../views/PowerPredict.vue'
-import DataAnalysis from '../views/DataAnalysis.vue'
-import IndustryTrending from '../views/IndustryTrending.vue'
-import MapPredict from '../views/MapPredict.vue'
-import TurbineManage from '../views/TurbineManage.vue'
-import KnowledgePage from '../views/KnowledgePage.vue'
+import HomeView from '../views/HomeView'
+import PowerPredict from '../views/PowerPredict'
+import DataAnalysis from '../views/DataAnalysis'
+import IndustryTrending from '../views/IndustryTrending'
+import MapPredict from '../views/MapPredict'
+import TurbineManage from '../views/TurbineManage'
+import KnowledgePage from '../views/KnowledgePage'
 
 const routes = [
   {

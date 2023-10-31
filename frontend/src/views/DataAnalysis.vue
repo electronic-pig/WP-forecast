@@ -42,14 +42,14 @@
 <script>
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-import TemperatureCard from '@/components/DataAnalysis/TemperatureCard.vue';
-import HumidityCard from "@/components/DataAnalysis/HumidityCard.vue";
-import PressureCard from "@/components/DataAnalysis/PressureCard.vue";
-import WindspeedCard from "@/components/DataAnalysis/WindspeedCard.vue";
-import HistoryChart from "@/components/DataAnalysis/HistoryChart.vue"
-import SortTable from "@/components/DataAnalysis/SortTable.vue";
-import CompareCard from "@/components/DataAnalysis/CompareCard.vue";
-import RecentChart from "@/components/DataAnalysis/RecentChart.vue";
+import TemperatureCard from '@/components/DataAnalysisComponents/TemperatureCard.vue';
+import HumidityCard from "@/components/DataAnalysisComponents/HumidityCard.vue";
+import PressureCard from "@/components/DataAnalysisComponents/PressureCard.vue";
+import WindspeedCard from "@/components/DataAnalysisComponents/WindspeedCard.vue";
+import HistoryChart from "@/components/DataAnalysisComponents/HistoryChart.vue"
+import SortTable from "@/components/DataAnalysisComponents/SortTable.vue";
+import CompareCard from "@/components/DataAnalysisComponents/CompareCard.vue";
+import RecentChart from "@/components/DataAnalysisComponents/RecentChart.vue";
 export default {
   components: {
     AsideVue,

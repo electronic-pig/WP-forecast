@@ -31,10 +31,10 @@
 <script>
 import AsideVue from "@/components/AsideVue";
 import TabTime from "@/components/TabTime";
-import BaiduMap from "@/components/MapPredict/BaiduMap"
-import DataCard from "@/components/MapPredict/DataCard";
-import PredictChart from "@/components/MapPredict/PredictChart"
-import PWChange from "@/components/MapPredict/PWChange";
+import BaiduMap from "@/components/MapPredictComponents/BaiduMap"
+import DataCard from "@/components/MapPredictComponents/DataCard";
+import PredictChart from "@/components/MapPredictComponents/PredictChart"
+import PWChange from "@/components/MapPredictComponents/PWChange";
 export default {
     components: {
         AsideVue,

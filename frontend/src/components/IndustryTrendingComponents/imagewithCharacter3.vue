@@ -1,26 +1,23 @@
 <template>
   <div class="card card-1">
     <div class="content">
-      <h2 class="title">{{this.policy[this.policyOption].title}}</h2>
-      <p class="copy">{{this.policy[this.policyOption].intro}}</p>
-      <button class="btn" @click = "newPage">查看更多</button>
+      <h2 class="title">{{ this.policy[this.policyOption].title }}</h2>
+      <p class="copy">{{ this.policy[this.policyOption].intro }}</p>
+      <button class="btn" @click="newPage">查看更多</button>
     </div>
   </div>
 </template>
   
 <script>
-
-
 export default {
-  name:"imagewithCharacter3",
+  name: "imagewithCharacter3",
   data() {
     return {
-      imageSrc: '@/assets/image/background/bg1.png', 
-      policy:[
+      policy: [
         {
-          title:'《能源碳达峰碳中和标准化提升行动计划》的通知',
-          intro:'为深入贯彻党中央、国务院关于碳达峰、碳中和的重大战略决策，充分发挥标准推动能源绿色低碳转型的技术支撑和引领性作用...',
-          url:'http://www.nea.gov.cn/2022-10/09/c_1310668927.htm',
+          title: '《能源碳达峰碳中和标准化提升行动计划》的通知',
+          intro: '为深入贯彻党中央、国务院关于碳达峰、碳中和的重大战略决策，充分发挥标准推动能源绿色低碳转型的技术支撑和引领性作用...',
+          url: 'http://www.nea.gov.cn/2022-10/09/c_1310668927.htm',
         },
         {
           title: '《加快电力装备绿色低碳创新发展行动计划》',
@@ -40,65 +37,41 @@ export default {
       ]
     };
   },
-
-  props:{
-    policyOption:{
-      type:Number,
-      require:false,
-      default:0
+  props: {
+    policyOption: {
+      type: Number,
+      require: false,
+      default: 0
     }
   },
-
-
-  methods:{
-    newPage(){
-      window.open(this.policy[this.policyOption].url,'_blank'); // 请替换为你要跳转的外部链接
+  methods: {
+    newPage() {
+      window.open(this.policy[this.policyOption].url, '_blank'); // 请替换为你要跳转的外部链接
     }
   }
 };
 </script>
   
 <style scoped>
-/* @import url("https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap"); */
 * {
   box-sizing: border-box;
 }
 
-/* html, body {
-  height: 100%;
-}
-
-body {
-  display: grid;
-  place-items: center;
-} */
-
-
-
 .card {
   position: relative;
-  
   display: flex;
   align-items: flex-end;
   overflow: hidden;
   padding: 1rem;
-
-  width:100%;
-  height:100%;
-
-  border-radius: 15px; 
-
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
   text-align: center;
   color: whitesmoke;
   background-color: whitesmoke;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1), 0 4px 4px rgba(0, 0, 0, 0.1), 0 8px 8px rgba(0, 0, 0, 0.1), 0 16px 16px rgba(0, 0, 0, 0.1);
 }
 
-/* @media (min-width: 600px) {
-  .card {
-    height: 100%;
-  }
-} */
 .card:before {
   content: "";
   position: absolute;
@@ -137,7 +110,8 @@ body {
   transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
   z-index: 1;
 }
-.content > * + * {
+
+.content>*+* {
   margin-top: 1rem;
 }
 
@@ -167,9 +141,11 @@ body {
   border: none;
   border-radius: 5px;
 }
+
 .btn:hover {
   background-color: brown;
 }
+
 .btn:focus {
   outline: 1px dashed brown;
   outline-offset: 3px;
@@ -183,38 +159,44 @@ body {
   .content {
     transform: translateY(calc(100% - 90px));
   }
-  .content > *:not(.title) {
+
+  .content>*:not(.title) {
     opacity: 0;
     transform: translateY(1rem);
     transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1);
   }
 
   .card:hover,
-.card:focus-within {
+  .card:focus-within {
     align-items: center;
   }
+
   .card:hover:before,
-.card:focus-within:before {
+  .card:focus-within:before {
     transform: translateY(-4%);
   }
+
   .card:hover:after,
-.card:focus-within:after {
+  .card:focus-within:after {
     transform: translateY(-50%);
   }
+
   .card:hover .content,
-.card:focus-within .content {
+  .card:focus-within .content {
     transform: translateY(0);
   }
-  .card:hover .content > *:not(.title),
-.card:focus-within .content > *:not(.title) {
+
+  .card:hover .content>*:not(.title),
+  .card:focus-within .content>*:not(.title) {
     opacity: 1;
     transform: translateY(0);
     transition-delay: calc(0.7s / 8);
   }
 
-  .card:focus-within:before, .card:focus-within:after,
-.card:focus-within .content,
-.card:focus-within .content > *:not(.title) {
+  .card:focus-within:before,
+  .card:focus-within:after,
+  .card:focus-within .content,
+  .card:focus-within .content>*:not(.title) {
     transition-duration: 0s;
   }
 }

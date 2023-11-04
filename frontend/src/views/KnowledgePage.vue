@@ -23,9 +23,9 @@
 </template>
   
 <script>
-import AsideVue from "@/components/AsideVue";
-import TabTime from "@/components/TabTime";
-import VideoChart from "@/components/KnowledgePageComponents/VideoChart"
+import AsideVue from "@/components/AsideVue.vue";
+import TabTime from "@/components/TabTime.vue";
+import VideoChart from "@/components/KnowledgePageComponents/VideoChart.vue"
 export default {
     components: {
         AsideVue,

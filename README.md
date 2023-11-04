@@ -12,7 +12,7 @@ npm run lint
 ```
 ### 本地运行
 ```
-npm run serve
+npm run dev
 ```
 ### 编译打包
 ```

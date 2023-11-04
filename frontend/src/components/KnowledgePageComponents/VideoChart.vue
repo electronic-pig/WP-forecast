@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <video class="video" ref="videoElement" controls>
-            <source :src="require('@/assets/video/' + currentVideoSrc)" type="video/mp4">
+            <source :src="`/src/assets/video/${currentVideoSrc}`" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <el-button @click="previousVideo" class="left-button">&lsaquo;</el-button>

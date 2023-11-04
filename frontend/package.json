@@ -3,29 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "echarts": "^5.4.3",
-    "element-plus": "^2.3.14",
+    "element-plus": "^2.4.2",
     "feather-icons": "^4.29.1",
     "normalize.css": "^8.0.1",
-    "vue": "^3.3.6",
+    "vue": "^3.3.4",
     "vue-baidu-map-3x": "^1.0.35",
     "vue-feather": "^2.0.0",
-    "vue-router": "^4.0.3"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-plugin-router": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "lint-staged": "^11.1.2"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
+    "@vitejs/plugin-vue": "^4.4.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-vue": "^9.17.0",
+    "vite": "^4.4.11"
   }
 }

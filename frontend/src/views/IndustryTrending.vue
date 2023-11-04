@@ -69,19 +69,19 @@
 </template>
   
 <script>
-import AsideVue from "@/components/AsideVue";
-import TabTime from "@/components/TabTime";
-import chinaMap from '@/components/IndustryTrendingComponents/chinaMap'
-import labelDisplay from '@/components/IndustryTrendingComponents/labelDisplay';
-import barChart from '@/components/IndustryTrendingComponents/barChart';
-import pieChart from '@/components/IndustryTrendingComponents/pieChart';
-import lineChart from '@/components/IndustryTrendingComponents/lineChart';
-import lineBarChart from '@/components/IndustryTrendingComponents/lineBarChart';
+import AsideVue from "@/components/AsideVue.vue";
+import TabTime from "@/components/TabTime.vue";
+import chinaMap from '@/components/IndustryTrendingComponents/chinaMap.vue'
+import labelDisplay from '@/components/IndustryTrendingComponents/labelDisplay.vue';
+import barChart from '@/components/IndustryTrendingComponents/barChart.vue';
+import pieChart from '@/components/IndustryTrendingComponents/pieChart.vue';
+import lineChart from '@/components/IndustryTrendingComponents/lineChart.vue';
+import lineBarChart from '@/components/IndustryTrendingComponents/lineBarChart.vue';
 
-import imagewithCharacter1 from '@/components/IndustryTrendingComponents/imagewithCharacter1';
-import imagewithCharacter2 from '@/components/IndustryTrendingComponents/imagewithCharacter2';
-import imagewithCharacter3 from '@/components/IndustryTrendingComponents/imagewithCharacter3';
-import imagewithCharacter4 from '@/components/IndustryTrendingComponents/imagewithCharacter4';
+import imagewithCharacter1 from '@/components/IndustryTrendingComponents/imagewithCharacter1.vue';
+import imagewithCharacter2 from '@/components/IndustryTrendingComponents/imagewithCharacter2.vue';
+import imagewithCharacter3 from '@/components/IndustryTrendingComponents/imagewithCharacter3.vue';
+import imagewithCharacter4 from '@/components/IndustryTrendingComponents/imagewithCharacter4.vue';
 
 export default {
   components: {

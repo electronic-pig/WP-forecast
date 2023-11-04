@@ -2,7 +2,7 @@
 	<div class="card-container">
 		<div class="fan-card">
 			<el-row :gutter="20">
-				<el-col span="12">
+				<el-col :span="13">
 					<div class="fan-card-content">
 						<p class="fan-card-title">风机设备信息</p>
 						<div class="info-item">
@@ -14,7 +14,7 @@
 							<span><el-tag class="value">{{ deviceModel }}</el-tag></span>
 						</div>
 						<div class="info-item">
-							<span class="label">风机所在地：</span>
+							<span class="label">风机地址：</span>
 							<span><el-tag class="value">{{ location }}</el-tag></span>
 						</div>
 						<div class="info-item">
@@ -37,7 +37,7 @@
 						</div>
 					</div>
 				</el-col>
-				<el-col span="12">
+				<el-col :span="11">
 					<div style="display: flex;align-items: center;justify-content: center;">
 						<img v-if="isNormal" src="@/assets/image/normal.gif" style="width: 200px;margin-top: 10px;">
 						<img v-if="isAbnormal" src="@/assets/image/abnormal.gif" style="width: 250px;">

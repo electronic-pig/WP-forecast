@@ -94,6 +94,7 @@ export default {
 .title {
     background: linear-gradient(to right, #0000FF, #00BFFF);
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
     font-weight: bold;
     font-size: 18px;
@@ -116,9 +117,10 @@ export default {
 .large-number {
     background: #6699FF;
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
     font-size: 100px;
-    font-weight: 200;
+    font-weight: 400;
 }
 
 .text {

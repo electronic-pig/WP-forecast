@@ -2,7 +2,7 @@
     <div class="container" ref="content">
         <div class="left-div" :class="{ animateLeft: isVisible }">
             <div style="display: flex; align-items: center;margin-top: 40px;">
-                <img class="logo" :src="require('@/assets/image/logo/logo.gif')" />
+                <img class="logo" src="@/assets/image/logo/logo.gif" />
                 <span class="title">风电功率预测及可视化平台</span>
             </div>
             <p style="margin: 0;color: #3c3d3f;">想要试试强大的预测功能吗？<br>马上体验一下</P>

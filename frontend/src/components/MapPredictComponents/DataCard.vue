@@ -9,7 +9,7 @@
                             <div class="value">{{ item.value }}{{ unit[index] }}</div>
                         </div>
                         <div class="right-content">
-                            <img :src="require('@/assets/icon/' + item.icon)" alt="icon" />
+                            <img :src="`/src/assets/icon/${item.icon}`" alt="icon" />
                         </div>
                     </div>
                 </el-card>

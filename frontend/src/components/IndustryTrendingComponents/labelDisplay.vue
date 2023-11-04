@@ -11,18 +11,14 @@
 	</div>
 </template>
 
-
 <script>
 export default {
-	// the name of this component [Required]
 	name: 'labelDisplay',
 	data() {
 		return {
-			imageSrc: [require('@/assets/image/electrical-energy.gif'), require('@/assets/image/turbine.gif'), require('@/assets/image/power-transformer.gif')]
+			imageSrc: [`/src/assets/image/electrical-energy.gif`, `/src/assets/image/turbine.gif`, `/src/assets/image/power-transformer.gif`]
 		}
 	},
-
-	// propagate parameters when using component [call by 'this']
 	props: {
 		line1: {
 			type: String,
@@ -45,13 +41,11 @@ export default {
 			default: 0  // '万千瓦'  '亿千瓦时'
 		}
 	},
-
 	computed: {
 		imgShow() {
 			return this.imgSrc[this.imageChoice]
 		}
 	}
-
 }
 </script>
 

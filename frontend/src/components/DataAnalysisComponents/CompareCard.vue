@@ -20,7 +20,7 @@
 						</div>
 					</div>
 					<div class="right-content">
-						<img :src="require('@/assets/icon/' + item.icon)" alt="My Image" />
+						<img :src="`/src/assets/icon/${item.icon}`" alt="My Image" />
 					</div>
 				</div>
 			</el-card>

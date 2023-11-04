@@ -40,16 +40,16 @@
 </template>
   
 <script>
-import AsideVue from "@/components/AsideVue";
-import TabTime from "@/components/TabTime";
-import TemperatureCard from '@/components/DataAnalysisComponents/TemperatureCard';
-import HumidityCard from "@/components/DataAnalysisComponents/HumidityCard";
-import PressureCard from "@/components/DataAnalysisComponents/PressureCard";
-import WindspeedCard from "@/components/DataAnalysisComponents/WindspeedCard";
-import HistoryChart from "@/components/DataAnalysisComponents/HistoryChart"
-import SortTable from "@/components/DataAnalysisComponents/SortTable";
-import CompareCard from "@/components/DataAnalysisComponents/CompareCard";
-import RecentChart from "@/components/DataAnalysisComponents/RecentChart";
+import AsideVue from "@/components/AsideVue.vue";
+import TabTime from "@/components/TabTime.vue";
+import TemperatureCard from '@/components/DataAnalysisComponents/TemperatureCard.vue';
+import HumidityCard from "@/components/DataAnalysisComponents/HumidityCard.vue";
+import PressureCard from "@/components/DataAnalysisComponents/PressureCard.vue";
+import WindspeedCard from "@/components/DataAnalysisComponents/WindspeedCard.vue";
+import HistoryChart from "@/components/DataAnalysisComponents/HistoryChart.vue"
+import SortTable from "@/components/DataAnalysisComponents/SortTable.vue";
+import CompareCard from "@/components/DataAnalysisComponents/CompareCard.vue";
+import RecentChart from "@/components/DataAnalysisComponents/RecentChart.vue";
 export default {
   components: {
     AsideVue,
@@ -127,7 +127,7 @@ export default {
 }
 
 .compareCard-container {
-    display: block;
+  display: block;
   border: 2px solid var(--theme--color);
   border-radius: 15px;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;

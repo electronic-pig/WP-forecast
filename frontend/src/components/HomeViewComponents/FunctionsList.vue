@@ -9,25 +9,25 @@
     <div class="card-container" ref="content" :class="{ animate: isVisible }">
         <div class="card" :class="{ animate: card1Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot/screenShot1.png`)" />
+                <img src="@/assets/image/screenShot/screenShot1.png" />
                 <p class="text" @click="routerToPowerPredict">功率预测</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card2Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot/screenShot2.png`)" />
+                <img src="@/assets/image/screenShot/screenShot2.png" />
                 <p class="text">数据分析</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card3Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot/screenShot3.png`)" />
+                <img src="@/assets/image/screenShot/screenShot3.png" />
                 <p class="text">定点预测</p>
             </div>
         </div>
         <div class="card" :class="{ animate: card4Visible }">
             <div class="image-container">
-                <img :src="require(`@/assets/image/screenShot/screenShot4.png`)" />
+                <img src="@/assets/image/screenShot/screenShot4.png" />
                 <p class="text">风机管理</p>
             </div>
         </div>
@@ -101,12 +101,10 @@ export default {
 
 .title {
     background: linear-gradient(to right, #0000FF, #00BFFF);
-    /* 深蓝到浅蓝的渐变 */
     background-clip: text;
+    -webkit-background-clip: text;
     color: transparent;
-    /* 使文本颜色透明 */
     font-weight: bold;
-    /* 加粗文本 */
     font-size: 18px;
     display: inline-block;
     margin: 0;

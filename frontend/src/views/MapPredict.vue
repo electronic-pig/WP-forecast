@@ -29,16 +29,16 @@
 </template>
   
 <script>
-import AsideVue from "@/components/AsideVue";
-import TabTime from "@/components/TabTime";
-import BaiduMap from "@/components/MapPredictComponents/BaiduMap"
-import DataCard from "@/components/MapPredictComponents/DataCard";
-import PredictChart from "@/components/MapPredictComponents/PredictChart"
-import PWChange from "@/components/MapPredictComponents/PWChange";
+import AsideVue from "@/components/AsideVue.vue";
+import TabTime from "@/components/TabTime.vue";
+import BaiduMap from "@/components/MapPredictComponents/BaiduMap.vue"
+import DataCard from "@/components/MapPredictComponents/DataCard.vue";
+import PredictChart from "@/components/MapPredictComponents/PredictChart.vue"
+import PWChange from "@/components/MapPredictComponents/PWChange.vue";
 export default {
     components: {
         AsideVue,
-        TabTime,
+        TabTime,    
         BaiduMap,
         DataCard,
         PredictChart,

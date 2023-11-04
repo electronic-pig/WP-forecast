@@ -10,7 +10,7 @@
             <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
             <bm-marker :position="selectedCoordinate" :dragging="true" @dragend="handleMapClick"
                 animation="BMAP_ANIMATION_BOUNCE"
-                :icon="{ url: require('@/assets/icon/windmill.gif'), size: { width: 100, height: 100 } }">
+                :icon="{ url: '/src/assets/icon/windmill.gif', size: { width: 100, height: 100 } }">
             </bm-marker>
         </baidu-map>
         <el-row :gutter="20">

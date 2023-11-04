@@ -32,17 +32,17 @@
       </el-main>
     </el-container>
   </el-container>
-</template>
+</template> 
 
 <script>
-import AsideVue from "@/components/AsideVue";
-import TabTime from "@/components/TabTime";
-import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWindmill";
-import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart"
-import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart";
-import PowerChart from "@/components/PowerPredictComponents/PowerChart";
-import LoadChart from "@/components/PowerPredictComponents/LoadChart";
-import CompareChart from "@/components/PowerPredictComponents/CompareChart";
+import AsideVue from "@/components/AsideVue.vue";
+import TabTime from "@/components/TabTime.vue";
+import BackgroundWindmill from "@/components/PowerPredictComponents/BackgroundWindmill.vue";
+import TemperatureChart from "@/components/PowerPredictComponents/TemperatureChart.vue"
+import WindSpeedChart from "@/components/PowerPredictComponents/WindSpeedChart.vue";
+import PowerChart from "@/components/PowerPredictComponents/PowerChart.vue";
+import LoadChart from "@/components/PowerPredictComponents/LoadChart.vue";
+import CompareChart from "@/components/PowerPredictComponents/CompareChart.vue";
 
 export default {
   components: {

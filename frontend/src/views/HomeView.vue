@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import HomeScene from '@/components/HomeViewComponents/HomeScreen'
-import HomeHeader from '@/components/HomeViewComponents/HomeHeader'
-import MainBody from '@/components/HomeViewComponents/MainBody';
-import FunctionsList from '@/components/HomeViewComponents/FunctionsList';
-import ModelsStatics from '@/components/HomeViewComponents/ModelsStatics';
-import ProductAdvantages from '@/components/HomeViewComponents/ProductAdvantages';
-import TryNow from '@/components/HomeViewComponents/TryNow';
+import HomeScene from '@/components/HomeViewComponents/HomeScreen.vue'
+import HomeHeader from '@/components/HomeViewComponents/HomeHeader.vue'
+import MainBody from '@/components/HomeViewComponents/MainBody.vue';
+import FunctionsList from '@/components/HomeViewComponents/FunctionsList.vue';
+import ModelsStatics from '@/components/HomeViewComponents/ModelsStatics.vue';
+import ProductAdvantages from '@/components/HomeViewComponents/ProductAdvantages.vue';
+import TryNow from '@/components/HomeViewComponents/TryNow.vue';
 export default {
   name: 'HomeView',
   components: {

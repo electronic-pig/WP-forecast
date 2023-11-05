@@ -38,7 +38,7 @@ import PWChange from "@/components/MapPredictComponents/PWChange.vue";
 export default {
     components: {
         AsideVue,
-        TabTime,    
+        TabTime,
         BaiduMap,
         DataCard,
         PredictChart,

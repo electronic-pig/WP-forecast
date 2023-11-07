@@ -5,13 +5,13 @@ body,
     margin: 0;
 }
 
-.center-container {
+.load-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-  }
+}
 
 .logo-image {
     width: 250px;
@@ -24,4 +24,3 @@ body,
     width: 100%;
     text-align: center;
 }
- 

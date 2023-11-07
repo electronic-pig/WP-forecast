@@ -1,10 +1,12 @@
 <template>
-    <div class="animated-text">
-        <h1>风电功率预测及可视化平台</h1>
-        <h3>Wind power prediction and visualization platform</h3>
-    </div>
-    <div class="btn-container animated-text">
-        <button class="btn-hover color-9" @click="redirectToPowerPredict">开始使用</button>
+    <div class="center-container">
+        <div class="animated-text">
+            <h1>风电功率预测及可视化平台</h1>
+            <h3>Wind power prediction and visualization platform</h3>
+        </div>
+        <div class="btn-container animated-text">
+            <button class="btn-hover color-9" @click="redirectToPowerPredict">开始使用</button>
+        </div>
     </div>
 </template>
 
@@ -30,6 +32,14 @@ export default {
 </script>
 
 <style scoped>
+.center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 h1 {
     line-height: 0%;
     padding: 0;

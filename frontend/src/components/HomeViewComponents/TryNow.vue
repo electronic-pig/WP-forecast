@@ -9,7 +9,7 @@
         </div>
         <div class="right-div" :class="{ animateRight: isVisible }">
             <div class="btn-container animated-text">
-                <button class="btn-hover color-9" @click="redirectToPowerPredict">立即体验
+                <button class="btn-hover btn-color" @click="redirectToPowerPredict">立即体验
                     <vue-feather type="arrow-right"></vue-feather></button>
             </div>
         </div>
@@ -137,7 +137,7 @@ p {
     outline: none;
 }
 
-.btn-hover.color-9 {
+.btn-hover.btn-color {
     background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
     box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
 }

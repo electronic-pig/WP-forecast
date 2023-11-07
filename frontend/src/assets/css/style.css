@@ -5,13 +5,13 @@ body,
     margin: 0;
 }
 
-.logo-container {
-    margin-top: 200px;
-    height: 250px;
+.center-container {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-}
+    align-items: center;
+    height: 100vh;
+  }
 
 .logo-image {
     width: 250px;
@@ -24,3 +24,4 @@ body,
     width: 100%;
     text-align: center;
 }
+ 

@@ -1,0 +1,26 @@
+html,
+body,
+#app {
+    padding: 0;
+    margin: 0;
+}
+
+.load-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo-image {
+    width: 250px;
+    height: 250px;
+}
+
+.load_title {
+    color: #4374bd;
+    font-size: 36px;
+    width: 100%;
+    text-align: center;
+}

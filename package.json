@@ -1,0 +1,29 @@
+{
+  "name": "wp-predict",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@eslint/config-array": "^0.17.1",
+    "@eslint/object-schema": "^2.1.4",
+    "echarts": "^5.5.1",
+    "element-plus": "^2.7.8",
+    "feather-icons": "^4.29.2",
+    "normalize.css": "^8.0.1",
+    "vue": "^3.4.34",
+    "vue-baidu-map-3x": "^1.0.39",
+    "vue-feather": "^2.0.0",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.27.0",
+    "vite": "^5.3.5"
+  }
+}

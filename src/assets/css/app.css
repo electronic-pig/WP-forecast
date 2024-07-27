@@ -1,0 +1,44 @@
+:root {
+  --theme--color: #2073e0;
+}
+
+#aside-menu {
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+}
+
+#aside-menu:not(.el-menu--collapse) {
+  width: 12vw;
+}
+
+.el-header {
+  box-shadow: 0 0 2rem 0 rgba(41, 48, 66, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.collapse {
+  margin-right: 30px;
+}
+
+.collapse:hover {
+  color: var(--theme--color);
+  cursor: pointer;
+}
+
+.el-main {
+  transition: all 0.4s;
+  height: 90vh;
+  width: 100%;
+  padding: 10px !important;
+  overflow-x: hidden !important;
+}
+
+.el-divider__text {
+  background-color: rgb(247, 246, 242) !important;
+}
+
+.el-alert__title {
+  font-size: 20px !important;
+}

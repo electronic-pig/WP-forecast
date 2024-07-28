@@ -6,7 +6,7 @@
 		<div class="dropdowns">
 			<div class="dropdown-left">
 				<span class="choice-label" style="margin-top: 5px;font-weight: bold;">风机序列号：</span>
-				<el-select v-model="fanSequence" placeholder="风机序列号1-10">
+				<el-select v-model="fanSequence" placeholder="风机序列号1-10" style="width: 100px;">
 					<el-option v-for="fanNumber in 10" :key="fanNumber" :label="`风机${fanNumber}`"
 						:value="fanNumber"></el-option>
 				</el-select>

@@ -265,9 +265,11 @@ export default {
 
 .dropdown-left {
 	margin-right: 10px;
+	width: 240px;	
 }
 
 .dropdown-right {
+	width: 240px;
 	left: auto;
 	right: 0;
 	margin-right: 10px;

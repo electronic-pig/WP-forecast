@@ -17,13 +17,13 @@
 				<el-menu class="turbine-menu" :default-active="currentFanId" mode="horizontal" :ellipsis="false"
 					@select="handleMenuClick">
 					<el-menu-item index="add">
-						<el-icon size="20px" style="color:var(--theme--color)">
+						<el-icon size="20px" style="color:var(--theme--color);width: 20px;">
 							<CirclePlusFilled />
 						</el-icon>
 						<p class="fan">新增风机</p>
 					</el-menu-item>
 					<el-menu-item v-for="fan in fans" :key="fan.id" :index="fan.id">
-						<el-icon size="20px" style="color:var(--theme--color)">
+						<el-icon size="20px" style="color:var(--theme--color);width: 20px;">
 							<ChromeFilled />
 						</el-icon>
 						<span class="fan">{{ fan.name }}</span>
@@ -79,7 +79,7 @@
 		</el-container>
 	</el-container>
 </template>
-  
+
 <script>
 import AsideVue from "@/components/AsideVue.vue";
 import TabTime from "@/components/TabTime.vue";
@@ -111,7 +111,6 @@ export default {
 				{ id: '7', name: '风机7' },
 				{ id: '8', name: '风机8' },
 				{ id: '9', name: '风机9' },
-				{ id: '10', name: '风机10' },
 			],
 			fanInfo: [
 				{ id: '1', deviceModel: 'LM-1894', location: '四川省成都市双流区', runStatus: 'normal' },
@@ -123,7 +122,6 @@ export default {
 				{ id: '7', deviceModel: 'LM-1894', location: '上海市浦东新区', runStatus: 'normal' },
 				{ id: '8', deviceModel: 'LM-2001', location: '陕西省西安市雁塔区', runStatus: 'abnormal' },
 				{ id: '9', deviceModel: 'LM-1765', location: '河南省郑州市中原区', runStatus: 'fault' },
-				{ id: '10', deviceModel: 'LM-2123', location: '湖南省长沙市岳麓区', runStatus: 'normal' },
 			],
 			runInfo: [
 				{ "windSpeed": "5 m/s", "windDirection": "N", "temperature": "28°C", "pressure": "101.3 kPa", "rotationSpeed": "1500 RPM", "voltage": "2200 V", "current": "10 A", "power": "22000 W", "sunlightIntensity": "800 W/m²", "humidity": "60%" },
@@ -135,7 +133,6 @@ export default {
 				{ "windSpeed": "12 m/s", "windDirection": "W", "temperature": "29°C", "pressure": "100.9 kPa", "rotationSpeed": "1800 RPM", "voltage": "2153 V", "current": "13 A", "power": "28000 W", "sunlightIntensity": "880 W/m²", "humidity": "63%" },
 				{ "windSpeed": "16 m/s", "windDirection": "NW", "temperature": "23°C", "pressure": "101.1 kPa", "rotationSpeed": "1250 RPM", "voltage": "2000 V", "current": "8.5 A", "power": "17000 W", "sunlightIntensity": "720 W/m²", "humidity": "59%" },
 				{ "windSpeed": "21 m/s", "windDirection": "N", "temperature": "28°C", "pressure": "101.6 kPa", "rotationSpeed": "1550 RPM", "voltage": "2190 V", "current": "10.5 A", "power": "23000 W", "sunlightIntensity": "800 W/m²", "humidity": "61%" },
-				{ "windSpeed": "3 m/s", "windDirection": "NE", "temperature": "25°C", "pressure": "101.3 kPa", "rotationSpeed": "1450 RPM", "voltage": "2210 V", "current": "9.5 A", "power": "21000 W", "sunlightIntensity": "760 W/m²", "humidity": "56%" },
 			],
 			showAddForm: false,
 			newFan: {
@@ -193,7 +190,7 @@ export default {
 	}
 };
 </script>
-  
+
 <style scoped>
 .turbine-menu {
 	height: 50px;

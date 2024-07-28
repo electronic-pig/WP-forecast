@@ -82,6 +82,7 @@ export default {
 
 <style scoped>
 .select {
+  width: 240px;
   margin-left: auto;
   margin-right: 10px;
 }

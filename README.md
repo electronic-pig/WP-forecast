@@ -73,7 +73,9 @@ npm run build
 ![image](https://github.com/user-attachments/assets/1529a3ab-fda2-49f6-b5d4-2b06c96a8ca2)
 
 ## 🤝 团队成员
-本项目由以下四位开发者共同完成(不分先后)：[electronic-pig](https://github.com/electronic-pig)、[Labhahaha](https://github.com/Labhahaha)、[LZY2275](https://github.com/LZY2275)、[Cloud0yyk](https://github.com/Cloud0yyk)
+<a href="https://github.com/electronic-pig/WP-forecast/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=electronic-pig/WP-forecast" />
+</a>
 
 ## ✍ 写在最后
 项目制作不易，如果它对你有帮助的话，请务必给作者点一个免费的⭐，万分感谢!🙏🙏🙏

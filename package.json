@@ -11,7 +11,7 @@
   "dependencies": {
     "@eslint/config-array": "^0.23.1",
     "@eslint/object-schema": "^2.1.4",
-    "echarts": "^5.5.1",
+    "echarts": "^6.1.0",
     "element-plus": "^2.11.0",
     "feather-icons": "^4.29.2",
     "normalize.css": "^8.0.1",

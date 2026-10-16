@@ -15,7 +15,7 @@
     "element-plus": "^2.11.0",
     "feather-icons": "^4.29.2",
     "normalize.css": "^8.0.1",
-    "vue": "^3.4.34",
+    "vue": "^3.5.43",
     "vue-baidu-map-3x": "^1.0.39",
     "vue-feather": "^2.0.0",
     "vue-router": "^4.4.0"
